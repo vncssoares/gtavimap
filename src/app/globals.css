@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+:root {
+  --background: #12131a;
+  --foreground: #f1f5f9;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Customizações do Leaflet para Tema Neon GTAVIMap */
+.leaflet-container {
+  background-color: #3b9cb0 !important;
+  outline: none;
+}
+
+.custom-teardrop-icon {
+  background: transparent !important;
+  border: none !important;
+}
+
+.gtavimap-neon-popup .leaflet-popup-content-wrapper {
+  background: #12131a !important;
+  color: #f1f5f9 !important;
+  border: 1.5px solid #ff2a85 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.8), 0 0 15px rgba(255, 42, 133, 0.25) !important;
+  padding: 2px !important;
+}
+
+.gtavimap-neon-popup .leaflet-popup-tip {
+  background: #12131a !important;
+  border: 1.5px solid #ff2a85 !important;
+}
+
+.gtavimap-neon-popup .leaflet-popup-content {
+  margin: 10px 12px !important;
+  line-height: 1.4 !important;
+}
+
+.gtavimap-neon-popup .leaflet-popup-close-button {
+  color: #94a3b8 !important;
+  top: 8px !important;
+  right: 8px !important;
+}
+
+.gtavimap-neon-popup .leaflet-popup-close-button:hover {
+  color: #ff2a85 !important;
+}
+
+/* Scrollbar personalizada minimalista */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #0d0e14;
+}
+::-webkit-scrollbar-thumb {
+  background: #252837;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ff2a85;
+}
