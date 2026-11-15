@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import {
-  Search,
   X,
   ChevronLeft,
   ChevronRight,
@@ -84,16 +83,16 @@ export const CategoryFilterSidebar: React.FC<CategoryFilterSidebarProps> = ({
         <button
           onClick={() => setIsCollapsed(false)}
           className="hidden md:flex absolute top-3 left-3 z-30 w-9 h-9 rounded-lg bg-[#12131a] border border-[#ff2a85] text-[#ff2a85] items-center justify-center shadow-xl hover:bg-[#1a1c27] transition-all"
-          title="Expandir Painel"
+          title={dict.common.expandPanel}
         >
           <ChevronRight size={20} />
         </button>
       )}
 
       <aside
-        className={`fixed md:relative top-0 bottom-0 left-0 z-30 w-[360px] sm:w-[380px] max-w-[92vw] flex flex-col bg-[#12131a] border-r-2 border-[#ff2a85] text-slate-200 transition-all duration-300 shadow-2xl ${
-          isCollapsed ? '-translate-x-full md:-ml-[380px]' : 'translate-x-0'
-        } ${isOpenMobile ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}
+        className={`fixed md:relative top-16 md:top-0 bottom-0 left-0 z-30 w-[360px] sm:w-[380px] max-w-[92vw] flex flex-col bg-[#12131a] border-r-2 border-[#ff2a85] text-slate-200 transition-all duration-300 shadow-2xl ${
+          isOpenMobile ? 'translate-x-0' : '-translate-x-full'
+        } ${isCollapsed ? 'md:-ml-[380px]' : 'md:translate-x-0'}`}
         style={{
           boxShadow: '4px 0 25px rgba(255, 42, 133, 0.15)',
         }}
@@ -104,7 +103,7 @@ export const CategoryFilterSidebar: React.FC<CategoryFilterSidebarProps> = ({
           <button
             onClick={() => setIsCollapsed(true)}
             className="hidden md:flex absolute top-3.5 right-3.5 w-7 h-7 rounded-lg bg-[#1a1c27] border border-[#2d3042] text-slate-400 hover:text-white items-center justify-center transition-colors"
-            title="Recolher Barra"
+            title={dict.common.collapsePanel}
           >
             <ChevronLeft size={16} />
           </button>
@@ -113,7 +112,7 @@ export const CategoryFilterSidebar: React.FC<CategoryFilterSidebarProps> = ({
           <button
             onClick={onCloseMobile}
             className="md:hidden absolute top-3.5 right-3.5 w-8 h-8 rounded-lg bg-[#1a1c27] border border-[#ff2a85] text-[#ff2a85] flex items-center justify-center"
-            aria-label="Close filters"
+            aria-label={dict.common.closeFilters}
           >
             <X size={18} />
           </button>
@@ -127,7 +126,7 @@ export const CategoryFilterSidebar: React.FC<CategoryFilterSidebarProps> = ({
             </div>
             <div className="flex flex-col">
               <span className="text-sm font-black uppercase tracking-wider text-white">
-                GTA VI INTERACTIVE MAP
+                {dict.common.siteName} {dict.nav.map}
               </span>
             </div>
           </div>
@@ -207,13 +206,13 @@ export const CategoryFilterSidebar: React.FC<CategoryFilterSidebarProps> = ({
               onClick={onSelectAllCategories}
               className="px-3 py-1.5 rounded-full border border-[#00e5ff] text-[#00e5ff] hover:bg-[#00e5ff]/10 text-xs font-black uppercase tracking-wider transition-colors"
             >
-              SHOW ALL
+              {dict.common.showAll}
             </button>
             <button
               onClick={onClearCategories}
               className="px-3 py-1.5 rounded-full border border-slate-600 text-slate-200 hover:bg-slate-800 text-xs font-black uppercase tracking-wider transition-colors"
             >
-              HIDE ALL
+              {dict.common.hideAll}
             </button>
             <button
               onClick={() => onFilterStatusChange(filterStatus === 'favorites' ? 'all' : 'favorites')}
@@ -223,17 +222,17 @@ export const CategoryFilterSidebar: React.FC<CategoryFilterSidebarProps> = ({
                   : 'border-slate-600 text-slate-200 hover:border-[#fbbf24]'
               }`}
             >
-              FAVORITES
+              {dict.common.favorites}
             </button>
             <button
               onClick={() => onFilterStatusChange(filterStatus === 'found' ? 'all' : 'found')}
               className={`px-3 py-1.5 rounded-full border text-xs font-black uppercase tracking-wider transition-colors ${
                 filterStatus === 'found'
-                  ? 'border-[#00ff66] bg-[#00ff66]/20 text-[#00ff66]'
-                  : 'border-slate-600 text-slate-200 hover:border-[#00ff66]'
+                  ? 'border-[#00e5ff] bg-[#00e5ff]/20 text-[#00e5ff]'
+                  : 'border-slate-600 text-slate-200 hover:border-[#00e5ff]'
               }`}
             >
-              FOUND
+              {dict.common.found}
             </button>
           </div>
 
@@ -244,7 +243,7 @@ export const CategoryFilterSidebar: React.FC<CategoryFilterSidebarProps> = ({
                 type="text"
                 value={searchQuery}
                 onChange={(e) => onSearchChange(e.target.value)}
-                placeholder="Search... e.g. 'Stunt Jump' or 'Weapon'"
+                placeholder={dict.common.searchPlaceholder}
                 className="w-full px-3 py-2 rounded-lg bg-[#0b0c10] border border-[#262838] text-xs text-slate-100 placeholder-slate-400 focus:outline-none focus:border-[#ff2a85] transition-colors"
               />
               {searchQuery && (
@@ -261,7 +260,7 @@ export const CategoryFilterSidebar: React.FC<CategoryFilterSidebarProps> = ({
               type="button"
               className="px-3.5 py-2 rounded-lg bg-[#161722] border border-[#ff2a85] text-[#ff2a85] hover:bg-[#ff2a85] hover:text-black font-black text-xs uppercase tracking-wider transition-all"
             >
-              SEARCH
+              {dict.common.search}
             </button>
           </div>
         </div>
@@ -335,7 +334,7 @@ export const CategoryFilterSidebar: React.FC<CategoryFilterSidebarProps> = ({
             className="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-black text-sm uppercase tracking-wider text-[#0e0f15] bg-gradient-to-r from-[#ff2a85] via-[#a855f7] to-[#00e5ff] hover:opacity-95 transition-transform transform active:scale-98 shadow-lg shadow-[#ff2a85]/25"
           >
             <Sparkles size={16} className="text-[#0e0f15]" />
-            <span>UPGRADE TO PRO</span>
+            <span>{dict.common.upgradeToPro}</span>
           </Link>
 
           {/* Links utilitários */}
@@ -345,17 +344,17 @@ export const CategoryFilterSidebar: React.FC<CategoryFilterSidebarProps> = ({
               className="hover:text-[#00e5ff] transition-colors flex items-center gap-1.5"
             >
               <Download size={13} />
-              <span>Backup / Restore JSON</span>
+              <span>{dict.common.backupRestore}</span>
             </button>
             <button
               onClick={() => {
-                if (window.confirm('Deseja redefinir todo o progresso do mapa?')) {
+                if (window.confirm(dict.common.confirmReset)) {
                   onResetProgress();
                 }
               }}
               className="hover:text-red-400 transition-colors"
             >
-              Reset
+              {dict.common.resetProgress}
             </button>
           </div>
         </div>
@@ -368,7 +367,7 @@ export const CategoryFilterSidebar: React.FC<CategoryFilterSidebarProps> = ({
             <div className="flex items-center justify-between border-b border-[#222433] pb-3">
               <h3 className="text-sm font-black uppercase tracking-wider text-white flex items-center gap-2">
                 <Download size={16} className="text-[#00e5ff]" />
-                Backup & Restore Progress
+                {dict.common.backupModalTitle}
               </h3>
               <button onClick={() => setShowBackupModal(false)} className="text-slate-400 hover:text-white">
                 <X size={18} />
@@ -384,12 +383,12 @@ export const CategoryFilterSidebar: React.FC<CategoryFilterSidebarProps> = ({
 
             {importStatus === 'success' && (
               <div className="p-2 rounded-lg bg-[#00e5ff]/10 border border-[#00e5ff]/30 text-[#00e5ff] text-xs text-center font-bold">
-                ✓ Sucesso!
+                {dict.common.backupSuccess}
               </div>
             )}
             {importStatus === 'error' && (
               <div className="p-2 rounded-lg bg-red-950/40 border border-red-500/40 text-red-300 text-xs text-center">
-                ⚠ Formato JSON inválido.
+                {dict.common.backupError}
               </div>
             )}
 
@@ -397,17 +396,17 @@ export const CategoryFilterSidebar: React.FC<CategoryFilterSidebarProps> = ({
               <button
                 onClick={() => {
                   navigator.clipboard.writeText(backupJsonText);
-                  alert('Copiado!');
+                  alert(dict.common.copied);
                 }}
                 className="px-4 py-2 rounded-lg bg-[#1a1c27] text-slate-200 text-xs font-bold"
               >
-                Copiar
+                {dict.common.copy}
               </button>
               <button
                 onClick={handleImportBackup}
                 className="px-4 py-2 rounded-lg bg-[#00e5ff] text-black text-xs font-black uppercase"
               >
-                Importar
+                {dict.common.import}
               </button>
             </div>
           </div>

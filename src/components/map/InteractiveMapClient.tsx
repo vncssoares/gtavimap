@@ -76,7 +76,7 @@ export const InteractiveMapClient: React.FC<InteractiveMapClientProps> = ({ lang
   }, [searchQuery, selectedCategories, filterStatus, selectedRegion, progress, lang]);
 
   return (
-    <div className="relative w-full h-[calc(100vh-4rem)] flex overflow-hidden bg-[#12131a]">
+    <div className="relative w-full h-[calc(100vh-4rem)] h-[calc(100dvh-4rem)] flex overflow-hidden bg-[#12131a]">
       {/* Sidebar Esquerda: HUD de Filtros em 2 Colunas */}
       <CategoryFilterSidebar
         lang={lang}
@@ -98,7 +98,7 @@ export const InteractiveMapClient: React.FC<InteractiveMapClientProps> = ({ lang
       />
 
       {/* Área Central: Mapa com Teardrop Pins e Controles */}
-      <main className="relative flex-1 h-full overflow-hidden">
+      <main className="relative flex-1 min-w-0 h-full overflow-hidden">
         <CustomLeafletMap
           markers={filteredMarkers}
           selectedMarker={selectedMarker}

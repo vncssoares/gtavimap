@@ -5,7 +5,6 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { MarkerLocation, Language, UserProgress } from '@/types';
 import { CATEGORIES } from '@/data/categories';
-import { getDictionary } from '@/i18n/translations';
 import {
   Plus,
   Minus,
@@ -42,8 +41,6 @@ export const CustomLeafletMap: React.FC<CustomLeafletMapProps> = ({
   const imageOverlayRef = useRef<L.ImageOverlay | null>(null);
   const [mapTheme, setMapTheme] = useState<'default' | 'detailed'>('default');
   const [cursorCoords, setCursorCoords] = useState<{ x: number; y: number } | null>(null);
-
-  const dict = getDictionary(lang);
 
   // Inicializa mapa com CRS.Simple
   useEffect(() => {
@@ -95,13 +92,40 @@ export const CustomLeafletMap: React.FC<CustomLeafletMapProps> = ({
     };
   }, []);
 
+  // Observa mudanças de dimensão no container do mapa (redimensionamento de janela ou abertura/fecho de sidebars)
+  useEffect(() => {
+    const container = mapContainerRef.current;
+    if (!container) return;
+
+    let resizeTimer: ReturnType<typeof setTimeout>;
+    const handleResize = () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        if (mapInstanceRef.current) {
+          mapInstanceRef.current.invalidateSize({ debounceMoveend: true });
+        }
+      }, 60);
+    };
+
+    const resizeObserver = new ResizeObserver(() => {
+      handleResize();
+    });
+
+    resizeObserver.observe(container);
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('orientationchange', handleResize);
+
+    return () => {
+      clearTimeout(resizeTimer);
+      resizeObserver.disconnect();
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('orientationchange', handleResize);
+    };
+  }, []);
+
   // Alterna o estilo visual do mapa (Default vibrante estilo imagem do usuário vs Detailed escuro)
   useEffect(() => {
     if (!imageOverlayRef.current) return;
-    const bounds: L.LatLngBoundsExpression = [
-      [0, 0],
-      [1000, 1000],
-    ];
     const url =
       mapTheme === 'default'
         ? '/map/leonida-vibrant-map.svg'
@@ -162,7 +186,7 @@ export const CustomLeafletMap: React.FC<CustomLeafletMapProps> = ({
           }
           ${
             isFound
-              ? `<div style="position:absolute; bottom:6px; right:-2px; width:14px; height:14px; background:#00ff66; border-radius:50%; border:1.5px solid #000; color:#000; font-size:9px; display:flex; align-items:center; justify-content:center; font-weight:bold;">✓</div>`
+              ? `<div style="position:absolute; bottom:6px; right:-2px; width:14px; height:14px; background:#00e5ff; border-radius:50%; border:1.5px solid #000; color:#000; font-size:9px; display:flex; align-items:center; justify-content:center; font-weight:bold;">✓</div>`
               : ''
           }
         </div>
@@ -325,7 +349,12 @@ export const CustomLeafletMap: React.FC<CustomLeafletMapProps> = ({
 
       {/* ================= CONTROLES FLUTUANTES (CANTO INFERIOR DIREITO) ================= */}
       {/* Empilhados verticalmente exatamente como na imagem do usuário */}
-      <div className="absolute bottom-16 right-4 z-20 flex flex-col gap-1.5 items-end">
+      <div
+        className="absolute right-4 z-20 flex flex-col gap-1.5 items-end"
+        style={{
+          bottom: 'calc(4.5rem + env(safe-area-inset-bottom, 0px))',
+        }}
+      >
         <div className="flex flex-col bg-[#12131a]/95 backdrop-blur-md rounded-lg border border-[#2d303e] shadow-2xl p-1 gap-1">
           <button
             onClick={() => {}}
@@ -359,7 +388,7 @@ export const CustomLeafletMap: React.FC<CustomLeafletMapProps> = ({
           </button>
           <button
             onClick={() => mapInstanceRef.current?.setView([500, 500], 0, { animate: true })}
-            className="w-8 h-8 rounded bg-[#1a1c26] hover:bg-[#252836] text-slate-200 hover:text-[#00ff66] flex items-center justify-center transition-colors shadow-sm"
+            className="w-8 h-8 rounded bg-[#1a1c26] hover:bg-[#252836] text-slate-200 hover:text-[#00e5ff] flex items-center justify-center transition-colors shadow-sm"
             title="Centralizar Mapa"
           >
             <Crosshair size={15} />
@@ -368,7 +397,12 @@ export const CustomLeafletMap: React.FC<CustomLeafletMapProps> = ({
       </div>
 
       {/* ================= SELETOR DE CAMADA COMPACTO (BASE INFERIOR DIREITA) ================= */}
-      <div className="absolute bottom-4 right-4 z-20 flex items-center gap-1 bg-[#12131a]/95 backdrop-blur-md p-1 rounded-lg border border-[#2d303e] shadow-2xl">
+      <div
+        className="absolute right-4 z-20 flex items-center gap-1 bg-[#12131a]/95 backdrop-blur-md p-1 rounded-lg border border-[#2d303e] shadow-2xl"
+        style={{
+          bottom: 'calc(1rem + env(safe-area-inset-bottom, 0px))',
+        }}
+      >
         <button
           onClick={() => setMapTheme('default')}
           className={`px-3 py-1 rounded text-[11px] font-bold uppercase transition-all ${
@@ -392,7 +426,12 @@ export const CustomLeafletMap: React.FC<CustomLeafletMapProps> = ({
       </div>
 
       {/* Barra de Coordenadas na Base Inferior Esquerda */}
-      <div className="absolute bottom-4 left-4 z-10 hidden sm:flex items-center gap-2 px-3 py-1 rounded bg-[#12131a]/90 backdrop-blur-md border border-[#2d303e] text-[10px] font-mono text-slate-400">
+      <div
+        className="absolute left-4 z-10 hidden sm:flex items-center gap-2 px-3 py-1 rounded bg-[#12131a]/90 backdrop-blur-md border border-[#2d303e] text-[10px] font-mono text-slate-400"
+        style={{
+          bottom: 'calc(1rem + env(safe-area-inset-bottom, 0px))',
+        }}
+      >
         <span className="w-1.5 h-1.5 rounded-full bg-[#00e5ff] animate-pulse"></span>
         <span>{cursorCoords ? `X: ${cursorCoords.x} | Y: ${cursorCoords.y}` : 'X: --- | Y: ---'}</span>
         <span className="text-slate-600">|</span>

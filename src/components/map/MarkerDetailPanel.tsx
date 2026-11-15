@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   X,
   Check,
@@ -47,10 +47,14 @@ export const MarkerDetailPanel: React.FC<MarkerDetailPanelProps> = ({
   const [noteText, setNoteText] = useState(userNote);
   const [copiedCoords, setCopiedCoords] = useState(false);
   const [noteSavedFeedback, setNoteSavedFeedback] = useState(false);
+  const [prevMarkerId, setPrevMarkerId] = useState(marker?.id);
+  const [prevUserNote, setPrevUserNote] = useState(userNote);
 
-  useEffect(() => {
+  if (marker?.id !== prevMarkerId || userNote !== prevUserNote) {
+    setPrevMarkerId(marker?.id);
+    setPrevUserNote(userNote);
     setNoteText(userNote);
-  }, [userNote, marker?.id]);
+  }
 
   if (!marker) return null;
 
@@ -78,18 +82,18 @@ export const MarkerDetailPanel: React.FC<MarkerDetailPanelProps> = ({
         <div className="flex items-center gap-2">
           <div
             className="w-8 h-8 rounded-lg flex items-center justify-center shadow-md"
-            style={{ backgroundColor: category?.badgeBg || 'rgba(0,255,102,0.1)' }}
+            style={{ backgroundColor: category?.badgeBg || 'rgba(0,229,255,0.1)' }}
           >
             <DynamicIcon
               name={category?.iconName || 'MapPin'}
               size={18}
-              color={category?.color || '#00ff66'}
+              color={category?.color || '#00e5ff'}
             />
           </div>
           <div>
             <span
               className="text-xs font-bold uppercase tracking-wider"
-              style={{ color: category?.color || '#00ff66' }}
+              style={{ color: category?.color || '#00e5ff' }}
             >
               {category ? (dict.categories as Record<string, string>)[category.id] || category.shortLabel : marker.category}
             </span>
@@ -118,7 +122,7 @@ export const MarkerDetailPanel: React.FC<MarkerDetailPanelProps> = ({
             {marker.name}
           </h2>
           <div className="flex items-center gap-1.5 mt-1 text-xs text-slate-400">
-            <MapPin size={14} className="text-[#00ff66]" />
+            <MapPin size={14} className="text-[#00e5ff]" />
             <span className="font-medium text-slate-300">{marker.region}</span>
           </div>
         </div>
@@ -130,10 +134,10 @@ export const MarkerDetailPanel: React.FC<MarkerDetailPanelProps> = ({
             className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#131f30] hover:bg-[#1a2b42] border border-[#22354e] text-[11px] font-mono text-slate-300 transition-colors"
             title="Copiar Coordenadas"
           >
-            <Compass size={13} className="text-[#00ff66]" />
+            <Compass size={13} className="text-[#00e5ff]" />
             <span>X: {marker.x} | Y: {marker.y}</span>
             {copiedCoords ? (
-              <CheckCheck size={13} className="text-[#00ff66]" />
+              <CheckCheck size={13} className="text-[#00e5ff]" />
             ) : (
               <Copy size={13} className="text-slate-400" />
             )}
@@ -151,7 +155,7 @@ export const MarkerDetailPanel: React.FC<MarkerDetailPanelProps> = ({
             onClick={() => onToggleFound(marker.id)}
             className={`flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-md ${
               isFound
-                ? 'bg-[#00ff66] text-[#080d14] hover:bg-[#22c55e]'
+                ? 'bg-[#00e5ff] text-[#080d14] hover:bg-[#38bdf8]'
                 : 'bg-[#152336] text-slate-300 hover:bg-[#1c304a] hover:text-white border border-[#233852]'
             }`}
           >
@@ -232,11 +236,11 @@ export const MarkerDetailPanel: React.FC<MarkerDetailPanelProps> = ({
         <div className="p-3.5 rounded-xl bg-[#0f1826] border border-[#1d2d42] space-y-2">
           <div className="flex items-center justify-between">
             <span className="text-[11px] font-bold uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
-              <FileText size={14} className="text-[#00ff66]" />
+              <FileText size={14} className="text-[#00e5ff]" />
               {dict.common.notes}
             </span>
             {noteSavedFeedback && (
-              <span className="text-[10px] font-mono text-[#00ff66] flex items-center gap-1 animate-pulse">
+              <span className="text-[10px] font-mono text-[#00e5ff] flex items-center gap-1 animate-pulse">
                 <Check size={12} /> Salvo!
               </span>
             )}
@@ -247,7 +251,7 @@ export const MarkerDetailPanel: React.FC<MarkerDetailPanelProps> = ({
             onChange={(e) => setNoteText(e.target.value)}
             placeholder={dict.common.notesPlaceholder}
             rows={3}
-            className="w-full p-2.5 rounded-lg bg-[#0a101a] border border-[#1f2f45] text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-[#00ff66] transition-colors resize-none"
+            className="w-full p-2.5 rounded-lg bg-[#0a101a] border border-[#1f2f45] text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-[#00e5ff] transition-colors resize-none"
           />
 
           <button

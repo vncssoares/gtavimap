@@ -6,10 +6,6 @@ import {
   Sparkles,
   CheckCircle2,
   ArrowRight,
-  ShieldAlert,
-  Zap,
-  Star,
-  Layers,
 } from 'lucide-react';
 import { CategoryGroup, Language } from '@/types';
 import { getDictionary } from '@/i18n/translations';
@@ -55,6 +51,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: dict.hero.subtitle,
       url: `https://gtavimap.com/${currentLang.toLowerCase()}`,
       siteName: 'GTAVIMap',
+      locale: currentLang === 'pt-BR' ? 'pt_BR' : currentLang === 'es' ? 'es_ES' : 'en_US',
       type: 'website',
     },
   };
@@ -302,19 +299,19 @@ export default async function HomePage({ params }: PageProps) {
               <ul className="space-y-2.5 text-xs text-slate-300">
                 <li className="flex items-center gap-2">
                   <CheckCircle2 size={15} className="text-[#00e5ff]" />
-                  <span>Exploração de todos os marcadores</span>
+                  <span>{dict.common.freeFeature1.replace(/^•\s*/, '')}</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <CheckCircle2 size={15} className="text-[#00e5ff]" />
-                  <span>Filtros em 2 colunas e busca em tempo real</span>
+                  <span>{dict.common.freeFeature2.replace(/^•\s*/, '')}</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <CheckCircle2 size={15} className="text-[#00e5ff]" />
-                  <span>Progresso salvo localmente no navegador</span>
+                  <span>{dict.common.freeFeature3.replace(/^•\s*/, '')}</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <CheckCircle2 size={15} className="text-[#00e5ff]" />
-                  <span>Exportação e importação de backup JSON</span>
+                  <span>{dict.common.backupRestore}</span>
                 </li>
               </ul>
 
@@ -322,7 +319,7 @@ export default async function HomePage({ params }: PageProps) {
                 href={`${langPrefix}/map`}
                 className="w-full inline-flex items-center justify-center py-2.5 rounded-xl bg-[#1a1c27] hover:bg-[#252838] text-slate-200 text-xs font-bold uppercase tracking-wider border border-[#2d3044] transition-colors"
               >
-                Acessar Gratuitamente
+                {dict.common.exploreMap}
               </Link>
             </div>
 
@@ -334,37 +331,37 @@ export default async function HomePage({ params }: PageProps) {
               }}
             >
               <div className="absolute top-4 right-4 px-2.5 py-0.5 rounded-full bg-[#ff2a85]/20 border border-[#ff2a85] text-[#ff2a85] font-mono text-[10px] font-black uppercase">
-                PLANEJADO
+                {dict.common.planned.toUpperCase()}
               </div>
 
               <div className="space-y-1">
                 <span className="text-[11px] font-mono uppercase text-[#ff2a85]">
-                  GTAVIMAP PRO & CLOUD
+                  {dict.premium.badge}
                 </span>
                 <div className="text-3xl font-black text-white font-mono">
                   {dict.premium.monthlyPrice}
                 </div>
                 <p className="text-xs text-slate-400">
-                  Para jogadores que buscam a conclusão perfeita de 100%.
+                  {dict.premium.subtitle}
                 </p>
               </div>
 
               <ul className="space-y-2.5 text-xs text-slate-200">
                 <li className="flex items-center gap-2">
                   <Sparkles size={15} className="text-[#ff2a85]" />
-                  <span>Zero anúncios e mapa a 60 FPS</span>
+                  <span>{dict.common.proFeature4.replace(/^•\s*/, '')}</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <Sparkles size={15} className="text-[#ff2a85]" />
-                  <span>Sincronização na nuvem entre PC, tablet e celular</span>
+                  <span>{dict.premium.feature2Title}</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <Sparkles size={15} className="text-[#ff2a85]" />
-                  <span>Criação ilimitada de waypoints pessoais</span>
+                  <span>{dict.premium.feature3Title}</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <Sparkles size={15} className="text-[#ff2a85]" />
-                  <span>Múltiplos perfis de savegame</span>
+                  <span>{dict.common.proFeature3.replace(/^•\s*/, '')}</span>
                 </li>
               </ul>
 
@@ -372,7 +369,7 @@ export default async function HomePage({ params }: PageProps) {
                 href={`${langPrefix}/premium`}
                 className="w-full inline-flex items-center justify-center py-2.5 rounded-xl font-black text-xs uppercase tracking-wider text-[#0e0f15] bg-gradient-to-r from-[#ff2a85] via-[#a855f7] to-[#00e5ff] shadow-lg shadow-[#ff2a85]/25 transition-transform transform active:scale-98"
               >
-                Conhecer Recursos Premium
+                {dict.common.upgradePremium}
               </Link>
             </div>
           </div>

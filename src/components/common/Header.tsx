@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Compass, Sparkles, Menu, X, MapPin } from 'lucide-react';
+import { Compass, Sparkles, Menu, X } from 'lucide-react';
 import { Language } from '@/types';
 import { getDictionary } from '@/i18n/translations';
 import { LanguageSelector } from './LanguageSelector';
@@ -101,7 +101,7 @@ export const Header: React.FC<HeaderProps> = ({ lang }) => {
             <LanguageSelector currentLang={lang} />
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg bg-[#111a28] text-slate-300 hover:text-white border border-[#223348]"
+              className="p-2 rounded-xl bg-[#1a1c27] text-slate-300 hover:text-white border border-[#2d3042] transition-colors"
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -112,20 +112,20 @@ export const Header: React.FC<HeaderProps> = ({ lang }) => {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-[#1b2b3f] bg-[#0c1420] px-4 pt-3 pb-5 space-y-2 animate-in slide-in-from-top duration-200">
+        <div className="md:hidden border-t border-[#222433] bg-[#12131a] px-4 pt-3 pb-5 space-y-2 animate-in slide-in-from-top duration-200 shadow-2xl">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className={`flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium ${
+              className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs uppercase font-bold tracking-wider transition-all ${
                 isActive(link.href)
-                  ? 'bg-[#152336] text-[#00ff66]'
-                  : 'text-slate-300 hover:bg-[#121d2d]'
+                  ? 'bg-[#1c1e2b] text-[#00e5ff] border border-[#00e5ff]/30 shadow-md shadow-[#00e5ff]/10'
+                  : 'text-slate-300 hover:text-white hover:bg-[#181a25]'
               }`}
             >
               <span className="flex items-center gap-2">
-                {link.isHighlight && <Sparkles size={14} className="text-[#f59e0b]" />}
+                {link.isHighlight && <Sparkles size={14} className="text-[#ff2a85]" />}
                 {link.label}
               </span>
             </Link>
@@ -134,9 +134,9 @@ export const Header: React.FC<HeaderProps> = ({ lang }) => {
             <Link
               href={`${langPrefix}/map`}
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[#00ff66] text-[#090f18] font-bold text-sm uppercase tracking-wider shadow-lg shadow-[#00ff66]/25"
+              className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gradient-to-r from-[#ff2a85] via-[#a855f7] to-[#00e5ff] text-black font-black text-xs uppercase tracking-wider shadow-lg shadow-[#ff2a85]/25 active:scale-98 transition-all"
             >
-              <Compass size={18} />
+              <Compass size={16} />
               <span>{dict.common.exploreMap}</span>
             </Link>
           </div>

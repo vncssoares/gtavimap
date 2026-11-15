@@ -16,6 +16,7 @@ export function useUserProgress() {
   useEffect(() => {
     // Inicialização no cliente
     const current = StorageService.getProgress();
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setProgress(current);
     setIsLoaded(true);
 

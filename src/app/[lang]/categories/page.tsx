@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Metadata } from 'next';
-import { Compass, MapPin, Sparkles, ArrowRight } from 'lucide-react';
+import { Compass, MapPin } from 'lucide-react';
 import { CategoryGroup, Language } from '@/types';
 import { getDictionary } from '@/i18n/translations';
 import { Header } from '@/components/common/Header';
@@ -40,6 +40,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         'pt-BR': '/pt-br/categories',
         es: '/es/categories',
       },
+    },
+    openGraph: {
+      title: `${dict.nav.categories} — ${dict.common.siteName}`,
+      description: 'Explore all categorized markers for GTA VI: weapons, vehicles, locations, collectibles, and missions.',
+      url: `https://gtavimap.com/${currentLang.toLowerCase()}/categories`,
+      siteName: 'GTAVIMap',
+      locale: currentLang === 'pt-BR' ? 'pt_BR' : currentLang === 'es' ? 'es_ES' : 'en_US',
+      type: 'website',
     },
   };
 }

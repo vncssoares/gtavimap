@@ -13,7 +13,7 @@ import {
   AlertTriangle,
 } from 'lucide-react';
 import { Language } from '@/types';
-import { getDictionary } from '@/i18n/translations';
+import { getDictionary, getAnnualDiscountPercent } from '@/i18n/translations';
 import { Header } from '@/components/common/Header';
 import { Footer } from '@/components/common/Footer';
 import { NotifyMeButton } from '@/components/premium/NotifyMeButton';
@@ -49,6 +49,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         es: '/es/premium',
       },
     },
+    openGraph: {
+      title: `${dict.premium.badge} — ${dict.common.siteName}`,
+      description: dict.premium.subtitle,
+      url: `https://gtavimap.com/${currentLang.toLowerCase()}/premium`,
+      siteName: 'GTAVIMap',
+      locale: currentLang === 'pt-BR' ? 'pt_BR' : currentLang === 'es' ? 'es_ES' : 'en_US',
+      type: 'website',
+    },
   };
 }
 
@@ -60,34 +68,39 @@ export default async function PremiumPage({ params }: PageProps) {
 
   const dict = getDictionary(currentLang);
   const langPrefix = `/${normalizedLang}`;
+  const discountPercent = getAnnualDiscountPercent(currentLang);
+  const discountText = dict.premium.saveDiscount.replace('{percent}', discountPercent.toString());
+  const annualPlanText = dict.premium.orAnnualPlan
+    .replace('{price}', dict.premium.annualPrice)
+    .replace('{discount}', discountText);
 
   const perks = [
     {
       icon: <Zap size={20} className="text-[#00e5ff]" />,
       title: dict.premium.feature1Title,
       description: dict.premium.feature1Desc,
-      status: 'PRONTO NO PROTÓTIPO',
+      status: dict.common.activeNow.toUpperCase(),
       statusColor: '#00e5ff',
     },
     {
       icon: <Cloud size={20} className="text-[#ff2a85]" />,
       title: dict.premium.feature2Title,
       description: dict.premium.feature2Desc,
-      status: 'PLANEJADO',
+      status: dict.common.planned.toUpperCase(),
       statusColor: '#ff2a85',
     },
     {
       icon: <Sliders size={20} className="text-[#fbbf24]" />,
       title: dict.premium.feature3Title,
       description: dict.premium.feature3Desc,
-      status: 'PLANEJADO',
+      status: dict.common.planned.toUpperCase(),
       statusColor: '#fbbf24',
     },
     {
       icon: <Layers size={20} className="text-[#a855f7]" />,
       title: dict.premium.feature4Title,
       description: dict.premium.feature4Desc,
-      status: 'PLANEJADO',
+      status: dict.common.planned.toUpperCase(),
       statusColor: '#a855f7',
     },
   ];
@@ -175,12 +188,12 @@ export default async function PremiumPage({ params }: PageProps) {
                 {dict.premium.monthlyPrice}
               </div>
               <p className="text-xs text-slate-400">
-                Ou {dict.premium.annualPrice} no plano anual (2 meses grátis)
+                {annualPlanText}
               </p>
             </div>
 
             <div className="pt-2">
-              <NotifyMeButton label={dict.premium.cta} />
+              <NotifyMeButton label={dict.common.comingSoon} />
             </div>
 
             <div className="pt-4 border-t border-[#1e202d] flex items-center justify-center gap-6 text-[11px] text-slate-400 font-mono">

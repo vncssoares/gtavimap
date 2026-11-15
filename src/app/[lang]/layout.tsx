@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import './globals.css';
+import '../globals.css';
 
 export const metadata: Metadata = {
   title: {
@@ -39,14 +39,7 @@ export const metadata: Metadata = {
       'Explore Vice City and the state of Leonida. Filter locations, weapons, shops, and track your game progress.',
     url: 'https://gtavimap.com',
     siteName: 'GTAVIMap',
-    images: [
-      {
-        url: '/map/leonida-demo-map.svg',
-        width: 1200,
-        height: 630,
-        alt: 'GTAVIMap Interactive Cartography',
-      },
-    ],
+    // TODO: Adicionar imagem oficial Open Graph PNG/JPG (1200x630) fornecida pelo usuário
     locale: 'en_US',
     type: 'website',
   },
@@ -54,7 +47,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'GTAVIMap — Interactive Map for GTA VI',
     description: 'Track your progress across Vice City and Leonida with fluid interactive controls.',
-    images: ['/map/leonida-demo-map.svg'],
+    // TODO: Adicionar imagem oficial Twitter Card PNG/JPG (1200x630) fornecida pelo usuário
   },
 };
 
@@ -66,17 +59,31 @@ export const viewport: Viewport = {
   userScalable: true,
 };
 
-export default function RootLayout({
+export function generateStaticParams() {
+  return [{ lang: 'en' }, { lang: 'pt-br' }, { lang: 'es' }];
+}
+
+export default async function RootLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: Promise<{ lang: string }>;
 }) {
+  const { lang } = await params;
+  const langAttr =
+    lang?.toLowerCase() === 'pt-br'
+      ? 'pt-BR'
+      : lang?.toLowerCase() === 'es'
+      ? 'es'
+      : 'en';
+
   return (
-    <html lang="en" className="dark h-full">
+    <html lang={langAttr} className="dark h-full">
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
-      <body className="min-h-full flex flex-col bg-[#070b12] text-[#f1f5f9] antialiased selection:bg-[#00ff66]/30 selection:text-[#00ff66]">
+      <body className="min-h-full flex flex-col bg-[#070b12] text-[#f1f5f9] antialiased selection:bg-[#ff2a85]/30 selection:text-[#ff2a85]">
         {children}
       </body>
     </html>

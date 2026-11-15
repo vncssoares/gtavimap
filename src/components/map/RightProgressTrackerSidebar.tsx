@@ -16,6 +16,7 @@ import {
 import { Language, MarkerLocation, UserProgress } from '@/types';
 import { CATEGORIES } from '@/data/categories';
 import { MarkerService } from '@/services/markerService';
+import { getDictionary } from '@/i18n/translations';
 
 interface RightProgressTrackerSidebarProps {
   lang: Language;
@@ -38,19 +39,28 @@ export const RightProgressTrackerSidebar: React.FC<RightProgressTrackerSidebarPr
   onToggleFavorite,
   onSaveNote,
 }) => {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth < 768;
+    }
+    return false;
+  });
   const [noteText, setNoteText] = useState('');
   const [copiedCoords, setCopiedCoords] = useState(false);
   const [noteSavedFeedback, setNoteSavedFeedback] = useState(false);
+  const [prevMarkerId, setPrevMarkerId] = useState<string | null>(null);
 
-  const overallStats = MarkerService.getOverallStats(allMarkers, progress);
-
-  React.useEffect(() => {
-    if (selectedMarker) {
-      setNoteText(progress.userNotes[selectedMarker.id] || '');
+  if (selectedMarker && selectedMarker.id !== prevMarkerId) {
+    setPrevMarkerId(selectedMarker.id);
+    setNoteText(progress.userNotes[selectedMarker.id] || '');
+    if (isCollapsed) {
       setIsCollapsed(false);
     }
-  }, [selectedMarker, progress.userNotes]);
+  } else if (!selectedMarker && prevMarkerId !== null) {
+    setPrevMarkerId(null);
+  }
+
+  const overallStats = MarkerService.getOverallStats(allMarkers, progress);
 
   const handleCopyCoords = (x: number, y: number) => {
     navigator.clipboard.writeText(`X: ${x}, Y: ${y}`);
@@ -69,21 +79,26 @@ export const RightProgressTrackerSidebar: React.FC<RightProgressTrackerSidebarPr
     ? CATEGORIES.find((c) => c.id === selectedMarker.category)
     : null;
 
+  const dict = getDictionary(lang);
+
   return (
     <>
       {/* Botão de Aba Flutuante quando colapsada */}
       {isCollapsed && (
         <button
           onClick={() => setIsCollapsed(false)}
-          className="hidden md:flex absolute top-3 right-3 z-30 px-3.5 py-2 rounded-xl bg-[#12131a] border border-[#ff2a85] text-white text-xs font-black uppercase tracking-wider items-center gap-2 shadow-xl hover:bg-[#1a1c27] transition-all"
+          className="absolute top-4 right-4 z-20 px-3 py-2 rounded-lg bg-[#12131a]/95 backdrop-blur-md border border-[#ff2a85] text-white text-xs font-black uppercase tracking-wider flex items-center gap-2 shadow-xl hover:bg-[#1a1c27] active:scale-95 transition-all"
         >
           <ChevronLeft size={16} className="text-[#ff2a85]" />
-          <span>PROGRES TRACKER</span>
+          <span className="hidden sm:inline font-mono">{dict.common.progress.toUpperCase()}</span>
+          <span className="px-1.5 py-0.5 rounded bg-[#ff2a85] text-white text-[10px] font-bold">
+            {overallStats.percentage}%
+          </span>
         </button>
       )}
 
       <aside
-        className={`fixed md:relative top-0 bottom-0 right-0 z-30 w-[290px] sm:w-[315px] max-w-[88vw] flex flex-col bg-[#12131a] border-l-2 border-[#ff2a85] text-slate-200 transition-all duration-300 shadow-2xl ${
+        className={`fixed md:relative top-16 md:top-0 bottom-0 right-0 z-30 w-[290px] sm:w-[315px] max-w-[88vw] flex flex-col bg-[#12131a] border-l-2 border-[#ff2a85] text-slate-200 transition-all duration-300 shadow-2xl ${
           isCollapsed ? 'translate-x-full md:-mr-[315px]' : 'translate-x-0'
         }`}
         style={{
@@ -95,14 +110,14 @@ export const RightProgressTrackerSidebar: React.FC<RightProgressTrackerSidebarPr
           <div className="flex items-center gap-2">
             <span className="text-[#ff2a85] font-mono text-sm font-black">›</span>
             <span className="text-sm font-black uppercase tracking-wider text-white">
-              PROGRES TRACKER
+              {dict.common.progressTracker}
             </span>
           </div>
 
           <button
             onClick={() => setIsCollapsed(true)}
             className="w-7 h-7 rounded-lg bg-[#1a1c27] border border-[#2d3042] text-slate-400 hover:text-white flex items-center justify-center transition-colors"
-            title="Recolher Painel"
+            title={dict.common.collapsePanel}
           >
             <ChevronRight size={16} />
           </button>
@@ -122,6 +137,7 @@ export const RightProgressTrackerSidebar: React.FC<RightProgressTrackerSidebarPr
                 <button
                   onClick={onCloseMarkerDetails}
                   className="text-slate-400 hover:text-white"
+                  title={dict.common.closeDetails}
                 >
                   <X size={18} />
                 </button>
@@ -147,9 +163,9 @@ export const RightProgressTrackerSidebar: React.FC<RightProgressTrackerSidebarPr
                   <span>X: {selectedMarker.x} | Y: {selectedMarker.y}</span>
                 </span>
                 {copiedCoords ? (
-                  <CheckCheck size={14} className="text-[#00ff66]" />
+                  <CheckCheck size={14} className="text-[#00e5ff]" />
                 ) : (
-                  <span className="text-[10px] text-slate-500 font-bold uppercase">COPIAR</span>
+                  <span className="text-[10px] text-slate-500 font-bold uppercase">{dict.common.copy}</span>
                 )}
               </button>
 
@@ -166,8 +182,8 @@ export const RightProgressTrackerSidebar: React.FC<RightProgressTrackerSidebarPr
                   <Check size={15} strokeWidth={3} />
                   <span>
                     {progress.foundMarkerIds.includes(selectedMarker.id)
-                      ? 'FOUND'
-                      : 'MARK FOUND'}
+                      ? dict.common.markedFound.toUpperCase()
+                      : dict.common.markFound.toUpperCase()}
                   </span>
                 </button>
 
@@ -187,7 +203,11 @@ export const RightProgressTrackerSidebar: React.FC<RightProgressTrackerSidebarPr
                         : ''
                     }
                   />
-                  <span>FAV</span>
+                  <span>
+                    {progress.favoriteMarkerIds.includes(selectedMarker.id)
+                      ? dict.common.favorited.toUpperCase()
+                      : dict.common.addFavorite.toUpperCase()}
+                  </span>
                 </button>
               </div>
 
@@ -201,16 +221,16 @@ export const RightProgressTrackerSidebar: React.FC<RightProgressTrackerSidebarPr
                 <div className="flex items-center justify-between text-xs font-mono text-slate-400">
                   <span className="flex items-center gap-1.5 font-bold">
                     <FileText size={13} className="text-[#ff2a85]" />
-                    <span>NOTAS PRIVADAS</span>
+                    <span>{dict.common.notes.toUpperCase()}</span>
                   </span>
                   {noteSavedFeedback && (
-                    <span className="text-[#00ff66] font-bold animate-pulse">Salvo!</span>
+                    <span className="text-[#00e5ff] font-bold animate-pulse">{dict.common.saved}</span>
                   )}
                 </div>
                 <textarea
                   value={noteText}
                   onChange={(e) => setNoteText(e.target.value)}
-                  placeholder="Escreva suas observações..."
+                  placeholder={dict.common.notesPlaceholder}
                   rows={2}
                   className="w-full p-2.5 rounded-lg bg-[#090a0e] border border-[#222433] text-xs text-slate-200 focus:outline-none focus:border-[#ff2a85] resize-none"
                 />
@@ -219,7 +239,7 @@ export const RightProgressTrackerSidebar: React.FC<RightProgressTrackerSidebarPr
                   className="w-full py-1.5 rounded-lg bg-[#1a1c27] hover:bg-[#252836] border border-[#2d3042] text-xs font-bold text-slate-200 flex items-center justify-center gap-1.5 transition-colors"
                 >
                   <Save size={13} />
-                  <span>SALVAR NOTA</span>
+                  <span>{dict.common.saveNote.toUpperCase()}</span>
                 </button>
               </div>
             </div>
@@ -229,24 +249,22 @@ export const RightProgressTrackerSidebar: React.FC<RightProgressTrackerSidebarPr
               <div className="space-y-2.5">
                 <button
                   type="button"
-                  onClick={() => alert('Sistema de Login/Conta na Nuvem (Planejado para versão final).')}
                   className="w-full py-3 rounded-xl font-black text-sm uppercase tracking-wider text-white bg-gradient-to-r from-[#ff2a85] to-[#f43f5e] shadow-lg shadow-[#ff2a85]/20 hover:opacity-95 transition-all"
                 >
-                  LOGIN
+                  {dict.common.login.toUpperCase()}
                 </button>
                 <button
                   type="button"
-                  onClick={() => alert('Sistema de Registro/Conta na Nuvem (Planejado para versão final).')}
                   className="w-full py-3 rounded-xl font-black text-sm uppercase tracking-wider text-black bg-gradient-to-r from-[#00e5ff] to-[#38bdf8] shadow-lg shadow-[#00e5ff]/20 hover:opacity-95 transition-all"
                 >
-                  REGISTER
+                  {dict.common.register.toUpperCase()}
                 </button>
               </div>
 
               {/* Estatísticas de Progresso do Jogador com Letras Maiores */}
               <div className="p-3.5 rounded-xl bg-[#0a0b10] border border-[#202230] space-y-2.5 shadow-md">
                 <div className="flex items-center justify-between text-xs font-black uppercase">
-                  <span className="text-white">SEU PROGRESSO</span>
+                  <span className="text-white">{dict.common.yourProgress.toUpperCase()}</span>
                   <span className="text-[#00e5ff] font-mono text-sm">{overallStats.percentage}%</span>
                 </div>
 
@@ -258,30 +276,30 @@ export const RightProgressTrackerSidebar: React.FC<RightProgressTrackerSidebarPr
                 </div>
 
                 <div className="flex items-center justify-between text-xs font-mono text-slate-300 font-bold">
-                  <span>{overallStats.found} / {overallStats.total} ENCONTRADOS</span>
+                  <span>{overallStats.found} / {overallStats.total} {dict.common.markedFound.toUpperCase()}</span>
                   <span className="text-[#fbbf24]">★ {overallStats.favoritesCount}</span>
                 </div>
               </div>
 
-              {/* Lista de Features no Estilo da Imagem com Texto Aumentado e Nítido */}
+              {/* Lista de Features com tradução dinâmica */}
               <div className="text-xs text-slate-300 font-mono space-y-3.5 leading-normal border-t border-[#1e202d] pt-3.5">
                 <div className="space-y-1.5">
                   <span className="text-white font-black block uppercase text-xs tracking-wider">
-                    FEATURES:
+                    {dict.common.freeFeaturesTitle.toUpperCase()}
                   </span>
-                  <p className="text-slate-300">• Mark locations as found</p>
-                  <p className="text-slate-300">• Track your collectibles</p>
-                  <p className="text-slate-300">• Add custom locations</p>
+                  <p className="text-slate-300">{dict.common.freeFeature1}</p>
+                  <p className="text-slate-300">{dict.common.freeFeature2}</p>
+                  <p className="text-slate-300">{dict.common.freeFeature3}</p>
                 </div>
 
                 <div className="space-y-1.5 pt-1.5 border-t border-[#1e202d]">
                   <span className="text-[#00e5ff] font-black block uppercase text-xs tracking-wider">
-                    PRO FEATURES:
+                    {dict.common.proFeaturesTitle.toUpperCase()}
                   </span>
-                  <p className="text-slate-300">• Share your custom locations with friends</p>
-                  <p className="text-slate-300">• Unlimited progress tracking</p>
-                  <p className="text-slate-300">• Map profiles for multiple playthroughs</p>
-                  <p className="text-[#ff2a85] font-black">• No more ads!</p>
+                  <p className="text-slate-300">{dict.common.proFeature1}</p>
+                  <p className="text-slate-300">{dict.common.proFeature2}</p>
+                  <p className="text-slate-300">{dict.common.proFeature3}</p>
+                  <p className="text-[#ff2a85] font-black">{dict.common.proFeature4}</p>
                 </div>
               </div>
             </>

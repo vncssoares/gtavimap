@@ -55,18 +55,18 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ currentLang 
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-[#223247] bg-[#0c1420]/80 hover:bg-[#132033] hover:border-[#00ff66]/40 text-slate-200 text-xs font-medium transition-all shadow-sm"
+        className="flex items-center gap-2 px-3 py-1.5 rounded-xl border border-[#2d3042] bg-[#1a1c27] hover:bg-[#252838] hover:border-[#00e5ff] text-slate-200 text-xs font-bold transition-all shadow-md"
         aria-label="Select Language"
       >
-        <Globe size={14} className="text-[#00ff66]" />
+        <Globe size={14} className="text-[#00e5ff]" />
         <span>{currentInfo.flag}</span>
         <span className="hidden sm:inline font-mono uppercase">{currentLang}</span>
-        <ChevronDown size={12} className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+        <ChevronDown size={12} className={`transition-transform duration-200 text-slate-400 ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 rounded-xl bg-[#0d1624] border border-[#223349] shadow-2xl py-1 z-50 animate-in fade-in zoom-in-95 duration-100">
-          <div className="px-3 py-1.5 text-[10px] font-mono uppercase tracking-wider text-slate-400 border-b border-[#1b2b3f]">
+        <div className="absolute right-0 mt-2 w-48 rounded-2xl bg-[#12131a] border border-[#2d3042] shadow-2xl py-1.5 z-50 animate-in fade-in zoom-in-95 duration-100">
+          <div className="px-3 py-1.5 text-[10px] font-mono uppercase tracking-wider text-slate-400 border-b border-[#222433]">
             Select Language
           </div>
           {LANGUAGES.map((lang) => {
@@ -77,15 +77,15 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ currentLang 
                 onClick={() => handleLanguageChange(lang.code)}
                 className={`w-full flex items-center justify-between px-3 py-2 text-xs transition-colors ${
                   isSelected
-                    ? 'bg-[#00ff66]/10 text-[#00ff66] font-semibold'
-                    : 'text-slate-300 hover:bg-[#162335] hover:text-white'
+                    ? 'bg-[#00e5ff]/15 text-[#00e5ff] font-bold border-l-2 border-[#00e5ff]'
+                    : 'text-slate-300 hover:bg-[#1a1c27] hover:text-white'
                 }`}
               >
                 <span className="flex items-center gap-2">
                   <span>{lang.flag}</span>
                   <span>{lang.label}</span>
                 </span>
-                {isSelected && <Check size={14} className="text-[#00ff66]" />}
+                {isSelected && <Check size={14} className="text-[#00e5ff]" />}
               </button>
             );
           })}

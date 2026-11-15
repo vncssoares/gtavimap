@@ -41,6 +41,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: dict.hero.subtitle,
       url: `https://gtavimap.com/${currentLang.toLowerCase()}/map`,
       siteName: 'GTAVIMap',
+      locale: currentLang === 'pt-BR' ? 'pt_BR' : currentLang === 'es' ? 'es_ES' : 'en_US',
       type: 'website',
     },
   };
@@ -53,7 +54,7 @@ export default async function MapPage({ params }: PageProps) {
     normalizedLang === 'pt-br' ? 'pt-BR' : normalizedLang === 'es' ? 'es' : 'en';
 
   return (
-    <div className="h-screen flex flex-col bg-[#070b12] text-slate-100 overflow-hidden">
+    <div className="h-screen h-[100dvh] flex flex-col bg-[#070b12] text-slate-100 overflow-hidden">
       <Header lang={currentLang} />
       <div className="flex-1 w-full relative overflow-hidden">
         <InteractiveMapClient lang={currentLang} />
