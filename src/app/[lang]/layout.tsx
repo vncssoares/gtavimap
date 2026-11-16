@@ -39,7 +39,14 @@ export const metadata: Metadata = {
       'Explore Vice City and the state of Leonida. Filter locations, weapons, shops, and track your game progress.',
     url: 'https://gtavimap.com',
     siteName: 'GTAVIMap',
-    // TODO: Adicionar imagem oficial Open Graph PNG/JPG (1200x630) fornecida pelo usuário
+    images: [
+      {
+        url: '/en/opengraph-image',
+        width: 1200,
+        height: 630,
+        alt: 'GTAVIMap — Interactive Map for GTA VI',
+      },
+    ],
     locale: 'en_US',
     type: 'website',
   },
@@ -47,7 +54,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'GTAVIMap — Interactive Map for GTA VI',
     description: 'Track your progress across Vice City and Leonida with fluid interactive controls.',
-    // TODO: Adicionar imagem oficial Twitter Card PNG/JPG (1200x630) fornecida pelo usuário
+    images: ['/en/opengraph-image'],
   },
 };
 

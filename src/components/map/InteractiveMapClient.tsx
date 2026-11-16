@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import dynamic from 'next/dynamic';
+import { useSearchParams } from 'next/navigation';
 import { CategoryId, FilterStatus, Language, MarkerLocation } from '@/types';
 import { CATEGORIES } from '@/data/categories';
 import { DEMO_MARKERS } from '@/data/markers';
@@ -30,6 +31,10 @@ interface InteractiveMapClientProps {
 }
 
 export const InteractiveMapClient: React.FC<InteractiveMapClientProps> = ({ lang }) => {
+  const searchParams = useSearchParams();
+  const markerParam = searchParams?.get('m') || null;
+  const categoryParam = searchParams?.get('c') || null;
+
   const {
     progress,
     toggleFound,
@@ -39,13 +44,79 @@ export const InteractiveMapClient: React.FC<InteractiveMapClientProps> = ({ lang
   } = useUserProgress();
 
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategories, setSelectedCategories] = useState<CategoryId[]>(
-    CATEGORIES.map((c) => c.id)
-  );
+
+  // Inicializa categoria com suporte a deep link (?c=<categoryId>)
+  const [selectedCategories, setSelectedCategories] = useState<CategoryId[]>(() => {
+    if (categoryParam) {
+      const isValid = CATEGORIES.some((c) => c.id === categoryParam);
+      if (isValid) {
+        const list: CategoryId[] = [categoryParam as CategoryId];
+        if (markerParam) {
+          const foundMarker = DEMO_MARKERS.find((m) => m.id === markerParam);
+          if (foundMarker && !list.includes(foundMarker.category)) {
+            list.push(foundMarker.category);
+          }
+        }
+        return list;
+      }
+    }
+    return CATEGORIES.map((c) => c.id);
+  });
+
   const [filterStatus, setFilterStatus] = useState<FilterStatus>('all');
   const [selectedRegion, setSelectedRegion] = useState<string>('all');
-  const [selectedMarker, setSelectedMarker] = useState<MarkerLocation | null>(null);
+
+  // Inicializa marcador com suporte a deep link (?m=<markerId>)
+  const [selectedMarker, setSelectedMarker] = useState<MarkerLocation | null>(() => {
+    if (markerParam) {
+      return DEMO_MARKERS.find((m) => m.id === markerParam) || null;
+    }
+    return null;
+  });
+
   const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false);
+
+  // Sincroniza se o parâmetro ?m= mudar externamente (ex: navegação no histórico)
+  const [prevParamM, setPrevParamM] = useState(markerParam);
+  if (markerParam !== prevParamM) {
+    setPrevParamM(markerParam);
+    const found = markerParam ? DEMO_MARKERS.find((m) => m.id === markerParam) || null : null;
+    setSelectedMarker(found);
+    if (found) {
+      setSelectedCategories((prev) =>
+        prev.includes(found.category) ? prev : [...prev, found.category]
+      );
+    }
+  }
+
+  // Atualiza a URL com history.replaceState sem recarregar e sem criar histórico
+  const updateUrlMarker = useCallback((markerId: string | null) => {
+    if (typeof window === 'undefined') return;
+    try {
+      const url = new URL(window.location.href);
+      if (markerId) {
+        url.searchParams.set('m', markerId);
+      } else {
+        url.searchParams.delete('m');
+      }
+      window.history.replaceState({}, '', url.toString());
+    } catch (e) {
+      console.error('Falha ao atualizar URL com replaceState:', e);
+    }
+  }, []);
+
+  const handleSelectMarker = useCallback(
+    (marker: MarkerLocation) => {
+      setSelectedMarker(marker);
+      updateUrlMarker(marker.id);
+    },
+    [updateUrlMarker]
+  );
+
+  const handleCloseMarkerDetails = useCallback(() => {
+    setSelectedMarker(null);
+    updateUrlMarker(null);
+  }, [updateUrlMarker]);
 
   const handleToggleCategory = (catId: CategoryId) => {
     setSelectedCategories((prev) =>
@@ -102,7 +173,7 @@ export const InteractiveMapClient: React.FC<InteractiveMapClientProps> = ({ lang
         <CustomLeafletMap
           markers={filteredMarkers}
           selectedMarker={selectedMarker}
-          onSelectMarker={(marker) => setSelectedMarker(marker)}
+          onSelectMarker={handleSelectMarker}
           lang={lang}
           progress={progress}
           onToggleFound={toggleFound}
@@ -117,7 +188,7 @@ export const InteractiveMapClient: React.FC<InteractiveMapClientProps> = ({ lang
         progress={progress}
         allMarkers={DEMO_MARKERS}
         selectedMarker={selectedMarker}
-        onCloseMarkerDetails={() => setSelectedMarker(null)}
+        onCloseMarkerDetails={handleCloseMarkerDetails}
         onToggleFound={toggleFound}
         onToggleFavorite={toggleFavorite}
         onSaveNote={saveNote}

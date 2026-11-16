@@ -33,12 +33,16 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ currentLang 
 
   const handleLanguageChange = (newLang: Language) => {
     setIsOpen(false);
+    const targetLangRoute = newLang.toLowerCase();
+
+    // Grava a preferência de idioma por 1 ano (SameSite=Lax)
+    document.cookie = `lang=${targetLangRoute}; path=/; max-age=31536000; SameSite=Lax`;
+
     if (newLang === currentLang) return;
 
     // Converte a rota atual substituindo o prefixo de idioma
     // Por exemplo /en/map -> /pt-br/map
     const segments = pathname.split('/').filter(Boolean);
-    const targetLangRoute = newLang.toLowerCase();
 
     if (segments.length > 0 && ['en', 'pt-br', 'es'].includes(segments[0].toLowerCase())) {
       segments[0] = targetLangRoute;

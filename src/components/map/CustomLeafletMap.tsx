@@ -22,7 +22,7 @@ interface CustomLeafletMapProps {
   progress: UserProgress;
   onToggleFound: (markerId: string) => void;
   onToggleFavorite: (markerId: string) => void;
-  onOpenMobileFilters: () => void;
+  onOpenMobileFilters?: () => void;
 }
 
 export const CustomLeafletMap: React.FC<CustomLeafletMapProps> = ({

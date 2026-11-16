@@ -12,11 +12,13 @@ import {
   CheckCheck,
   X,
   MapPin,
+  Share2,
 } from 'lucide-react';
 import { Language, MarkerLocation, UserProgress } from '@/types';
 import { CATEGORIES } from '@/data/categories';
 import { MarkerService } from '@/services/markerService';
 import { getDictionary } from '@/i18n/translations';
+import { EmbedSnippetButton } from '@/components/common/EmbedSnippetButton';
 
 interface RightProgressTrackerSidebarProps {
   lang: Language;
@@ -47,6 +49,7 @@ export const RightProgressTrackerSidebar: React.FC<RightProgressTrackerSidebarPr
   });
   const [noteText, setNoteText] = useState('');
   const [copiedCoords, setCopiedCoords] = useState(false);
+  const [copiedLink, setCopiedLink] = useState(false);
   const [noteSavedFeedback, setNoteSavedFeedback] = useState(false);
   const [prevMarkerId, setPrevMarkerId] = useState<string | null>(null);
 
@@ -61,6 +64,35 @@ export const RightProgressTrackerSidebar: React.FC<RightProgressTrackerSidebarPr
   }
 
   const overallStats = MarkerService.getOverallStats(allMarkers, progress);
+
+  const handleShare = async (marker: MarkerLocation) => {
+    if (typeof window === 'undefined') return;
+    const shareUrl = `${window.location.origin}/${lang.toLowerCase()}/map?m=${encodeURIComponent(marker.id)}`;
+    const shareData = {
+      title: `${marker.name} — GTAVIMap`,
+      text: `${marker.name} (${marker.region}) — GTAVIMap`,
+      url: shareUrl,
+    };
+
+    if (typeof navigator !== 'undefined' && navigator.share) {
+      try {
+        await navigator.share(shareData);
+        return;
+      } catch (err: unknown) {
+        if ((err as Error)?.name === 'AbortError') return;
+      }
+    }
+
+    if (typeof navigator !== 'undefined' && navigator.clipboard) {
+      try {
+        await navigator.clipboard.writeText(shareUrl);
+        setCopiedLink(true);
+        setTimeout(() => setCopiedLink(false), 2000);
+      } catch (err) {
+        console.error('Failed to copy share link:', err);
+      }
+    }
+  };
 
   const handleCopyCoords = (x: number, y: number) => {
     navigator.clipboard.writeText(`X: ${x}, Y: ${y}`);
@@ -153,7 +185,34 @@ export const RightProgressTrackerSidebar: React.FC<RightProgressTrackerSidebarPr
                 </div>
               </div>
 
-              {/* Botão de Coordenadas */}
+              {/* Botão de Compartilhar (Ação Principal de Link) */}
+              <button
+                onClick={() => handleShare(selectedMarker)}
+                className="w-full flex items-center justify-between px-3.5 py-2 rounded-xl bg-gradient-to-r from-[#ff2a85]/15 via-[#a855f7]/15 to-[#00e5ff]/15 border border-[#00e5ff]/40 hover:border-[#00e5ff] text-xs font-black uppercase tracking-wider text-white shadow-md hover:shadow-[#00e5ff]/20 active:scale-98 transition-all"
+                title={dict.common.share}
+              >
+                <span className="flex items-center gap-2">
+                  <Share2 size={15} className="text-[#00e5ff]" />
+                  <span>{dict.common.share}</span>
+                </span>
+                {copiedLink ? (
+                  <span className="text-[11px] font-mono text-[#00e5ff] font-bold flex items-center gap-1 animate-in fade-in">
+                    <CheckCheck size={14} />
+                    {dict.common.linkCopied}
+                  </span>
+                ) : (
+                  <span className="text-[10px] font-mono text-slate-400 font-bold">LINK</span>
+                )}
+              </button>
+
+              {/* Botão de Incorporar (Embed Snippet) */}
+              <EmbedSnippetButton
+                lang={lang}
+                type="marker"
+                id={selectedMarker.id}
+              />
+
+              {/* Botão de Coordenadas (Ação Secundária) */}
               <button
                 onClick={() => handleCopyCoords(selectedMarker.x, selectedMarker.y)}
                 className="w-full flex items-center justify-between px-3 py-1.5 rounded-lg bg-[#090a0e] border border-[#252838] text-xs font-mono text-slate-300 hover:border-[#00e5ff] transition-colors"

@@ -9,6 +9,7 @@ import { Footer } from '@/components/common/Footer';
 import { CATEGORIES } from '@/data/categories';
 import { DEMO_MARKERS } from '@/data/markers';
 import { DynamicIcon } from '@/components/common/DynamicIcon';
+import { getIndexableCategories, categoryIdToSlug } from '@/data/seoSelectors';
 
 export const instant = false;
 
@@ -30,24 +31,44 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const dict = getDictionary(currentLang);
 
+  const title = `${dict.nav.categories} — ${dict.common.siteName}`;
+  const description = 'Explore all categorized markers for GTA VI: weapons, vehicles, locations, collectibles, and missions.';
+  const canonicalPath = `/${currentLang.toLowerCase()}/categories`;
+  const ogImageUrl = `/${currentLang.toLowerCase()}/opengraph-image`;
+
   return {
-    title: `${dict.nav.categories} — ${dict.common.siteName}`,
-    description: 'Explore all categorized markers for GTA VI: weapons, vehicles, locations, collectibles, and missions.',
+    title,
+    description,
     alternates: {
-      canonical: `/${currentLang.toLowerCase()}/categories`,
+      canonical: canonicalPath,
       languages: {
         en: '/en/categories',
         'pt-BR': '/pt-br/categories',
         es: '/es/categories',
+        'x-default': '/en/categories',
       },
     },
     openGraph: {
-      title: `${dict.nav.categories} — ${dict.common.siteName}`,
-      description: 'Explore all categorized markers for GTA VI: weapons, vehicles, locations, collectibles, and missions.',
-      url: `https://gtavimap.com/${currentLang.toLowerCase()}/categories`,
+      title,
+      description,
+      url: `https://gtavimap.com${canonicalPath}`,
       siteName: 'GTAVIMap',
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
       locale: currentLang === 'pt-BR' ? 'pt_BR' : currentLang === 'es' ? 'es_ES' : 'en_US',
       type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [ogImageUrl],
     },
   };
 }
@@ -60,6 +81,7 @@ export default async function CategoriesPage({ params }: PageProps) {
 
   const dict = getDictionary(currentLang);
   const langPrefix = `/${normalizedLang}`;
+  const indexableCategories = getIndexableCategories();
 
   const groups: CategoryGroup[] = ['COLLECTIBLES', 'ACTIVITIES', 'SERVICES', 'LOCATIONS', 'WEAPONS'];
 
@@ -110,6 +132,10 @@ export default async function CategoriesPage({ params }: PageProps) {
                       const categoryMarkers = DEMO_MARKERS.filter(
                         (m) => m.category === category.id
                       );
+                      const hasVerified = indexableCategories.some((c) => c.id === category.id);
+                      const categoryHref = hasVerified
+                        ? `${langPrefix}/map/${categoryIdToSlug(category.id)}`
+                        : `${langPrefix}/map`;
 
                       return (
                         <div
@@ -140,7 +166,7 @@ export default async function CategoriesPage({ params }: PageProps) {
                             </div>
 
                             <Link
-                              href={`${langPrefix}/map`}
+                              href={categoryHref}
                               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#00e5ff] text-[#00e5ff] hover:bg-[#00e5ff] hover:text-black font-black text-[10px] uppercase tracking-wider transition-all self-start sm:self-center"
                             >
                               <Compass size={13} />

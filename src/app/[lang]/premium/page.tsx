@@ -38,24 +38,44 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const dict = getDictionary(currentLang);
 
+  const title = `${dict.premium.badge} — ${dict.common.siteName}`;
+  const description = dict.premium.subtitle;
+  const canonicalPath = `/${currentLang.toLowerCase()}/premium`;
+  const ogImageUrl = `/${currentLang.toLowerCase()}/opengraph-image`;
+
   return {
-    title: `${dict.premium.badge} — ${dict.common.siteName}`,
-    description: dict.premium.subtitle,
+    title,
+    description,
     alternates: {
-      canonical: `/${currentLang.toLowerCase()}/premium`,
+      canonical: canonicalPath,
       languages: {
         en: '/en/premium',
         'pt-BR': '/pt-br/premium',
         es: '/es/premium',
+        'x-default': '/en/premium',
       },
     },
     openGraph: {
-      title: `${dict.premium.badge} — ${dict.common.siteName}`,
-      description: dict.premium.subtitle,
-      url: `https://gtavimap.com/${currentLang.toLowerCase()}/premium`,
+      title,
+      description,
+      url: `https://gtavimap.com${canonicalPath}`,
       siteName: 'GTAVIMap',
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
       locale: currentLang === 'pt-BR' ? 'pt_BR' : currentLang === 'es' ? 'es_ES' : 'en_US',
       type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [ogImageUrl],
     },
   };
 }

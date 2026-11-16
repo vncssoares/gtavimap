@@ -35,24 +35,44 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const dict = getDictionary(currentLang);
 
+  const title = `${dict.common.siteName} — ${dict.hero.title}`;
+  const description = dict.hero.subtitle;
+  const canonicalPath = `/${currentLang.toLowerCase()}`;
+  const ogImageUrl = `/${currentLang.toLowerCase()}/opengraph-image`;
+
   return {
-    title: `${dict.common.siteName} — ${dict.hero.title}`,
-    description: dict.hero.subtitle,
+    title,
+    description,
     alternates: {
-      canonical: `/${currentLang.toLowerCase()}`,
+      canonical: canonicalPath,
       languages: {
         en: '/en',
         'pt-BR': '/pt-br',
         es: '/es',
+        'x-default': '/en',
       },
     },
     openGraph: {
-      title: `${dict.common.siteName} — ${dict.hero.title}`,
-      description: dict.hero.subtitle,
-      url: `https://gtavimap.com/${currentLang.toLowerCase()}`,
+      title,
+      description,
+      url: `https://gtavimap.com${canonicalPath}`,
       siteName: 'GTAVIMap',
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
       locale: currentLang === 'pt-BR' ? 'pt_BR' : currentLang === 'es' ? 'es_ES' : 'en_US',
       type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [ogImageUrl],
     },
   };
 }
@@ -68,8 +88,36 @@ export default async function HomePage({ params }: PageProps) {
 
   const groups: CategoryGroup[] = ['COLLECTIBLES', 'ACTIVITIES', 'SERVICES', 'LOCATIONS', 'WEAPONS'];
 
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: 'GTAVIMap',
+      url: `https://gtavimap.com/${normalizedLang}`,
+      description: dict.hero.subtitle,
+      inLanguage: currentLang === 'pt-BR' ? 'pt-BR' : currentLang === 'es' ? 'es' : 'en',
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebApplication',
+      name: 'GTAVIMap — Interactive Map & Progress Tracker',
+      url: `https://gtavimap.com/${normalizedLang}/map`,
+      applicationCategory: 'GameApplication',
+      operatingSystem: 'All',
+      browserRequirements: 'Requires JavaScript. Requires HTML5.',
+      description: dict.common.tagline,
+      inLanguage: currentLang === 'pt-BR' ? 'pt-BR' : currentLang === 'es' ? 'es' : 'en',
+    },
+  ];
+
   return (
     <div className="min-h-screen flex flex-col bg-[#0e0f15] text-slate-100 selection:bg-[#ff2a85]/30 selection:text-[#ff2a85]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
+        }}
+      />
       <Header lang={currentLang} />
 
       {/* Hero Section Estilo HUD Neon */}

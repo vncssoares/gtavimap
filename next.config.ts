@@ -4,12 +4,33 @@ const nextConfig: NextConfig = {
   /* config options here */
   cacheComponents: true,
   partialPrefetching: true,
-  async redirects() {
+  async headers() {
     return [
       {
-        source: '/',
-        destination: '/en',
-        permanent: false,
+        source: '/:path*',
+        headers: [
+          {
+            key: 'X-Frame-Options',
+            value: 'SAMEORIGIN',
+          },
+          {
+            key: 'Content-Security-Policy',
+            value: "frame-ancestors 'self'",
+          },
+        ],
+      },
+      {
+        source: '/embed/:path*',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: 'frame-ancestors *',
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'ALLOWALL',
+          },
+        ],
       },
     ];
   },

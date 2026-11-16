@@ -15,11 +15,13 @@ import {
   FileText,
   Save,
   Compass,
+  Share2,
 } from 'lucide-react';
 import { MarkerLocation, Language } from '@/types';
 import { CATEGORIES } from '@/data/categories';
 import { getDictionary } from '@/i18n/translations';
 import { DynamicIcon } from '@/components/common/DynamicIcon';
+import { EmbedSnippetButton } from '@/components/common/EmbedSnippetButton';
 
 interface MarkerDetailPanelProps {
   marker: MarkerLocation | null;
@@ -46,6 +48,7 @@ export const MarkerDetailPanel: React.FC<MarkerDetailPanelProps> = ({
 }) => {
   const [noteText, setNoteText] = useState(userNote);
   const [copiedCoords, setCopiedCoords] = useState(false);
+  const [copiedLink, setCopiedLink] = useState(false);
   const [noteSavedFeedback, setNoteSavedFeedback] = useState(false);
   const [prevMarkerId, setPrevMarkerId] = useState(marker?.id);
   const [prevUserNote, setPrevUserNote] = useState(userNote);
@@ -61,6 +64,35 @@ export const MarkerDetailPanel: React.FC<MarkerDetailPanelProps> = ({
   const dict = getDictionary(lang);
   const category = CATEGORIES.find((c) => c.id === marker.category);
   const descriptionText = marker.description[lang] || marker.description.en;
+
+  const handleShare = async () => {
+    if (typeof window === 'undefined') return;
+    const shareUrl = `${window.location.origin}/${lang.toLowerCase()}/map?m=${encodeURIComponent(marker.id)}`;
+    const shareData = {
+      title: `${marker.name} — GTAVIMap`,
+      text: `${marker.name} (${marker.region}) — GTAVIMap`,
+      url: shareUrl,
+    };
+
+    if (typeof navigator !== 'undefined' && navigator.share) {
+      try {
+        await navigator.share(shareData);
+        return;
+      } catch (err: unknown) {
+        if ((err as Error)?.name === 'AbortError') return;
+      }
+    }
+
+    if (typeof navigator !== 'undefined' && navigator.clipboard) {
+      try {
+        await navigator.clipboard.writeText(shareUrl);
+        setCopiedLink(true);
+        setTimeout(() => setCopiedLink(false), 2000);
+      } catch (err) {
+        console.error('Failed to copy share link:', err);
+      }
+    }
+  };
 
   const handleCopyCoords = () => {
     const coordsString = `X: ${marker.x}, Y: ${marker.y}`;
@@ -127,7 +159,34 @@ export const MarkerDetailPanel: React.FC<MarkerDetailPanelProps> = ({
           </div>
         </div>
 
-        {/* Coordenadas e Alerta de Demonstração */}
+        {/* Compartilhar (Ação Principal de Link) */}
+        <button
+          onClick={handleShare}
+          className="w-full flex items-center justify-between px-3.5 py-2 rounded-xl bg-gradient-to-r from-[#ff2a85]/15 via-[#a855f7]/15 to-[#00e5ff]/15 border border-[#00e5ff]/40 hover:border-[#00e5ff] text-xs font-black uppercase tracking-wider text-white shadow-md hover:shadow-[#00e5ff]/20 active:scale-98 transition-all"
+          title={dict.common.share}
+        >
+          <span className="flex items-center gap-2">
+            <Share2 size={15} className="text-[#00e5ff]" />
+            <span>{dict.common.share}</span>
+          </span>
+          {copiedLink ? (
+            <span className="text-[11px] font-mono text-[#00e5ff] font-bold flex items-center gap-1 animate-in fade-in">
+              <CheckCheck size={14} />
+              {dict.common.linkCopied}
+            </span>
+          ) : (
+            <span className="text-[10px] font-mono text-slate-400 font-bold">LINK</span>
+          )}
+        </button>
+
+        {/* Incorporar (Embed Snippet) */}
+        <EmbedSnippetButton
+          lang={lang}
+          type="marker"
+          id={marker.id}
+        />
+
+        {/* Coordenadas e Alerta de Demonstração (Ação Secundária) */}
         <div className="flex flex-wrap items-center gap-2">
           <button
             onClick={handleCopyCoords}

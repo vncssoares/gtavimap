@@ -21,7 +21,7 @@ export type CategoryId =
   | 'robbery'
   | 'encounter';
 
-export type ConfirmationStatus = 'demo' | 'trailer_rumor' | 'unconfirmed';
+export type ConfirmationStatus = 'demo' | 'trailer_rumor' | 'unconfirmed' | 'verified';
 
 export interface Category {
   id: CategoryId;
@@ -36,6 +36,7 @@ export interface Category {
 
 export interface MarkerLocation {
   id: string;
+  slug: string; // kebab-case, único por categoria
   name: string;
   category: CategoryId;
   subCategory?: string;
@@ -53,6 +54,7 @@ export interface MarkerLocation {
   recommendedTime?: string;
   reward?: string;
   tags?: string[];
+  updatedAt?: string; // Data ISO da última atualização (usado no sitemap)
 }
 
 export interface UserProgress {

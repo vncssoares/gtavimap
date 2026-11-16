@@ -135,8 +135,8 @@ export const CATEGORIES: Category[] = [
     shortLabel: 'LOCATIONS',
     descriptionKey: 'categories.locations_desc',
     iconName: 'Compass',
-    color: '#00ff66', // Verde Neon
-    badgeBg: 'rgba(0, 255, 102, 0.15)',
+    color: '#06b6d4', // Ciano Neon
+    badgeBg: 'rgba(6, 182, 212, 0.15)',
   },
   {
     id: 'vehicles',

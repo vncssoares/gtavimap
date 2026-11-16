@@ -4,6 +4,7 @@ export const DEMO_MARKERS: MarkerLocation[] = [
   // ================= COLLECTIBLES: STUNT JUMPS =================
   {
     id: 'stunt-01',
+    slug: 'ocean-drive-promenade',
     name: 'Stunt Jump: Ocean Drive Promenade',
     category: 'stunt_jump',
     subCategory: 'Salto Único',
@@ -22,6 +23,7 @@ export const DEMO_MARKERS: MarkerLocation[] = [
   },
   {
     id: 'stunt-02',
+    slug: 'marina-canal-barge',
     name: 'Stunt Jump: Marina Canal Barge',
     category: 'stunt_jump',
     subCategory: 'Salto Único',
@@ -40,6 +42,7 @@ export const DEMO_MARKERS: MarkerLocation[] = [
   },
   {
     id: 'stunt-03',
+    slug: 'highway-overpass-gap',
     name: 'Stunt Jump: Highway Overpass Gap',
     category: 'stunt_jump',
     subCategory: 'Salto Único',
@@ -60,6 +63,7 @@ export const DEMO_MARKERS: MarkerLocation[] = [
   // ================= COLLECTIBLES: HIDDEN PACKAGES =================
   {
     id: 'pkg-01',
+    slug: 'underwater-reef',
     name: 'Hidden Package #01: Underwater Reef',
     category: 'hidden_package',
     subCategory: 'Pacote Secreto',
@@ -78,6 +82,7 @@ export const DEMO_MARKERS: MarkerLocation[] = [
   },
   {
     id: 'pkg-02',
+    slug: 'metro-tunnel-niche',
     name: 'Hidden Package #02: Metro Tunnel Niche',
     category: 'hidden_package',
     subCategory: 'Pacote Secreto',
@@ -95,6 +100,7 @@ export const DEMO_MARKERS: MarkerLocation[] = [
   },
   {
     id: 'pkg-03',
+    slug: 'port-container-stack',
     name: 'Hidden Package #03: Port Container Stack',
     category: 'hidden_package',
     subCategory: 'Pacote Secreto',
@@ -114,6 +120,7 @@ export const DEMO_MARKERS: MarkerLocation[] = [
   // ================= COLLECTIBLES: GERAIS =================
   {
     id: 'col-01',
+    slug: 'neon-flamingo-statue-01',
     name: 'Neon Flamingo Statue #01',
     category: 'collectibles',
     subCategory: 'Estátua Secreta',
@@ -132,6 +139,7 @@ export const DEMO_MARKERS: MarkerLocation[] = [
   },
   {
     id: 'col-02',
+    slug: 'art-mural-graffiti-01',
     name: 'Art Mural Graffiti #01',
     category: 'collectibles',
     subCategory: 'Mural de Arte',
@@ -151,6 +159,7 @@ export const DEMO_MARKERS: MarkerLocation[] = [
   // ================= WILDLIFE / POI =================
   {
     id: 'poi-01',
+    slug: 'alligator-habitat-sanctuary',
     name: 'Alligator Habitat Sanctuary',
     category: 'points_of_interest',
     subCategory: 'Vida Selvagem',
@@ -168,6 +177,7 @@ export const DEMO_MARKERS: MarkerLocation[] = [
   },
   {
     id: 'poi-02',
+    slug: 'mount-leonida-radio-tower-lookout',
     name: 'Mount Leonida Radio Tower Lookout',
     category: 'points_of_interest',
     subCategory: 'Mirante',
@@ -185,6 +195,7 @@ export const DEMO_MARKERS: MarkerLocation[] = [
   },
   {
     id: 'poi-03',
+    slug: 'haunted-plantation-manor',
     name: 'Haunted Plantation Manor',
     category: 'points_of_interest',
     subCategory: 'Easter Egg',
@@ -204,6 +215,7 @@ export const DEMO_MARKERS: MarkerLocation[] = [
   // ================= ACTIVITIES: ROBBERIES & ENCOUNTERS =================
   {
     id: 'rob-01',
+    slug: 'convenience-store-hold-up',
     name: 'Convenience Store Hold-Up',
     category: 'robbery',
     subCategory: 'Assalto Rápido',
@@ -222,6 +234,7 @@ export const DEMO_MARKERS: MarkerLocation[] = [
   },
   {
     id: 'rob-02',
+    slug: 'boutique-jewelry-heist',
     name: 'Boutique Jewelry Heist',
     category: 'robbery',
     subCategory: 'Assalto Planejado',
@@ -240,6 +253,7 @@ export const DEMO_MARKERS: MarkerLocation[] = [
   },
   {
     id: 'rob-03',
+    slug: 'check-cashing-express',
     name: 'Check Cashing Express',
     category: 'robbery',
     subCategory: 'Assalto a Caixa',
@@ -260,6 +274,7 @@ export const DEMO_MARKERS: MarkerLocation[] = [
   // ================= ACTIVITIES: RACES =================
   {
     id: 'race-01',
+    slug: 'coastal-neon-street-sprint',
     name: 'Coastal Neon Street Sprint',
     category: 'race',
     subCategory: 'Corrida de Rua',
@@ -278,6 +293,7 @@ export const DEMO_MARKERS: MarkerLocation[] = [
   },
   {
     id: 'race-02',
+    slug: 'mud-club-4x4-off-road-derby',
     name: 'Mud Club 4x4 Off-Road Derby',
     category: 'race',
     subCategory: 'Derby na Lama',
@@ -295,6 +311,7 @@ export const DEMO_MARKERS: MarkerLocation[] = [
   },
   {
     id: 'race-03',
+    slug: 'vice-keys-powerboat-regatta',
     name: 'Vice Keys Powerboat Regatta',
     category: 'race',
     subCategory: 'Corrida Aquática',
@@ -314,6 +331,7 @@ export const DEMO_MARKERS: MarkerLocation[] = [
   // ================= SERVICES: AMMUNITION =================
   {
     id: 'ammu-01',
+    slug: 'ammu-nation-downtown-flagship',
     name: 'Ammu-Nation Downtown Flagship',
     category: 'ammunition',
     subCategory: 'Loja de Armas',
@@ -331,6 +349,7 @@ export const DEMO_MARKERS: MarkerLocation[] = [
   },
   {
     id: 'ammu-02',
+    slug: 'ammu-nation-port-gellhorn',
     name: 'Ammu-Nation Port Gellhorn',
     category: 'ammunition',
     subCategory: 'Loja de Armas',
@@ -348,6 +367,7 @@ export const DEMO_MARKERS: MarkerLocation[] = [
   },
   {
     id: 'ammu-03',
+    slug: 'ammu-nation-ocean-beach',
     name: 'Ammu-Nation Ocean Beach',
     category: 'ammunition',
     subCategory: 'Loja de Armas',
@@ -367,6 +387,7 @@ export const DEMO_MARKERS: MarkerLocation[] = [
   // ================= SERVICES: SAFEHOUSE =================
   {
     id: 'safe-01',
+    slug: 'vice-beach-art-deco-motel',
     name: 'Vice Beach Art Deco Motel Safehouse',
     category: 'safehouse',
     subCategory: 'Esconderijo',
@@ -384,6 +405,7 @@ export const DEMO_MARKERS: MarkerLocation[] = [
   },
   {
     id: 'safe-02',
+    slug: 'starfish-island-luxury-villa',
     name: 'Starfish Island Luxury Villa',
     category: 'safehouse',
     subCategory: 'Mansão',
@@ -401,6 +423,7 @@ export const DEMO_MARKERS: MarkerLocation[] = [
   },
   {
     id: 'safe-03',
+    slug: 'swamp-shack-safehouse',
     name: 'Swamp Shack Safehouse',
     category: 'safehouse',
     subCategory: 'Cabana Segura',
@@ -420,6 +443,7 @@ export const DEMO_MARKERS: MarkerLocation[] = [
   // ================= SERVICES: PAY 'N' SPRAY =================
   {
     id: 'pns-01',
+    slug: 'pay-n-spray-customs-downtown',
     name: 'Pay \'n\' Spray / Customs Downtown',
     category: 'pay_n_spray',
     subCategory: 'Oficina & Pintura',
@@ -437,6 +461,7 @@ export const DEMO_MARKERS: MarkerLocation[] = [
   },
   {
     id: 'pns-02',
+    slug: 'pay-n-spray-little-haiti',
     name: 'Pay \'n\' Spray Little Haiti',
     category: 'pay_n_spray',
     subCategory: 'Oficina & Pintura',
@@ -454,6 +479,7 @@ export const DEMO_MARKERS: MarkerLocation[] = [
   },
   {
     id: 'pns-03',
+    slug: 'pay-n-spray-ocean-beach',
     name: 'Pay \'n\' Spray Ocean Beach',
     category: 'pay_n_spray',
     subCategory: 'Oficina & Pintura',
@@ -473,6 +499,7 @@ export const DEMO_MARKERS: MarkerLocation[] = [
   // ================= WEAPONS =================
   {
     id: 'wep-01',
+    slug: 'heavy-sniper-rifle',
     name: 'Heavy Sniper Rifle',
     category: 'weapons',
     subCategory: 'Fuzil de Precisão',
@@ -490,6 +517,7 @@ export const DEMO_MARKERS: MarkerLocation[] = [
   },
   {
     id: 'wep-02',
+    slug: 'combat-pistol-suppressor',
     name: 'Combat Pistol & Suppressor',
     category: 'weapons',
     subCategory: 'Pistola Silenciada',
@@ -507,6 +535,7 @@ export const DEMO_MARKERS: MarkerLocation[] = [
   },
   {
     id: 'wep-03',
+    slug: 'compact-micro-smg',
     name: 'Compact Micro SMG',
     category: 'weapons',
     subCategory: 'Submetralhadora',
@@ -526,6 +555,7 @@ export const DEMO_MARKERS: MarkerLocation[] = [
   // ================= LOCATIONS =================
   {
     id: 'loc-01',
+    slug: 'ocean-beach-boardwalk',
     name: 'Ocean Beach Boardwalk',
     category: 'locations',
     subCategory: 'Distrito Turístico',
@@ -543,6 +573,7 @@ export const DEMO_MARKERS: MarkerLocation[] = [
   },
   {
     id: 'loc-02',
+    slug: 'downtown-financial-core',
     name: 'Downtown Financial Core',
     category: 'locations',
     subCategory: 'Centro Urbano',
@@ -560,6 +591,7 @@ export const DEMO_MARKERS: MarkerLocation[] = [
   },
   {
     id: 'loc-03',
+    slug: 'the-vice-keys-causeway-bridge',
     name: 'The Vice Keys Causeway Bridge',
     category: 'locations',
     subCategory: 'Rodovia Cênica',
@@ -579,6 +611,7 @@ export const DEMO_MARKERS: MarkerLocation[] = [
   // ================= VEHICLES =================
   {
     id: 'veh-01',
+    slug: 'pegassi-infernus-classic',
     name: 'Pegassi Infernus Classic',
     category: 'vehicles',
     subCategory: 'Superesportivo Raro',
@@ -597,6 +630,7 @@ export const DEMO_MARKERS: MarkerLocation[] = [
   },
   {
     id: 'veh-02',
+    slug: 'v8-swamp-airboat',
     name: 'V8 Swamp Airboat',
     category: 'vehicles',
     subCategory: 'Barco de Pântano',
