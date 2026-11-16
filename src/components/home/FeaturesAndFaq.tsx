@@ -4,11 +4,11 @@ import {
   Filter,
   CheckCircle2,
   HelpCircle,
-  ShieldAlert,
   Sparkles,
   Zap,
 } from 'lucide-react';
 import { Language } from '@/types';
+import { FanSiteDisclaimer } from '@/components/common/FanSiteDisclaimer';
 
 interface FeaturesAndFaqProps {
   lang: Language;
@@ -475,10 +475,7 @@ export const FeaturesAndFaq: React.FC<FeaturesAndFaqProps> = ({ lang }) => {
       </section>
 
       {/* Visible Fan-site Disclaimer Banner */}
-      <section className="rounded-xl p-5 bg-[#12141f] border border-amber-500/20 text-slate-400 text-xs flex items-start gap-3 max-w-4xl mx-auto">
-        <ShieldAlert className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
-        <p className="leading-relaxed">{content.disclaimerText}</p>
-      </section>
+      <FanSiteDisclaimer lang={lang} variant="banner" className="max-w-4xl mx-auto" />
     </div>
   );
 };

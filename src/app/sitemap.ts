@@ -4,8 +4,13 @@ import {
   getIndexableMarkers,
   categoryIdToSlug,
 } from '@/data/seoSelectors';
+import { siteConfig } from '@/config/siteConfig';
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  if (!siteConfig.isIndexingEnabled) {
+    return [];
+  }
+
   const baseUrl = 'https://gtavimap.com';
   const languages = ['en', 'pt-br', 'es'];
   const buildDate = new Date();
@@ -17,6 +22,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/categories', priority: 0.8, changeFrequency: 'weekly' as const },
     { path: '/characters', priority: 0.8, changeFrequency: 'weekly' as const },
     { path: '/premium', priority: 0.6, changeFrequency: 'weekly' as const },
+    { path: '/privacy', priority: 0.3, changeFrequency: 'monthly' as const },
+    { path: '/terms', priority: 0.3, changeFrequency: 'monthly' as const },
+    { path: '/contact', priority: 0.4, changeFrequency: 'monthly' as const },
   ];
 
   const sitemapEntries: MetadataRoute.Sitemap = [];

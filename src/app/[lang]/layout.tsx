@@ -1,4 +1,6 @@
 import type { Metadata, Viewport } from 'next';
+import { Language } from '@/types';
+import { ConsentBanner } from '@/components/common/ConsentBanner';
 import '../globals.css';
 
 export const metadata: Metadata = {
@@ -101,6 +103,7 @@ export default async function RootLayout({
       </head>
       <body className="min-h-full flex flex-col bg-[#070b12] text-[#f1f5f9] antialiased selection:bg-[#ff2a85]/30 selection:text-[#ff2a85]">
         {children}
+        <ConsentBanner lang={langAttr as Language} />
       </body>
     </html>
   );

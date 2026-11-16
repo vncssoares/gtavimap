@@ -234,6 +234,83 @@ export const DICTIONARIES = {
       rights: 'All rights reserved.',
       architecture: 'Engineered with Next.js, TypeScript, Tailwind CSS and Custom Leaflet Cartography.',
     },
+    // ============================================================
+    // REVISAR COM PROFISSIONAL ANTES DE PUBLICAR
+    // ============================================================
+    privacyPage: {
+      title: 'Privacy Policy',
+      subtitle: 'Transparency on how your browser data is handled on GTAVIMap.',
+      lastUpdated: 'Last updated: November 2026',
+      sections: [
+        {
+          heading: '1. Independent Fan Project Nature',
+          content: 'GTAVIMap is an independent, non-commercial fan project created for cartographic guide exploration. We do not require you to create an account, log in, or provide personal identity details to browse the interactive map.',
+        },
+        {
+          heading: '2. Local Progress Tracking (LocalStorage)',
+          content: 'Your completion progress, discovered collectibles, and map filters are stored entirely client-side inside your own browser\'s LocalStorage. This data never leaves your device and is never transmitted to or stored on our servers. You can clear this data at any time via your browser settings.',
+        },
+        {
+          heading: '3. Technical Cookies & Consent',
+          content: 'We use strictly necessary technical cookies solely to remember your preferred language selection and your privacy consent preferences. Optional measurement cookies or performance telemetry are disabled by default and require your explicit opt-in.',
+        },
+        {
+          heading: '4. Third-Party Requests & Scripts',
+          content: 'No third-party advertising or analytics scripts are loaded without your prior affirmative consent. External media embeds (such as video trailers) are loaded through privacy-enhanced domains (e.g. youtube-nocookie.com) only after user interaction.',
+        },
+        {
+          heading: '5. Your Rights & Data Concerns',
+          content: 'Because we do not collect personal accounts or server-side databases, we do not retain identifiable personal profiles. If you have any inquiries regarding data protection or site operation, please visit our Contact page.',
+        },
+      ],
+    },
+    termsPage: {
+      title: 'Terms of Service',
+      subtitle: 'Guidelines and terms for utilizing the GTAVIMap community cartography utility.',
+      lastUpdated: 'Last updated: November 2026',
+      sections: [
+        {
+          heading: '1. Acceptance of Terms',
+          content: 'By accessing and navigating GTAVIMap, you acknowledge and agree to these terms. If you do not agree with any part of these guidelines, please discontinue use of this site.',
+        },
+        {
+          heading: '2. Unofficial Fan & Research Scope',
+          content: 'GTAVIMap is an unofficial fan resource built for informational, research, and navigation purposes. This website is NOT affiliated with, sponsored by, authorized by, or endorsed by Rockstar Games or Take-Two Interactive Software, Inc.',
+        },
+        {
+          heading: '3. Intellectual Property Rights',
+          content: 'All trademarks, logos, game titles, character names, and trade dress associated with "Grand Theft Auto", "GTA VI", and "Vice City" are the exclusive property of Take-Two Interactive Software, Inc. and its subsidiaries. Materials cited on this website are utilized strictly under nominative fair use principles for community guide navigation and commentary.',
+        },
+        {
+          heading: '4. Permitted Use & Embeds',
+          content: 'You may share and embed maps for personal or editorial websites using our official embed features. Automated scraping, DDoS attacks, or malicious disruptions of site infrastructure are strictly prohibited.',
+        },
+        {
+          heading: '5. Disclaimer of Warranties & Limitation of Liability',
+          content: 'GTAVIMap is provided on an "as-is" and "as-available" basis without warranties of any kind, whether express or implied. The creators assume no liability for inaccuracies in fan speculation, technical downtime, or data loss occurring on client devices.',
+        },
+      ],
+    },
+    contactPage: {
+      title: 'Contact & Legal Notices',
+      subtitle: 'Direct channel for copyright notices, DMCA inquiries, and community feedback.',
+      generalTitle: 'General Inquiries & Community Feedback',
+      generalDesc: 'For general technical suggestions, bug reports on markers, or collaborative feedback, you can reach out directly via email.',
+      takedownTitle: 'Copyright & DMCA Removal Requests',
+      takedownSubtitle: 'Notice and Takedown Procedure',
+      takedownDesc: 'GTAVIMap respects intellectual property rights and adheres to prompt notice-and-takedown procedures. If you are a copyright holder or authorized representative and believe content hosted or indexed on this fan site infringes your rights, please send a formal notice containing the elements below.',
+      takedownRequirements: [
+        'Precise identification of the copyrighted work claimed to be infringed.',
+        'The exact URL(s) on GTAVIMap where the material is located.',
+        'A statement affirming a good-faith belief that the disputed use is unauthorized.',
+        'Proof of authorization or trademark/copyright ownership.',
+        'Your direct contact details (full name, organization, email, and phone number).',
+      ],
+      emailLabel: 'Contact Email',
+      mailtoButton: 'Send DMCA / Removal Notice via Email',
+      mailtoSubject: 'GTAVIMap - Copyright / Removal Request',
+      noFormNotice: 'For document tracking and security verification, all formal requests are handled directly via email with no intermediary web forms.',
+    },
   },
 
   'pt-BR': {
@@ -458,6 +535,83 @@ export const DICTIONARIES = {
       rights: 'Todos os direitos reservados.',
       architecture: 'Desenvolvido com Next.js, TypeScript, Tailwind CSS e Cartografia Customizada com Leaflet.',
     },
+    // ============================================================
+    // REVISAR COM PROFISSIONAL ANTES DE PUBLICAR
+    // ============================================================
+    privacyPage: {
+      title: 'Política de Privacidade',
+      subtitle: 'Transparência sobre o tratamento de dados no GTAVIMap.',
+      lastUpdated: 'Última atualização: Novembro de 2026',
+      sections: [
+        {
+          heading: '1. Natureza Independente e Projeto de Fãs',
+          content: 'O GTAVIMap é um projeto independente criado por fãs exclusivamente para exploração cartográfica comunitária. Não solicitamos cadastro pessoal, senhas, CPF ou dados de pagamento para a navegação no mapa.',
+        },
+        {
+          heading: '2. Rastreamento de Progresso Local (LocalStorage)',
+          content: 'O registro de pontos concluídos, filtros aplicados e anotações pessoais permanece armazenado unicamente no LocalStorage do seu próprio navegador. Esses dados não são enviados nem gravados em nossos servidores e podem ser apagados por você a qualquer instante nas configurações do seu navegador.',
+        },
+        {
+          heading: '3. Cookies Técnicos e Consentimento',
+          content: 'Utilizamos apenas cookies estritamente necessários para registrar seu idioma preferido e suas escolhas de consentimento. Medição e telemetria opcionais permanecem desativadas por padrão e dependem da sua permissão expressa.',
+        },
+        {
+          heading: '4. Scripts e Serviços de Terceiros',
+          content: 'Nenhum script de medição ou publicidade de terceiros é injetado antes do seu consentimento prévio. Mídias externas (como trailers oficiais do YouTube) utilizam domínios com privacidade aprimorada (youtube-nocookie.com) e são carregadas somente mediante interação deliberada.',
+        },
+        {
+          heading: '5. Seus Direitos e Solicitações',
+          content: 'Como não realizamos armazenamento de perfis nominais ou bancos de dados pessoais, não mantemos dados identificáveis de usuários. Para quaisquer dúvidas ou requisições formais, consulte nossa página de Contato.',
+        },
+      ],
+    },
+    termsPage: {
+      title: 'Termos de Uso',
+      subtitle: 'Regras e diretrizes para navegação no utilitário comunitário GTAVIMap.',
+      lastUpdated: 'Última atualização: Novembro de 2026',
+      sections: [
+        {
+          heading: '1. Aceitação dos Termos',
+          content: 'Ao utilizar o GTAVIMap, você concorda com estes termos de uso. Caso não concorde com qualquer disposição aqui estabelecida, solicitamos que interrompa o acesso ao site.',
+        },
+        {
+          heading: '2. Escopo Não Oficial e de Pesquisa de Fãs',
+          content: 'O GTAVIMap é uma plataforma de fãs destinada a fins informativos, educativos e de navegação. Este projeto NÃO é afiliado, patrocinado, autorizado ou endossado pela Rockstar Games ou Take-Two Interactive Software, Inc.',
+        },
+        {
+          heading: '3. Propriedade Intelectual e Marcas Registradas',
+          content: 'Todos os direitos autorais, marcas comerciais, títulos, nomes de personagens e logotipos relacionados a "Grand Theft Auto", "GTA VI" e "Vice City" são propriedade exclusiva da Take-Two Interactive Software, Inc. e suas subsidiárias. O uso de tais menções neste site fundamenta-se no princípio de uso justo nominativo (nominative fair use) para catalogação e guia comunitário.',
+        },
+        {
+          heading: '4. Uso Permitido e Incorporações',
+          content: 'É permitida a incorporação do mapa em sites e blogs por meio do recurso oficial de iframe fornecido. Práticas de raspagem abusiva automatizada (scraping em massa), ataques de negação de serviço ou tentativas de burlar a infraestrutura do site são expressamente proibidas.',
+        },
+        {
+          heading: '5. Isenção de Garantias e Limitação de Responsabilidade',
+          content: 'O GTAVIMap é disponibilizado "no estado em que se encontra" (as-is), sem garantias de disponibilidade ininterrupta ou de exatidão de dados especulativos baseados em trailers. Os desenvolvedores não se responsabilizam por eventuais perdas de dados armazenados no navegador do usuário.',
+        },
+      ],
+    },
+    contactPage: {
+      title: 'Contato & Avisos Legais',
+      subtitle: 'Canal direto para solicitações de remoção, DMCA e feedback comunitário.',
+      generalTitle: 'Contato Geral & Comunidade',
+      generalDesc: 'Para sugestões técnicas, reporte de bugs em marcadores ou dúvidas sobre o projeto, você pode entrar em contato diretamente via correio eletrônico.',
+      takedownTitle: 'Pedidos de Remoção e Direitos Autorais',
+      takedownSubtitle: 'Procedimento Formal de Notificação e Retirada (DMCA)',
+      takedownDesc: 'O GTAVIMap respeita rigorosamente os direitos de propriedade intelectual e atua com agilidade na análise e remoção de conteúdos mediante solicitação fundamentada. Se você for o detentor de direitos ou seu representante legal e identificar material infringente, envie uma solicitação contendo os dados abaixo.',
+      takedownRequirements: [
+        'Identificação detalhada da obra ou marca protegida que alega ter sido infringida.',
+        'URL(s) exata(s) no GTAVIMap onde o material em questão se encontra.',
+        'Declaração formal de que você possui boa-fé de que o uso do material não foi autorizado pelo proprietário, agente ou pela lei.',
+        'Comprovante documental de titularidade ou procuração representativa.',
+        'Dados completos de contato (nome completo, empresa/entidade, e-mail e telefone).',
+      ],
+      emailLabel: 'E-mail para Notificações',
+      mailtoButton: 'Enviar Notificação de Remoção / DMCA',
+      mailtoSubject: 'GTAVIMap - Solicitação de Remoção / DMCA Notice',
+      noFormNotice: 'Para fins de auditoria, validade jurídica e rastreabilidade documental, todas as solicitações são recebidas exclusivamente via e-mail direto, sem formulários na web.',
+    },
   },
 
   es: {
@@ -681,6 +835,83 @@ export const DICTIONARIES = {
       disclaimer: 'GTAVIMap es un prototipo interactivo creado por fanáticos y NO está afiliado, respaldado ni patrocinado por Rockstar Games o Take-Two Interactive. Todas las marcas pertenecen a sus respectivos dueños.',
       rights: 'Todos los derechos reservados.',
       architecture: 'Desarrollado con Next.js, TypeScript, Tailwind CSS y Cartografía Personalizada con Leaflet.',
+    },
+    // ============================================================
+    // REVISAR COM PROFISSIONAL ANTES DE PUBLICAR
+    // ============================================================
+    privacyPage: {
+      title: 'Política de Privacidad',
+      subtitle: 'Transparencia sobre el tratamiento de datos del navegador en GTAVIMap.',
+      lastUpdated: 'Última actualización: Noviembre de 2026',
+      sections: [
+        {
+          heading: '1. Naturaleza de Proyecto de Fans Independiente',
+          content: 'GTAVIMap es un proyecto independiente creado por fanáticos exclusivamente para la exploración cartográfica comunitaria. No requerimos creación de cuentas personales ni datos de pago para utilizar el mapa interactivo.',
+        },
+        {
+          heading: '2. Seguimiento de Progreso Local (LocalStorage)',
+          content: 'El registro de marcadores completados y filtros de búsqueda se almacena localmente en el navegador mediante LocalStorage. Esta información nunca se transmite ni se almacena en nuestros servidores y puede ser borrada en cualquier momento desde la configuración de su navegador.',
+        },
+        {
+          heading: '3. Cookies Técnicas y Consentimiento',
+          content: 'Solo empleamos cookies estrictamente necesarias para recordar el idioma elegido y las preferencias de privacidad. La telemetría de medición y la publicidad están desactivadas de forma predeterminada y requieren su autorización explícita.',
+        },
+        {
+          heading: '4. Scripts y Servicios de Terceros',
+          content: 'Ningún script de análisis o publicidad de terceros se descarga sin su consentimiento previo. Los recursos multimedia incrustados (como tráileres de YouTube) emplean dominios con privacidad mejorada (youtube-nocookie.com) y solo se cargan tras la interacción del usuario.',
+        },
+        {
+          heading: '5. Derechos y Consultas',
+          content: 'Dado que no gestionamos bases de datos con perfiles personales de usuario, no conservamos historiales de navegación individuales. Para cualquier consulta sobre privacidad, consulte nuestra página de Contacto.',
+        },
+      ],
+    },
+    termsPage: {
+      title: 'Términos de Servicio',
+      subtitle: 'Condiciones de uso y pautas para el utilitario comunitario GTAVIMap.',
+      lastUpdated: 'Última actualización: Noviembre de 2026',
+      sections: [
+        {
+          heading: '1. Aceptación de los Términos',
+          content: 'Al acceder y navegar por GTAVIMap, usted acepta cumplir con estos términos de uso. Si no está de acuerdo con alguno de ellos, le solicitamos que suspenda el uso del sitio web.',
+        },
+        {
+          heading: '2. Alcance No Oficial y de Investigación Comunitaria',
+          content: 'GTAVIMap es un recurso no oficial desarrollado con fines informativos y de navegación cartográfica. Este sitio web NO está afiliado, respaldado, autorizado ni patrocinado por Rockstar Games o Take-Two Interactive Software, Inc.',
+        },
+        {
+          heading: '3. Derechos de Propiedad Intelectual',
+          content: 'Todas las marcas registradas, logotipos, nombres de personajes y títulos asociados a "Grand Theft Auto", "GTA VI" y "Vice City" son propiedad exclusiva de Take-Two Interactive Software, Inc. Su mención en este sitio se realiza bajo las pautas de uso legítimo nominativo (fair use) con fines de guía cartográfica y divulgación.',
+        },
+        {
+          heading: '4. Uso Permitido e Incrustaciones',
+          content: 'Se permite incrustar el mapa en blogs y sitios web mediante la función oficial de iframe provista. Se prohíbe terminantemente la extracción masiva automatizada de datos (scraping), ataques de denegación de servicio o cualquier intento de vulnerar los servidores del sitio.',
+        },
+        {
+          heading: '5. Exención de Garantías y Limitación de Responsabilidad',
+          content: 'GTAVIMap se ofrece "tal cual" (as-is), sin garantías explícitas o implícitas de funcionamiento ininterrumpido o exactitud de datos especulativos. Los desarrolladores no asumen responsabilidad por eventuales pérdidas de datos almacenados en el navegador del usuario.',
+        },
+      ],
+    },
+    contactPage: {
+      title: 'Contacto y Avisos Legales',
+      subtitle: 'Canal directo para solicitudes de retirada, DMCA y sugerencias de la comunidad.',
+      generalTitle: 'Consultas Generales y Comunidad',
+      generalDesc: 'Para sugerencias sobre el mapa, corrección de marcadores o contacto técnico, puede comunicarse directamente por correo electrónico.',
+      takedownTitle: 'Solicitudes de Retirada y Derechos de Autor',
+      takedownSubtitle: 'Procedimiento de Notificación y Retirada (DMCA)',
+      takedownDesc: 'GTAVIMap respeta los derechos de propiedad intelectual y atiende con prontitud las solicitudes justificadas de retirada. Si usted es titular de derechos o su representante legal y considera que algún contenido vulnera sus derechos, envíe una notificación que incluya los siguientes datos.',
+      takedownRequirements: [
+        'Identificación precisa de la obra protegida por derechos de autor que se alega vulnerada.',
+        'URL(s) exacta(s) en GTAVIMap donde se encuentra el material objetado.',
+        'Declaración formal de buena fe manifestando que el uso impugnado no cuenta con autorización legal.',
+        'Documento que acredite la titularidad de los derechos o el poder de representación legal.',
+        'Información de contacto completa (nombre completo, entidad u organización, correo electrónico y teléfono).',
+      ],
+      emailLabel: 'Correo Electrónico para Notificaciones',
+      mailtoButton: 'Enviar Notificación de Retirada / DMCA',
+      mailtoSubject: 'GTAVIMap - Solicitud de Retirada / DMCA Notice',
+      noFormNotice: 'Por razones de seguridad y trazabilidad documental, todas las notificaciones se tramitan directamente por correo electrónico sin formularios intermediarios.',
     },
   },
 };

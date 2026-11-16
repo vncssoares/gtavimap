@@ -68,6 +68,15 @@
 - Identificação explícita de recursos em desenvolvimento vs protótipo liberado.
 - Sem implementação de cobranças reais nesta fase.
 
+### 7. Privacidade, Consentimento de Cookies & Notificações DMCA
+- **ConsentBanner (Client):** Categorias claras de cookies (*Necessários*, *Medição/Telemetria* e *Marketing*), todas desligadas por padrão (opt-in estrito) e salvas em cookie de 12 meses (`cookie_consent`).
+- **Zero Scripts de Terceiros antes do Consentimento:** Nenhum script de análise ou publicidade é baixado ou executado sem aprovação prévia.
+- **Páginas Institucionais & Legais Dedicadas:**
+  - `/[lang]/privacy`: Política de Privacidade com detalhamento do armazenamento exclusivo no LocalStorage do usuário.
+  - `/[lang]/terms`: Termos de Serviço com menção explícita de escopo de pesquisa de fãs, nominative fair use e isenção de garantias.
+  - `/[lang]/contact`: Canal para suporte e procedimento formal para **Pedidos de Remoção e Direitos Autorais (DMCA)** com botão mailto estruturado.
+- **Componente Reutilizável `FanSiteDisclaimer`:** Selo de projeto de fãs sem afiliação comercial à Rockstar Games ou Take-Two Interactive.
+
 ---
 
 ## 🚀 Como Executar o Projeto
@@ -83,22 +92,33 @@
    cd gtavimap
    ```
 
-2. **Instalar dependências (caso não tenham sido instaladas):**
+2. **Configurar variáveis de ambiente (opcional):**
+   Copie `.env.example` para `.env.local`:
+   ```bash
+   cp .env.example .env.local
+   ```
+   Variáveis suportadas:
+   - `NEXT_PUBLIC_CONTACT_EMAIL`: E-mail para contato e pedidos de remoção / DMCA (padrão: `contact@gtavimap.com`).
+   - `NEXT_PUBLIC_ANALYTICS_SRC`: URL do script de medição/analytics (injetado **apenas com consentimento** explícito do usuário).
+   - `NEXT_PUBLIC_ANALYTICS_ID`: Identificador do site/domínio no provedor de métricas (opcional).
+   - `SITE_INDEXING`: Controle de indexação de busca (`on` para produção com sitemap ativo; `off` para preview/staging com `noindex, nofollow` e sitemap vazio).
+
+3. **Instalar dependências (caso não tenham sido instaladas):**
    ```bash
    npm install
    ```
 
-3. **Iniciar o servidor de desenvolvimento:**
+4. **Iniciar o servidor de desenvolvimento:**
    ```bash
    npm run dev
    ```
 
-4. **Acessar no navegador:**
+5. **Acessar no navegador:**
    - Abra [http://localhost:3000](http://localhost:3000)
-   - O aplicativo redirecionará automaticamente para o idioma padrão: [http://localhost:3000/en](http://localhost:3000/en)
+   - O aplicativo redirecionará automaticamente para o idioma detectado ou para `/en`
    - Para acessar diretamente em português: [http://localhost:3000/pt-br/map](http://localhost:3000/pt-br/map)
 
-5. **Gerar Build de Produção:**
+6. **Gerar Build de Produção:**
    ```bash
    npm run build
    npm run start
