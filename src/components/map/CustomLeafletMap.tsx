@@ -24,6 +24,8 @@ interface CustomLeafletMapProps {
   onToggleFound: (markerId: string) => void;
   onToggleFavorite: (markerId: string) => void;
   onOpenMobileFilters?: () => void;
+  targetRegionBounds?: [[number, number], [number, number]] | null;
+  interactiveScroll?: boolean;
 }
 
 export const CustomLeafletMap: React.FC<CustomLeafletMapProps> = ({
@@ -35,6 +37,8 @@ export const CustomLeafletMap: React.FC<CustomLeafletMapProps> = ({
   onToggleFound,
   onToggleFavorite,
   onOpenMobileFilters,
+  targetRegionBounds,
+  interactiveScroll = true,
 }) => {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
@@ -329,6 +333,28 @@ export const CustomLeafletMap: React.FC<CustomLeafletMapProps> = ({
       duration: 0.8,
     });
   }, [selectedMarker]);
+
+  // Enquadra a região selecionada suavemente (?r=<regionId>)
+  useEffect(() => {
+    if (!targetRegionBounds || !mapInstanceRef.current) return;
+    mapInstanceRef.current.flyToBounds(targetRegionBounds, {
+      padding: [50, 50],
+      maxZoom: 2,
+      duration: 1.2,
+    });
+  }, [targetRegionBounds]);
+
+  // Controla scrollWheelZoom e dragging (útil para modo preview/embed sem prender o scroll da página)
+  useEffect(() => {
+    if (!mapInstanceRef.current) return;
+    if (interactiveScroll === false) {
+      mapInstanceRef.current.scrollWheelZoom.disable();
+      mapInstanceRef.current.dragging.disable();
+    } else {
+      mapInstanceRef.current.scrollWheelZoom.enable();
+      mapInstanceRef.current.dragging.enable();
+    }
+  }, [interactiveScroll]);
 
   return (
     <div className="relative w-full h-full bg-[#3b9cb0] overflow-hidden select-none">
