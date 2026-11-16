@@ -111,7 +111,7 @@ export default async function CharactersPage({ params }: PageProps) {
                   className="bg-[#12131a] rounded-2xl border border-[#222433] overflow-hidden hover:border-[#ff2a85]/50 transition-all duration-300 shadow-xl group flex flex-col"
                 >
                   {/* Foto do Protagonista */}
-                  <div className="relative aspect-[16/11] w-full overflow-hidden bg-[#0a0b10]">
+                  <div className="relative aspect-square sm:aspect-[4/3] w-full overflow-hidden bg-[#0a0b10]">
                     <Image
                       src={p.image}
                       alt={p.name}
@@ -199,12 +199,12 @@ export default async function CharactersPage({ params }: PageProps) {
                   className="bg-[#12131a] rounded-2xl border border-[#222433] overflow-hidden hover:border-[#00e5ff]/40 transition-all duration-300 shadow-xl flex flex-col group"
                 >
                   {/* Foto do Personagem */}
-                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#0a0b10]">
+                  <div className="relative aspect-square sm:aspect-[4/3] w-full overflow-hidden bg-[#0a0b10]">
                     <Image
                       src={char.image}
                       alt={char.name}
                       fill
-                      className="object-cover group-hover:scale-104 transition-transform duration-500"
+                      className="object-cover object-top group-hover:scale-104 transition-transform duration-500"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                   </div>

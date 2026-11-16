@@ -25,7 +25,7 @@ export const PROTAGONISTS: CharacterItem[] = [
       es: 'Protagonista',
     },
     isProtagonist: true,
-    image: '/characters/jason.jpg',
+    image: '/characters/jason.webp',
     bio: {
       'pt-BR':
         'Um veterano do exército que cresceu entre trapaceiros e bandidos e quer uma vida tranquila que sempre lhe escapa. Agora ele faz serviços para traficantes locais nos Keys — e conhecer Lucia pode ser a melhor ou a pior coisa que já lhe aconteceu.',
@@ -44,7 +44,7 @@ export const PROTAGONISTS: CharacterItem[] = [
       es: 'Protagonista',
     },
     isProtagonist: true,
-    image: '/characters/lucia.jpg',
+    image: '/characters/lucia.webp',
     bio: {
       'pt-BR':
         'A primeira protagonista feminina jogável de um GTA moderno. Criada em Liberty City e ensinada a lutar pelo pai, ela cumpriu pena na Penitenciária de Leonida por proteger a família. Recém-saída da prisão, quer a boa vida que a mãe sempre sonhou — e desta vez, só jogadas espertas.',
@@ -123,7 +123,7 @@ export const SUPPORTING_CAST: CharacterItem[] = [
       es: 'AMIGO DE JASON',
     },
     isProtagonist: false,
-    image: '/characters/cal-hampton.jpg',
+    image: '/characters/cal-hampton.webp',
     bio: {
       'pt-BR':
         'Um teórico da conspiração que se sente mais seguro em casa — mergulhado em tocas de coelho da internet, escutando a comunicação da Guarda Costeira do sofá.',
@@ -142,7 +142,7 @@ export const SUPPORTING_CAST: CharacterItem[] = [
       es: 'MAGNATE DE VICE CITY',
     },
     isProtagonist: false,
-    image: '/characters/boobie-ike.jpg',
+    image: '/characters/boobie-ike.webp',
     bio: {
       'pt-BR':
         'Uma lenda local que transformou dinheiro das ruas em um império legítimo — uma boate de strip, um estúdio de gravação e imóveis por toda Vice City.',
@@ -161,7 +161,7 @@ export const SUPPORTING_CAST: CharacterItem[] = [
       es: 'EMPRESARIO MUSICAL',
     },
     isProtagonist: false,
-    image: '/characters/drequan-priest.jpg',
+    image: '/characters/drequan-priest.webp',
     bio: {
       'pt-BR':
         'Fundador da Only Raw Records, trabalhando para transformar a cena de clubes de Vice City em um verdadeiro império musical — com um pé de cada lado da lei.',
@@ -180,7 +180,7 @@ export const SUPPORTING_CAST: CharacterItem[] = [
       es: 'DÚO DE RAP',
     },
     isProtagonist: false,
-    image: '/characters/real-dimez.jpg',
+    image: '/characters/real-dimez.webp',
     bio: {
       'pt-BR':
         'Bae-Luxe e Roxy — uma dupla de rap ligada nas redes sociais e assinada pela Only Raw Records, misturando máxima visibilidade pública com conexões discretas no submundo.',
@@ -199,7 +199,7 @@ export const SUPPORTING_CAST: CharacterItem[] = [
       es: 'VETERANO DE ASALTOS',
     },
     isProtagonist: false,
-    image: '/characters/raul-bautista.jpg',
+    image: '/characters/raul-bautista.webp',
     bio: {
       'pt-BR':
         'Um assaltante de bancos experiente sempre em busca de gente capaz para o próximo grande golpe — muita pressão, muita recompensa.',
@@ -218,7 +218,7 @@ export const SUPPORTING_CAST: CharacterItem[] = [
       es: 'CONTRABANDISTA DE LA VIEJA GUARDIA',
     },
     isProtagonist: false,
-    image: '/characters/brian-heder.jpg',
+    image: '/characters/brian-heder.webp',
     bio: {
       'pt-BR':
         'Um traficante dos tempos áureos dos Keys que deixa Jason morar em uma de suas propriedades em troca de pequenos serviços.',
