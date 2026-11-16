@@ -56,6 +56,15 @@ export const metadata: Metadata = {
     description: 'Track your progress across Vice City and Leonida with fluid interactive controls.',
     images: ['/en/opengraph-image'],
   },
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.png', type: 'image/png', sizes: '32x32' },
+    ],
+    apple: [
+      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
 };
 
 export const viewport: Viewport = {
