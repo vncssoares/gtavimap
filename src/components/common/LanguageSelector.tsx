@@ -15,6 +15,12 @@ const LANGUAGES: { code: Language; label: string; flag: string }[] = [
   { code: 'es', label: 'Español (ES)', flag: '🇪🇸' },
 ];
 
+function saveLanguagePreferenceCookie(lang: string) {
+  if (typeof document !== 'undefined') {
+    document.cookie = `lang=${lang}; path=/; max-age=31536000; SameSite=Lax`;
+  }
+}
+
 export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ currentLang }) => {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
@@ -36,7 +42,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ currentLang 
     const targetLangRoute = newLang.toLowerCase();
 
     // Grava a preferência de idioma por 1 ano (SameSite=Lax)
-    document.cookie = `lang=${targetLangRoute}; path=/; max-age=31536000; SameSite=Lax`;
+    saveLanguagePreferenceCookie(targetLangRoute);
 
     if (newLang === currentLang) return;
 

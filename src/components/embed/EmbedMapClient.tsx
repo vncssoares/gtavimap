@@ -170,7 +170,7 @@ export const EmbedMapClient: React.FC<EmbedMapClientProps> = ({ lang }) => {
                   </div>
                 )}
                 <span className="text-[10px] font-mono uppercase font-bold text-slate-300">
-                  {activeCategory?.shortLabel || selectedMarker.category}
+                  {(activeCategory ? (dict.categories as Record<string, string>)[activeCategory.id] : null) || activeCategory?.shortLabel || selectedMarker.category}
                 </span>
               </div>
 

@@ -119,7 +119,7 @@ export default async function CategoriesPage({ params }: PageProps) {
                   {/* Cabeçalho do Grupo */}
                   <div className="flex items-center justify-between border-b-2 border-[#ff2a85] pb-2">
                     <h2 className="text-lg font-black uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-[#ff2a85] to-[#00e5ff]">
-                      {groupName}
+                      {(dict.categoryGroups as Record<string, string>)[groupName] || groupName}
                     </h2>
                     <span className="text-xs font-mono text-slate-400">
                       {groupCategories.length} CATEGORIAS
@@ -157,7 +157,7 @@ export default async function CategoriesPage({ params }: PageProps) {
                               </div>
                               <div>
                                 <h3 className="text-base font-black text-white uppercase tracking-wider">
-                                  {category.shortLabel}
+                                  {(dict.categories as Record<string, string>)[category.id] || category.shortLabel}
                                 </h3>
                                 <p className="text-xs text-slate-400">
                                   {(dict.categories as Record<string, string>)[`${category.id}_desc`] || ''}
@@ -186,7 +186,7 @@ export default async function CategoriesPage({ params }: PageProps) {
                                   <div>
                                     <div className="flex items-center justify-between text-[10px] font-mono mb-1">
                                       <span className="text-slate-400 uppercase">
-                                        {marker.subCategory || category.shortLabel}
+                                        {marker.subCategory || (dict.categories as Record<string, string>)[category.id] || category.shortLabel}
                                       </span>
                                       <span className="text-[#00e5ff] font-bold">
                                         X:{marker.x} Y:{marker.y}

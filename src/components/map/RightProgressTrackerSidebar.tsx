@@ -164,7 +164,7 @@ export const RightProgressTrackerSidebar: React.FC<RightProgressTrackerSidebarPr
                   className="text-xs font-mono font-black uppercase tracking-wider"
                   style={{ color: markerCategory?.color || '#00e5ff' }}
                 >
-                  {markerCategory?.shortLabel || selectedMarker.category}
+                  {(markerCategory ? (dict.categories as Record<string, string>)[markerCategory.id] : null) || markerCategory?.shortLabel || selectedMarker.category}
                 </span>
                 <button
                   onClick={onCloseMarkerDetails}

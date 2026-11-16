@@ -275,7 +275,7 @@ export const CategoryFilterSidebar: React.FC<CategoryFilterSidebarProps> = ({
               <div key={groupName} className="space-y-2">
                 {/* Título da Seção aumentado e nítido */}
                 <h4 className="text-xs font-black tracking-wider text-slate-200 uppercase px-1">
-                  {groupName}
+                  {(dict.categoryGroups as Record<string, string>)[groupName] || groupName}
                 </h4>
 
                 {/* Grid de 2 Colunas */}
@@ -303,7 +303,7 @@ export const CategoryFilterSidebar: React.FC<CategoryFilterSidebarProps> = ({
                             className="shrink-0"
                           />
                           <span className="truncate uppercase font-mono text-[11px] sm:text-xs">
-                            {cat.shortLabel}
+                            {(dict.categoryShortLabels as Record<string, string>)[cat.id] || (dict.categories as Record<string, string>)[cat.id] || cat.shortLabel}
                           </span>
                         </div>
 

@@ -277,7 +277,7 @@ export default async function HomePage({ params }: PageProps) {
                   className="p-5 rounded-2xl bg-[#12131a] border border-[#222433] space-y-3 shadow-lg"
                 >
                   <h3 className="text-xs font-black uppercase tracking-wider text-[#00e5ff] border-b border-[#1e202d] pb-2">
-                    {groupName}
+                    {(dict.categoryGroups as Record<string, string>)[groupName] || groupName}
                   </h3>
 
                   <div className="grid grid-cols-2 gap-2">
@@ -296,7 +296,7 @@ export default async function HomePage({ params }: PageProps) {
                               className="shrink-0"
                             />
                             <span className="truncate uppercase font-mono text-[9.5px] text-slate-300">
-                              {cat.shortLabel}
+                              {(dict.categoryShortLabels as Record<string, string>)[cat.id] || (dict.categories as Record<string, string>)[cat.id] || cat.shortLabel}
                             </span>
                           </div>
                           <span

@@ -5,6 +5,7 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { MarkerLocation, Language, UserProgress } from '@/types';
 import { CATEGORIES } from '@/data/categories';
+import { getDictionary } from '@/i18n/translations';
 import {
   Plus,
   Minus,
@@ -207,6 +208,7 @@ export const CustomLeafletMap: React.FC<CustomLeafletMapProps> = ({
   useEffect(() => {
     if (!mapInstanceRef.current || !markersLayerRef.current) return;
 
+    const dict = getDictionary(lang);
     markersLayerRef.current.clearLayers();
 
     markers.forEach((marker) => {
@@ -218,6 +220,7 @@ export const CustomLeafletMap: React.FC<CustomLeafletMapProps> = ({
       const leafletMarker = L.marker(latLng, { icon });
       const category = CATEGORIES.find((c) => c.id === marker.category);
       const catColor = category ? category.color : '#00e5ff';
+      const catLabel = category ? ((dict.categories as Record<string, string>)[category.id] || category.shortLabel) : marker.category;
       const descText = marker.description[lang] || marker.description.en;
 
       const popupHtml = document.createElement('div');
@@ -226,7 +229,7 @@ export const CustomLeafletMap: React.FC<CustomLeafletMapProps> = ({
         <div style="font-family: inherit; color: #fff; min-width: 210px;">
           <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 5px;">
             <span style="font-size: 10px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; color: ${catColor};">
-              ${category ? category.shortLabel : marker.category}
+              ${catLabel}
             </span>
             <span style="font-size: 9px; font-family: monospace; color: #94a3b8;">X:${marker.x} Y:${marker.y}</span>
           </div>
