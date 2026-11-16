@@ -23,6 +23,7 @@ export const Header: React.FC<HeaderProps> = ({ lang }) => {
     { href: `${langPrefix}`, label: dict.nav.home },
     { href: `${langPrefix}/map`, label: dict.nav.map },
     { href: `${langPrefix}/categories`, label: dict.nav.categories },
+    { href: `${langPrefix}/characters`, label: dict.nav.characters },
     { href: `${langPrefix}/premium`, label: dict.nav.premium, isHighlight: true },
   ];
 
