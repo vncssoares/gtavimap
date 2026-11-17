@@ -59,7 +59,7 @@ export const PROTAGONISTS: CharacterItem[] = [
 export const OFFICIAL_GALLERY: GalleryItem[] = [
   {
     id: 'store_heist',
-    image: '/characters/gallery-1.jpg',
+    image: '/characters/gallery-1.webp',
     title: {
       'pt-BR': 'Planejamento e Assalto',
       en: 'Store Heist Crew',
@@ -68,7 +68,7 @@ export const OFFICIAL_GALLERY: GalleryItem[] = [
   },
   {
     id: 'bedroom_talk',
-    image: '/characters/gallery-2.jpg',
+    image: '/characters/gallery-2.webp',
     title: {
       'pt-BR': 'Diálogo e Confiança',
       en: 'Late Night Talk',
@@ -77,7 +77,7 @@ export const OFFICIAL_GALLERY: GalleryItem[] = [
   },
   {
     id: 'night_streets',
-    image: '/characters/gallery-3.jpg',
+    image: '/characters/gallery-3.webp',
     title: {
       'pt-BR': 'Sob a Luz Neon',
       en: 'Vice City Under Neon',
@@ -86,7 +86,7 @@ export const OFFICIAL_GALLERY: GalleryItem[] = [
   },
   {
     id: 'getaway_walk',
-    image: '/characters/gallery-4.jpg',
+    image: '/characters/gallery-4.webp',
     title: {
       'pt-BR': 'Fuga com o Dinheiro',
       en: 'Getaway Walk',
@@ -95,7 +95,7 @@ export const OFFICIAL_GALLERY: GalleryItem[] = [
   },
   {
     id: 'convertible_cruise',
-    image: '/characters/gallery-5.jpg',
+    image: '/characters/gallery-5.webp',
     title: {
       'pt-BR': 'Conversível em Alta Velocidade',
       en: 'Convertible Ride',
@@ -104,7 +104,7 @@ export const OFFICIAL_GALLERY: GalleryItem[] = [
   },
   {
     id: 'standoff',
-    image: '/characters/gallery-6.jpg',
+    image: '/characters/gallery-6.webp',
     title: {
       'pt-BR': 'Ação Armada em Dupla',
       en: 'Armed Duo in Action',
