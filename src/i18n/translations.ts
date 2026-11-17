@@ -120,6 +120,9 @@ export const DICTIONARIES = {
       news: 'News',
       premium: 'Premium',
       about: 'About',
+      toggleMenuOpen: 'Open navigation menu',
+      toggleMenuClose: 'Close navigation menu',
+      selectLanguage: 'Select language',
     },
     charactersPage: {
       title: 'CHARACTERS',
@@ -529,6 +532,9 @@ export const DICTIONARIES = {
       news: 'Notícias',
       premium: 'Premium',
       about: 'Sobre',
+      toggleMenuOpen: 'Abrir menu de navegação',
+      toggleMenuClose: 'Fechar menu de navegação',
+      selectLanguage: 'Selecionar idioma',
     },
     charactersPage: {
       title: 'PERSONAGENS',
@@ -938,6 +944,9 @@ export const DICTIONARIES = {
       news: 'Noticias',
       premium: 'Premium',
       about: 'Acerca de',
+      toggleMenuOpen: 'Abrir menú de navegación',
+      toggleMenuClose: 'Cerrar menú de navegación',
+      selectLanguage: 'Seleccionar idioma',
     },
     charactersPage: {
       title: 'PERSONAJES',
