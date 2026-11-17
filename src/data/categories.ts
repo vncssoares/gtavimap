@@ -9,8 +9,8 @@ export const CATEGORIES: Category[] = [
     shortLabel: 'STUNT JUMP',
     descriptionKey: 'categories.stunt_jump_desc',
     iconName: 'Star',
-    color: '#00e5ff', // Azul Ciano brilhante
-    badgeBg: 'rgba(0, 229, 255, 0.15)',
+    color: '#38f8ff', // Azul Ciano brilhante otimizado WCAG AA (>= 4.5:1)
+    badgeBg: 'rgba(0, 229, 255, 0.08)',
   },
   {
     id: 'hidden_package',
@@ -19,8 +19,8 @@ export const CATEGORIES: Category[] = [
     shortLabel: 'HIDDEN PACKAGE',
     descriptionKey: 'categories.hidden_package_desc',
     iconName: 'Trophy',
-    color: '#38bdf8', // Azul Celeste
-    badgeBg: 'rgba(56, 189, 248, 0.15)',
+    color: '#60a5fa', // Azul Celeste otimizado
+    badgeBg: 'rgba(96, 165, 250, 0.08)',
   },
   {
     id: 'collectibles',
@@ -29,8 +29,8 @@ export const CATEGORIES: Category[] = [
     shortLabel: 'COLLECTIBLE',
     descriptionKey: 'categories.collectibles_desc',
     iconName: 'MapPin',
-    color: '#a855f7', // Roxo Neon
-    badgeBg: 'rgba(168, 85, 247, 0.15)',
+    color: '#c084fc', // Roxo Neon otimizado
+    badgeBg: 'rgba(192, 132, 252, 0.08)',
   },
   {
     id: 'points_of_interest',
@@ -39,8 +39,8 @@ export const CATEGORIES: Category[] = [
     shortLabel: 'WILDLIFE / POI',
     descriptionKey: 'categories.points_of_interest_desc',
     iconName: 'Eye',
-    color: '#ff7043', // Laranja Coral
-    badgeBg: 'rgba(255, 112, 67, 0.15)',
+    color: '#fb923c', // Laranja Coral otimizado
+    badgeBg: 'rgba(251, 146, 60, 0.08)',
   },
 
   // ================= ACTIVITIES =================
@@ -51,8 +51,8 @@ export const CATEGORIES: Category[] = [
     shortLabel: 'ROBBERY',
     descriptionKey: 'categories.robbery_desc',
     iconName: 'Crosshair',
-    color: '#ff2a85', // Rosa Choque Neon
-    badgeBg: 'rgba(255, 42, 133, 0.15)',
+    color: '#ff4d9e', // Rosa Choque Neon otimizado
+    badgeBg: 'rgba(255, 77, 158, 0.08)',
   },
   {
     id: 'race',
@@ -61,8 +61,8 @@ export const CATEGORIES: Category[] = [
     shortLabel: 'RACE',
     descriptionKey: 'categories.race_desc',
     iconName: 'Flag',
-    color: '#ec4899', // Rosa Pink
-    badgeBg: 'rgba(236, 72, 153, 0.15)',
+    color: '#f472b6', // Rosa Pink otimizado
+    badgeBg: 'rgba(244, 114, 182, 0.08)',
   },
   {
     id: 'activities',
@@ -71,8 +71,8 @@ export const CATEGORIES: Category[] = [
     shortLabel: 'ENCOUNTER',
     descriptionKey: 'categories.activities_desc',
     iconName: 'Gamepad2',
-    color: '#00e5ff', // Ciano
-    badgeBg: 'rgba(0, 229, 255, 0.15)',
+    color: '#38f8ff', // Ciano otimizado
+    badgeBg: 'rgba(0, 229, 255, 0.08)',
   },
   {
     id: 'missions',
@@ -81,8 +81,8 @@ export const CATEGORIES: Category[] = [
     shortLabel: 'CAMP / MISSION',
     descriptionKey: 'categories.missions_desc',
     iconName: 'Sparkles',
-    color: '#06b6d4', // Teal/Ciano
-    badgeBg: 'rgba(6, 182, 212, 0.15)',
+    color: '#22d3ee', // Teal/Ciano otimizado
+    badgeBg: 'rgba(34, 211, 238, 0.08)',
   },
 
   // ================= SERVICES =================
@@ -93,8 +93,8 @@ export const CATEGORIES: Category[] = [
     shortLabel: 'AMMUNITION',
     descriptionKey: 'categories.ammunition_desc',
     iconName: 'Crosshair',
-    color: '#ff2a85', // Rosa Choque
-    badgeBg: 'rgba(255, 42, 133, 0.15)',
+    color: '#ff4d9e', // Rosa Choque otimizado
+    badgeBg: 'rgba(255, 77, 158, 0.08)',
   },
   {
     id: 'safehouse',
@@ -103,8 +103,8 @@ export const CATEGORIES: Category[] = [
     shortLabel: 'SAFEHOUSE',
     descriptionKey: 'categories.safehouse_desc',
     iconName: 'MapPin',
-    color: '#38bdf8', // Azul Claro
-    badgeBg: 'rgba(56, 189, 248, 0.15)',
+    color: '#60a5fa', // Azul Claro otimizado
+    badgeBg: 'rgba(96, 165, 250, 0.08)',
   },
   {
     id: 'pay_n_spray',
@@ -113,8 +113,8 @@ export const CATEGORIES: Category[] = [
     shortLabel: 'PAY \'N\' SPRAY',
     descriptionKey: 'categories.pay_n_spray_desc',
     iconName: 'Car',
-    color: '#a855f7', // Roxo Neon
-    badgeBg: 'rgba(168, 85, 247, 0.15)',
+    color: '#c084fc', // Roxo Neon otimizado
+    badgeBg: 'rgba(192, 132, 252, 0.08)',
   },
   {
     id: 'shops',
@@ -123,8 +123,8 @@ export const CATEGORIES: Category[] = [
     shortLabel: 'SHOPS',
     descriptionKey: 'categories.shops_desc',
     iconName: 'ShoppingBag',
-    color: '#fbbf24', // Dourado
-    badgeBg: 'rgba(251, 191, 36, 0.15)',
+    color: '#fcd34d', // Dourado otimizado
+    badgeBg: 'rgba(252, 211, 77, 0.08)',
   },
 
   // ================= LOCATIONS & WEAPONS =================
@@ -135,8 +135,8 @@ export const CATEGORIES: Category[] = [
     shortLabel: 'LOCATIONS',
     descriptionKey: 'categories.locations_desc',
     iconName: 'Compass',
-    color: '#06b6d4', // Ciano Neon
-    badgeBg: 'rgba(6, 182, 212, 0.15)',
+    color: '#22d3ee', // Ciano Neon otimizado
+    badgeBg: 'rgba(34, 211, 238, 0.08)',
   },
   {
     id: 'vehicles',
@@ -145,8 +145,8 @@ export const CATEGORIES: Category[] = [
     shortLabel: 'VEHICLES',
     descriptionKey: 'categories.vehicles_desc',
     iconName: 'Car',
-    color: '#fb923c', // Laranja
-    badgeBg: 'rgba(251, 146, 60, 0.15)',
+    color: '#fb923c', // Laranja otimizado
+    badgeBg: 'rgba(251, 146, 60, 0.08)',
   },
   {
     id: 'weapons',
@@ -155,7 +155,7 @@ export const CATEGORIES: Category[] = [
     shortLabel: 'WEAPONS',
     descriptionKey: 'categories.weapons_desc',
     iconName: 'Crosshair',
-    color: '#f43f5e', // Rosa Avermelhado
-    badgeBg: 'rgba(244, 63, 94, 0.15)',
+    color: '#fb7185', // Rosa Avermelhado otimizado
+    badgeBg: 'rgba(251, 113, 133, 0.08)',
   },
 ];

@@ -102,8 +102,8 @@ export const Header: React.FC<HeaderProps> = ({ lang }) => {
             <LanguageSelector currentLang={lang} />
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl bg-[#1a1c27] text-slate-300 hover:text-white border border-[#2d3042] transition-colors"
-              aria-label="Toggle menu"
+              className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl bg-[#1a1c27] text-slate-200 hover:text-white border border-[#2d3042] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff]"
+              aria-label={mobileMenuOpen ? "Fechar menu de navegação" : "Abrir menu de navegação"}
             >
               {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>

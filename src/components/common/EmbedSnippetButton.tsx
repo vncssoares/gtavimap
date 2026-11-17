@@ -48,16 +48,16 @@ export const EmbedSnippetButton: React.FC<EmbedSnippetButtonProps> = ({
         onClick={handleCopyEmbed}
         type="button"
         title={dict.common.embedDesc}
-        className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-[#2d3042] bg-[#1a1c27] hover:border-[#00e5ff] text-xs font-mono text-slate-300 transition-colors ${className}`}
+        className={`inline-flex items-center gap-1.5 px-3 py-2 min-h-[44px] min-w-[44px] rounded-lg border border-[#2d3042] bg-[#1a1c27] hover:border-[#38f8ff] text-xs font-mono text-slate-200 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff] ${className}`}
       >
         {copied ? (
           <>
-            <CheckCheck size={13} className="text-[#00e5ff]" />
-            <span className="text-[#00e5ff] font-bold">{dict.common.embedCopied}</span>
+            <CheckCheck size={13} className="text-[#38f8ff]" />
+            <span className="text-[#38f8ff] font-bold">{dict.common.embedCopied}</span>
           </>
         ) : (
           <>
-            <Code size={13} className="text-slate-400" />
+            <Code size={13} className="text-slate-300" />
             <span>{dict.common.embed}</span>
           </>
         )}
@@ -70,20 +70,20 @@ export const EmbedSnippetButton: React.FC<EmbedSnippetButtonProps> = ({
       onClick={handleCopyEmbed}
       type="button"
       title={dict.common.embedDesc}
-      className={`w-full flex items-center justify-between px-3.5 py-2 rounded-xl border border-[#2d3042] bg-[#12131a] hover:bg-[#1a1c27] hover:border-[#00e5ff] text-xs font-bold uppercase tracking-wider text-slate-200 transition-all shadow-md active:scale-98 ${className}`}
+      className={`w-full flex items-center justify-between px-3.5 py-2.5 min-h-[44px] rounded-xl border border-[#2d3042] bg-[#12131a] hover:bg-[#1a1c27] hover:border-[#38f8ff] text-xs font-bold uppercase tracking-wider text-slate-200 transition-all shadow-md active:scale-98 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff] ${className}`}
     >
       <span className="flex items-center gap-2">
-        <Code size={15} className="text-[#00e5ff]" />
+        <Code size={15} className="text-[#38f8ff]" />
         <span>{dict.common.embed}</span>
       </span>
 
       {copied ? (
-        <span className="text-[11px] font-mono text-[#00e5ff] font-bold flex items-center gap-1 animate-in fade-in">
+        <span className="text-[11px] font-mono text-[#38f8ff] font-bold flex items-center gap-1 animate-in fade-in">
           <CheckCheck size={14} />
           {dict.common.embedCopied}
         </span>
       ) : (
-        <span className="text-[10px] font-mono text-slate-400 font-bold">&lt;IFRAME&gt;</span>
+        <span className="text-[10px] font-mono text-slate-300 font-bold">&lt;IFRAME&gt;</span>
       )}
     </button>
   );

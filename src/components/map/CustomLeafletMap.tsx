@@ -87,7 +87,7 @@ export const CustomLeafletMap: React.FC<CustomLeafletMapProps> = ({
       maxBoundsViscosity: 0.8,
     });
 
-    const overlayUrl = '/map/leonida-vibrant-map.svg';
+    const overlayUrl = '/map/leonida-vibrant-map.v1.svg';
     const overlay = L.imageOverlay(overlayUrl, bounds, { interactive: false }).addTo(map);
     imageOverlayRef.current = overlay;
 
@@ -182,8 +182,8 @@ export const CustomLeafletMap: React.FC<CustomLeafletMapProps> = ({
     if (!imageOverlayRef.current) return;
     const url =
       mapTheme === 'default'
-        ? '/map/leonida-vibrant-map.svg'
-        : '/map/leonida-demo-map.svg';
+        ? '/map/leonida-vibrant-map.v1.svg'
+        : '/map/leonida-demo-map.v1.svg';
 
     imageOverlayRef.current.setUrl(url);
   }, [mapTheme]);
@@ -431,12 +431,12 @@ export const CustomLeafletMap: React.FC<CustomLeafletMapProps> = ({
         </div>
       )}
 
-      {/* Botão Mobile para Abrir HUD de Filtros */}
+      {/* Botão Mobile para Abrir HUD de Filtros (mínimo 44x44px para acessibilidade) */}
       <div className="absolute top-4 left-4 z-20 md:hidden flex items-center gap-2">
         <button
           onClick={onOpenMobileFilters}
-          className="flex items-center gap-2 px-3 py-2 rounded-lg bg-[#12131a]/95 backdrop-blur-md border border-[#ff2a85] text-white text-xs font-bold shadow-xl active:scale-95"
-          aria-label="Abrir Filtros"
+          className="flex items-center gap-2 px-3 py-2 rounded-lg bg-[#12131a]/95 backdrop-blur-md border border-[#ff2a85] text-white text-xs font-bold shadow-xl active:scale-95 min-w-[44px] min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff]"
+          aria-label="Abrir filtros de categorias do mapa"
         >
           <SlidersHorizontal size={14} className="text-[#ff2a85]" />
           <span className="font-mono uppercase tracking-wider text-[11px]">FILTERS</span>
@@ -447,7 +447,7 @@ export const CustomLeafletMap: React.FC<CustomLeafletMapProps> = ({
       </div>
 
       {/* ================= CONTROLES FLUTUANTES (CANTO INFERIOR DIREITO) ================= */}
-      {/* Empilhados verticalmente exatamente como na imagem do usuário */}
+      {/* Alvos de toque com no mínimo 44x44px no mobile conforme WCAG AA */}
       <div
         className="absolute right-4 z-20 flex flex-col gap-1.5 items-end"
         style={{
@@ -457,8 +457,9 @@ export const CustomLeafletMap: React.FC<CustomLeafletMapProps> = ({
         <div className="flex flex-col bg-[#12131a]/95 backdrop-blur-md rounded-lg border border-[#2d303e] shadow-2xl p-1 gap-1">
           <button
             onClick={() => {}}
-            className="w-8 h-8 rounded bg-[#1a1c26] hover:bg-[#252836] text-slate-300 hover:text-[#00e5ff] flex items-center justify-center transition-colors shadow-sm"
+            className="w-11 h-11 sm:w-8 sm:h-8 min-w-[44px] min-h-[44px] sm:min-w-0 sm:min-h-0 rounded bg-[#1a1c26] hover:bg-[#252836] text-slate-200 hover:text-[#38f8ff] flex items-center justify-center transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff]"
             title="Pan / Navegação"
+            aria-label="Pan / Modo de navegação no mapa"
           >
             <Hand size={15} />
           </button>
@@ -466,8 +467,9 @@ export const CustomLeafletMap: React.FC<CustomLeafletMapProps> = ({
             onClick={() => {
               alert('Modo de marcador customizado (Recurso Pro): Clique no mapa para criar um waypoint.');
             }}
-            className="w-8 h-8 rounded bg-[#1a1c26] hover:bg-[#252836] text-slate-300 hover:text-[#ff2a85] flex items-center justify-center transition-colors shadow-sm"
+            className="w-11 h-11 sm:w-8 sm:h-8 min-w-[44px] min-h-[44px] sm:min-w-0 sm:min-h-0 rounded bg-[#1a1c26] hover:bg-[#252836] text-slate-200 hover:text-[#ff4d9e] flex items-center justify-center transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff]"
             title="Adicionar Marcador Pessoal (Pro)"
+            aria-label="Adicionar marcador pessoal (Recurso Pro)"
           >
             <PenTool size={14} />
           </button>
@@ -476,34 +478,38 @@ export const CustomLeafletMap: React.FC<CustomLeafletMapProps> = ({
             <button
               type="button"
               onClick={() => setIsCaptureMode((prev) => !prev)}
-              className={`w-8 h-8 rounded flex items-center justify-center transition-colors shadow-sm ${
+              className={`w-11 h-11 sm:w-8 sm:h-8 min-w-[44px] min-h-[44px] sm:min-w-0 sm:min-h-0 rounded flex items-center justify-center transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff] ${
                 isCaptureMode
                   ? 'bg-[#ff2a85] text-white shadow-[0_0_15px_rgba(255,42,133,0.7)] animate-pulse'
-                  : 'bg-[#1a1c26] hover:bg-[#252836] text-slate-300 hover:text-[#ff2a85]'
+                  : 'bg-[#1a1c26] hover:bg-[#252836] text-slate-200 hover:text-[#ff4d9e]'
               }`}
               title={isCaptureMode ? 'Desativar captura de ponto' : 'Capturar ponto (Dev Tool)'}
+              aria-label={isCaptureMode ? 'Desativar captura de coordenadas' : 'Ativar captura de coordenadas'}
             >
               <Target size={15} />
             </button>
           )}
           <button
             onClick={() => mapInstanceRef.current?.zoomIn()}
-            className="w-8 h-8 rounded bg-[#1a1c26] hover:bg-[#252836] text-slate-200 hover:text-[#00e5ff] flex items-center justify-center transition-colors shadow-sm"
+            className="w-11 h-11 sm:w-8 sm:h-8 min-w-[44px] min-h-[44px] sm:min-w-0 sm:min-h-0 rounded bg-[#1a1c26] hover:bg-[#252836] text-slate-200 hover:text-[#38f8ff] flex items-center justify-center transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff]"
             title="Zoom In"
+            aria-label="Aproximar zoom no mapa"
           >
             <Plus size={16} />
           </button>
           <button
             onClick={() => mapInstanceRef.current?.zoomOut()}
-            className="w-8 h-8 rounded bg-[#1a1c26] hover:bg-[#252836] text-slate-200 hover:text-[#00e5ff] flex items-center justify-center transition-colors shadow-sm"
+            className="w-11 h-11 sm:w-8 sm:h-8 min-w-[44px] min-h-[44px] sm:min-w-0 sm:min-h-0 rounded bg-[#1a1c26] hover:bg-[#252836] text-slate-200 hover:text-[#38f8ff] flex items-center justify-center transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff]"
             title="Zoom Out"
+            aria-label="Afastar zoom no mapa"
           >
             <Minus size={16} />
           </button>
           <button
             onClick={() => mapInstanceRef.current?.setView([500, 500], 0, { animate: true })}
-            className="w-8 h-8 rounded bg-[#1a1c26] hover:bg-[#252836] text-slate-200 hover:text-[#00e5ff] flex items-center justify-center transition-colors shadow-sm"
+            className="w-11 h-11 sm:w-8 sm:h-8 min-w-[44px] min-h-[44px] sm:min-w-0 sm:min-h-0 rounded bg-[#1a1c26] hover:bg-[#252836] text-slate-200 hover:text-[#38f8ff] flex items-center justify-center transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff]"
             title="Centralizar Mapa"
+            aria-label="Centralizar mapa na posição inicial"
           >
             <Crosshair size={15} />
           </button>
@@ -519,20 +525,22 @@ export const CustomLeafletMap: React.FC<CustomLeafletMapProps> = ({
       >
         <button
           onClick={() => setMapTheme('default')}
-          className={`px-3 py-1 rounded text-[11px] font-bold uppercase transition-all ${
+          aria-label="Tema Padrão do Mapa"
+          className={`min-h-[44px] sm:min-h-0 min-w-[44px] px-3 py-1.5 sm:py-1 rounded text-xs sm:text-[11px] font-bold uppercase transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff] ${
             mapTheme === 'default'
-              ? 'bg-[#1e202d] text-[#00e5ff] border border-[#00e5ff]/50 shadow-sm'
-              : 'text-slate-400 hover:text-white'
+              ? 'bg-[#1e202d] text-[#38f8ff] border border-[#38f8ff]/50 shadow-sm'
+              : 'text-slate-300 hover:text-white'
           }`}
         >
           Default
         </button>
         <button
           onClick={() => setMapTheme('detailed')}
-          className={`px-3 py-1 rounded text-[11px] font-bold uppercase transition-all ${
+          aria-label="Tema Detalhado do Mapa"
+          className={`min-h-[44px] sm:min-h-0 min-w-[44px] px-3 py-1.5 sm:py-1 rounded text-xs sm:text-[11px] font-bold uppercase transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff4d9e] ${
             mapTheme === 'detailed'
-              ? 'bg-[#1e202d] text-[#ff2a85] border border-[#ff2a85]/50 shadow-sm'
-              : 'text-slate-400 hover:text-white'
+              ? 'bg-[#1e202d] text-[#ff4d9e] border border-[#ff4d9e]/50 shadow-sm'
+              : 'text-slate-300 hover:text-white'
           }`}
         >
           Detailed
@@ -541,15 +549,15 @@ export const CustomLeafletMap: React.FC<CustomLeafletMapProps> = ({
 
       {/* Barra de Coordenadas na Base Inferior Esquerda */}
       <div
-        className="absolute left-4 z-10 hidden sm:flex items-center gap-2 px-3 py-1 rounded bg-[#12131a]/90 backdrop-blur-md border border-[#2d303e] text-[10px] font-mono text-slate-400"
+        className="absolute left-4 z-10 hidden sm:flex items-center gap-2 px-3 py-1 rounded bg-[#12131a]/90 backdrop-blur-md border border-[#2d303e] text-[10px] font-mono text-slate-300"
         style={{
           bottom: 'calc(1rem + env(safe-area-inset-bottom, 0px))',
         }}
       >
-        <span className="w-1.5 h-1.5 rounded-full bg-[#00e5ff] animate-pulse"></span>
+        <span className="w-1.5 h-1.5 rounded-full bg-[#38f8ff] animate-pulse"></span>
         <span>{cursorCoords ? `X: ${cursorCoords.x} | Y: ${cursorCoords.y}` : 'X: --- | Y: ---'}</span>
-        <span className="text-slate-600">|</span>
-        <span className="text-slate-400 font-semibold">{markers.length} PINS</span>
+        <span className="text-slate-400">|</span>
+        <span className="text-slate-200 font-semibold">{markers.length} PINS</span>
       </div>
     </div>
   );

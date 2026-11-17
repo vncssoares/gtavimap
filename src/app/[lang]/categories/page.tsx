@@ -160,7 +160,7 @@ export default async function CategoriesPage({ params }: PageProps) {
                                 <h3 className="text-base font-black text-white uppercase tracking-wider">
                                   {(dict.categories as Record<string, string>)[category.id] || category.shortLabel}
                                 </h3>
-                                <p className="text-xs text-slate-400">
+                                <p className="text-xs text-slate-300">
                                   {(dict.categories as Record<string, string>)[`${category.id}_desc`] || ''}
                                 </p>
                               </div>
@@ -168,7 +168,7 @@ export default async function CategoriesPage({ params }: PageProps) {
 
                             <Link
                               href={categoryHref}
-                              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#00e5ff] text-[#00e5ff] hover:bg-[#00e5ff] hover:text-black font-black text-[10px] uppercase tracking-wider transition-all self-start sm:self-center"
+                              className="inline-flex items-center gap-1.5 px-3.5 py-2 min-h-[44px] min-w-[44px] sm:min-h-0 sm:min-w-0 rounded-lg border border-[#38f8ff] text-[#38f8ff] hover:bg-[#38f8ff] hover:text-black font-black text-xs sm:text-[10px] uppercase tracking-wider transition-all self-start sm:self-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff]"
                             >
                               <Compass size={13} />
                               <span>VER NO MAPA</span>
@@ -186,27 +186,27 @@ export default async function CategoriesPage({ params }: PageProps) {
                                 >
                                   <div>
                                     <div className="flex items-center justify-between text-[10px] font-mono mb-1">
-                                      <span className="text-slate-400 uppercase">
+                                      <span className="text-slate-300 uppercase">
                                         {marker.subCategory || (dict.categories as Record<string, string>)[category.id] || category.shortLabel}
                                       </span>
-                                      <span className="text-[#00e5ff] font-bold">
+                                      <span className="text-[#38f8ff] font-bold">
                                         X:{marker.x} Y:{marker.y}
                                       </span>
                                     </div>
                                     <h4 className="text-xs font-black text-white leading-snug">
                                       {marker.name}
                                     </h4>
-                                    <p className="text-[11px] text-slate-400 line-clamp-2 mt-1">
+                                    <p className="text-[11px] text-slate-300 line-clamp-2 mt-1">
                                       {desc}
                                     </p>
                                   </div>
 
-                                  <div className="pt-2 border-t border-[#161720] flex items-center justify-between text-[10px] text-slate-400 font-mono">
+                                  <div className="pt-2 border-t border-[#161720] flex items-center justify-between text-[10px] text-slate-300 font-mono">
                                     <span className="flex items-center gap-1">
-                                      <MapPin size={11} className="text-[#ff2a85]" />
+                                      <MapPin size={11} className="text-[#ff4d9e]" />
                                       {marker.region}
                                     </span>
-                                    <span className="text-[#fbbf24]">DEMO</span>
+                                    <span className="text-[#fcd34d]">DEMO</span>
                                   </div>
                                 </div>
                               );

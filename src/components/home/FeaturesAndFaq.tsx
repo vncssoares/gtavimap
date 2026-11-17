@@ -32,7 +32,7 @@ export const FeaturesAndFaq: React.FC<FeaturesAndFaqProps> = ({ lang }) => {
           description:
             'Marque colecionáveis, missões e saltos únicos como concluídos. Seus dados ficam salvos com segurança no armazenamento do seu navegador, sem necessidade de login.',
           icon: BookmarkCheck,
-          accent: '#00e5ff',
+          accent: '#38f8ff',
         },
         {
           title: 'Filtros Dinâmicos & Busca Instantânea',
@@ -121,7 +121,7 @@ export const FeaturesAndFaq: React.FC<FeaturesAndFaqProps> = ({ lang }) => {
           description:
             'Mark collectibles, missions, and stunt jumps as completed. Your data stays securely stored in your browser without requiring any account login.',
           icon: BookmarkCheck,
-          accent: '#00e5ff',
+          accent: '#38f8ff',
         },
         {
           title: 'Dynamic Filters & Instant Search',
@@ -210,7 +210,7 @@ export const FeaturesAndFaq: React.FC<FeaturesAndFaqProps> = ({ lang }) => {
           description:
             'Marca coleccionables, misiones y saltos acrobáticos como completados. Tus datos se guardan en el navegador sin necesidad de registrarte.',
           icon: BookmarkCheck,
-          accent: '#00e5ff',
+          accent: '#38f8ff',
         },
         {
           title: 'Filtros Dinámicos y Búsqueda Inmediata',
@@ -335,14 +335,14 @@ export const FeaturesAndFaq: React.FC<FeaturesAndFaqProps> = ({ lang }) => {
       {/* Features Grid */}
       <section>
         <div className="flex flex-col items-center text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1e2230]/80 border border-[#00e5ff]/30 text-[#00e5ff] text-xs font-mono uppercase tracking-widest mb-3 shadow-[0_0_15px_rgba(0,229,255,0.15)]">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1e2230]/80 border border-[#38f8ff]/40 text-[#38f8ff] text-xs font-mono uppercase tracking-widest mb-3 shadow-[0_0_15px_rgba(0,229,255,0.15)]">
             <Zap className="w-3.5 h-3.5" />
             <span>{content.featuresBadge}</span>
           </div>
           <h2 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tight mb-3">
             {content.featuresHeading}
           </h2>
-          <p className="text-slate-400 max-w-2xl text-sm md:text-base leading-relaxed">
+          <p className="text-slate-300 max-w-2xl text-sm md:text-base leading-relaxed">
             {content.featuresSubheading}
           </p>
         </div>
@@ -368,7 +368,7 @@ export const FeaturesAndFaq: React.FC<FeaturesAndFaqProps> = ({ lang }) => {
                 <h3 className="text-lg font-bold text-white mb-2">
                   {feat.title}
                 </h3>
-                <p className="text-xs md:text-sm text-slate-400 leading-relaxed">
+                <p className="text-xs md:text-sm text-slate-300 leading-relaxed">
                   {feat.description}
                 </p>
               </div>

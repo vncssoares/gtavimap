@@ -66,8 +66,8 @@ export const HomeHero: React.FC<HomeHeroProps> = ({ lang }) => {
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 text-center">
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#181b26] border border-[#00e5ff]/30 text-xs font-mono text-[#00e5ff] tracking-wider uppercase mb-5 shadow-[0_0_15px_rgba(0,229,255,0.1)]">
-          <span className="w-2 h-2 rounded-full bg-[#00e5ff] animate-pulse" />
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#181b26] border border-[#38f8ff]/40 text-xs font-mono text-[#38f8ff] tracking-wider uppercase mb-5 shadow-[0_0_15px_rgba(0,229,255,0.1)]">
+          <span className="w-2 h-2 rounded-full bg-[#38f8ff] animate-pulse" />
           <span>{content.badge}</span>
         </div>
 
@@ -77,7 +77,7 @@ export const HomeHero: React.FC<HomeHeroProps> = ({ lang }) => {
         </h1>
 
         {/* Subtitle */}
-        <p className="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed mb-8">
+        <p className="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed mb-8">
           {content.subtitle}
         </p>
 
@@ -86,7 +86,7 @@ export const HomeHero: React.FC<HomeHeroProps> = ({ lang }) => {
           <a
             href="#map-preview"
             onClick={scrollToMap}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3 rounded-xl bg-gradient-to-r from-[#ff2a85] to-[#ff599c] hover:from-[#e02474] hover:to-[#ff3b8d] text-white font-bold text-xs uppercase tracking-wider shadow-[0_0_25px_rgba(255,42,133,0.35)] transition-all hover:scale-102"
+            className="w-full sm:w-auto min-h-[44px] inline-flex items-center justify-center gap-2 px-7 py-3 rounded-xl bg-gradient-to-r from-[#ff2a85] to-[#ff599c] hover:from-[#e02474] hover:to-[#ff3b8d] text-white font-bold text-xs uppercase tracking-wider shadow-[0_0_25px_rgba(255,42,133,0.35)] transition-all hover:scale-102 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff]"
           >
             <Compass className="w-4 h-4 text-white" />
             <span>{content.primaryCta}</span>
@@ -95,9 +95,9 @@ export const HomeHero: React.FC<HomeHeroProps> = ({ lang }) => {
           <Link
             href={fullMapUrl}
             onClick={handleFullScreenClick}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#181a24] hover:bg-[#202330] text-slate-200 border border-white/10 hover:border-[#00e5ff]/40 font-bold text-xs uppercase tracking-wider transition-all"
+            className="w-full sm:w-auto min-h-[44px] inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#181a24] hover:bg-[#202330] text-slate-200 border border-white/10 hover:border-[#38f8ff]/40 font-bold text-xs uppercase tracking-wider transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff]"
           >
-            <Maximize2 className="w-4 h-4 text-[#00e5ff]" />
+            <Maximize2 className="w-4 h-4 text-[#38f8ff]" />
             <span>{content.secondaryCta}</span>
           </Link>
         </div>

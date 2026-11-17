@@ -120,15 +120,16 @@ export const RightProgressTrackerSidebar: React.FC<RightProgressTrackerSidebarPr
 
   return (
     <>
-      {/* Botão de Aba Flutuante quando colapsada */}
+      {/* Botão de Aba Flutuante quando colapsada (mínimo 44x44px de toque) */}
       {isCollapsed && (
         <button
           onClick={() => setIsCollapsed(false)}
-          className="absolute top-4 right-4 z-20 px-3 py-2 rounded-lg bg-[#12131a]/95 backdrop-blur-md border border-[#ff2a85] text-white text-xs font-black uppercase tracking-wider flex items-center gap-2 shadow-xl hover:bg-[#1a1c27] active:scale-95 transition-all"
+          className="absolute top-4 right-4 z-20 px-3 py-2 rounded-lg bg-[#12131a]/95 backdrop-blur-md border border-[#ff2a85] text-white text-xs font-black uppercase tracking-wider flex items-center gap-2 shadow-xl hover:bg-[#1a1c27] active:scale-95 transition-all min-w-[44px] min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff]"
+          aria-label={dict.common.progressTracker}
         >
           <ChevronLeft size={16} className="text-[#ff2a85]" />
           <span className="hidden sm:inline font-mono">{dict.common.progress.toUpperCase()}</span>
-          <span className="px-1.5 py-0.5 rounded bg-[#ff2a85] text-white text-[10px] font-bold">
+          <span className="px-1.5 py-0.5 rounded bg-[#be185d] text-white text-[10px] font-bold" aria-live="polite" aria-atomic="true">
             {overallStats.percentage}%
           </span>
         </button>
@@ -153,8 +154,9 @@ export const RightProgressTrackerSidebar: React.FC<RightProgressTrackerSidebarPr
 
           <button
             onClick={() => setIsCollapsed(true)}
-            className="w-7 h-7 rounded-lg bg-[#1a1c27] border border-[#2d3042] text-slate-400 hover:text-white flex items-center justify-center transition-colors"
+            className="w-11 h-11 sm:w-7 sm:h-7 min-w-[44px] min-h-[44px] sm:min-w-0 sm:min-h-0 rounded-lg bg-[#1a1c27] border border-[#2d3042] text-slate-300 hover:text-white flex items-center justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff]"
             title={dict.common.collapsePanel}
+            aria-label={dict.common.collapsePanel}
           >
             <ChevronRight size={16} />
           </button>
@@ -167,14 +169,15 @@ export const RightProgressTrackerSidebar: React.FC<RightProgressTrackerSidebarPr
               <div className="flex items-center justify-between border-b border-[#222433] pb-2.5">
                 <span
                   className="text-xs font-mono font-black uppercase tracking-wider"
-                  style={{ color: markerCategory?.color || '#00e5ff' }}
+                  style={{ color: markerCategory?.color || '#38f8ff' }}
                 >
                   {(markerCategory ? (dict.categories as Record<string, string>)[markerCategory.id] : null) || markerCategory?.shortLabel || selectedMarker.category}
                 </span>
                 <button
                   onClick={onCloseMarkerDetails}
-                  className="text-slate-400 hover:text-white"
+                  className="w-11 h-11 sm:w-7 sm:h-7 min-w-[44px] min-h-[44px] sm:min-w-0 sm:min-h-0 rounded-lg flex items-center justify-center text-slate-300 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff]"
                   title={dict.common.closeDetails}
+                  aria-label={dict.common.closeDetails}
                 >
                   <X size={18} />
                 </button>
@@ -254,7 +257,7 @@ export const RightProgressTrackerSidebar: React.FC<RightProgressTrackerSidebarPr
                 {copiedCoords ? (
                   <CheckCheck size={14} className="text-[#00e5ff]" />
                 ) : (
-                  <span className="text-[10px] text-slate-500 font-bold uppercase">{dict.common.copy}</span>
+                  <span className="text-[10px] text-slate-400 font-bold uppercase">{dict.common.copy}</span>
                 )}
               </button>
 
@@ -376,23 +379,34 @@ export const RightProgressTrackerSidebar: React.FC<RightProgressTrackerSidebarPr
                 </button>
               </div>
 
-              {/* Estatísticas de Progresso do Jogador com Letras Maiores */}
-              <div className="p-3.5 rounded-xl bg-[#0a0b10] border border-[#202230] space-y-2.5 shadow-md">
+              {/* Estatísticas de Progresso do Jogador com Letras Maiores e aria-live */}
+              <div
+                className="p-3.5 rounded-xl bg-[#0a0b10] border border-[#202230] space-y-2.5 shadow-md"
+                aria-live="polite"
+                aria-atomic="true"
+              >
                 <div className="flex items-center justify-between text-xs font-black uppercase">
                   <span className="text-white">{dict.common.yourProgress.toUpperCase()}</span>
-                  <span className="text-[#00e5ff] font-mono text-sm">{overallStats.percentage}%</span>
+                  <span className="text-[#38f8ff] font-mono text-sm">{overallStats.percentage}%</span>
                 </div>
 
-                <div className="w-full h-2 rounded-full bg-[#181a24] overflow-hidden">
+                <div
+                  className="w-full h-2 rounded-full bg-[#181a24] overflow-hidden"
+                  role="progressbar"
+                  aria-valuenow={overallStats.percentage}
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                  aria-label={dict.common.yourProgress}
+                >
                   <div
-                    className="h-full bg-gradient-to-r from-[#ff2a85] to-[#00e5ff] rounded-full transition-all duration-300"
+                    className="h-full bg-gradient-to-r from-[#ff2a85] to-[#38f8ff] rounded-full transition-all duration-300 motion-reduce:transition-none"
                     style={{ width: `${overallStats.percentage}%` }}
                   />
                 </div>
 
                 <div className="flex items-center justify-between text-xs font-mono text-slate-300 font-bold">
                   <span>{overallStats.found} / {overallStats.total} {dict.common.markedFound.toUpperCase()}</span>
-                  <span className="text-[#fbbf24]">★ {overallStats.favoritesCount}</span>
+                  <span className="text-[#fcd34d]">★ {overallStats.favoritesCount}</span>
                 </div>
               </div>
 

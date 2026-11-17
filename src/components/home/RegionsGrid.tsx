@@ -48,14 +48,14 @@ export const RegionsGrid: React.FC<RegionsGridProps> = ({ lang }) => {
   return (
     <section className="py-16 px-4 max-w-7xl mx-auto">
       <div className="flex flex-col items-center text-center mb-12">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1e2230]/80 border border-[#00e5ff]/30 text-[#00e5ff] text-xs font-mono uppercase tracking-widest mb-3 shadow-[0_0_15px_rgba(0,229,255,0.15)]">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1e2230]/80 border border-[#38f8ff]/40 text-[#38f8ff] text-xs font-mono uppercase tracking-widest mb-3 shadow-[0_0_15px_rgba(0,229,255,0.15)]">
           <Compass className="w-3.5 h-3.5" />
           <span>{sectionTitles.badge}</span>
         </div>
         <h2 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tight mb-3">
           {sectionTitles.heading}
         </h2>
-        <p className="text-slate-400 max-w-2xl text-sm md:text-base leading-relaxed">
+        <p className="text-slate-300 max-w-2xl text-sm md:text-base leading-relaxed">
           {sectionTitles.subheading}
         </p>
       </div>
@@ -89,25 +89,25 @@ export const RegionsGrid: React.FC<RegionsGridProps> = ({ lang }) => {
                     <MapPin className="w-3 h-3" />
                     {region.tag}
                   </span>
-                  <span className="text-xs font-mono text-slate-500 uppercase tracking-wider">
+                  <span className="text-xs font-mono text-slate-400 uppercase tracking-wider">
                     0-1000 Grid
                   </span>
                 </div>
 
-                <h3 className="text-xl font-bold text-white group-hover:text-[#00e5ff] transition-colors mb-1">
+                <h3 className="text-xl font-bold text-white group-hover:text-[#38f8ff] transition-colors mb-1">
                   {region.name}
                 </h3>
                 <p className="text-xs font-medium text-slate-300 mb-3">
                   {region.subtitle[lang] || region.subtitle.en}
                 </p>
-                <p className="text-xs text-slate-400 leading-relaxed line-clamp-3 mb-6">
+                <p className="text-xs text-slate-300 leading-relaxed line-clamp-3 mb-6">
                   {region.description[lang] || region.description.en}
                 </p>
               </div>
 
               <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs font-medium text-slate-300 group-hover:text-white transition-colors">
                 <span className="flex items-center gap-1.5">
-                  <Compass className="w-3.5 h-3.5 text-[#00e5ff]" />
+                  <Compass className="w-3.5 h-3.5 text-[#38f8ff]" />
                   {sectionTitles.exploreAction}
                 </span>
                 <ArrowRight className="w-4 h-4 text-[#ff2a85] transform group-hover:translate-x-1 transition-transform" />

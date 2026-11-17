@@ -143,8 +143,8 @@ export const MarkerDetailPanel: React.FC<MarkerDetailPanelProps> = ({
 
         <button
           onClick={onClose}
-          className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-[#1a293d] transition-colors"
-          aria-label="Close details"
+          className="w-11 h-11 sm:w-8 sm:h-8 min-w-[44px] min-h-[44px] sm:min-w-0 sm:min-h-0 rounded-lg text-slate-300 hover:text-white hover:bg-[#1a293d] flex items-center justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff]"
+          aria-label="Fechar detalhes do ponto"
         >
           <X size={18} />
         </button>

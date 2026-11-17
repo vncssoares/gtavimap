@@ -86,7 +86,7 @@ export const HomeMapPreview: React.FC<HomeMapPreviewProps> = ({ lang }) => {
         <Link
           href={fullMapUrl}
           onClick={() => trackEvent('open_fullscreen', { source: 'home_preview_header' })}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#12131a]/95 backdrop-blur-md border border-[#00e5ff] text-[#00e5ff] hover:bg-[#00e5ff] hover:text-black font-black text-xs uppercase tracking-wider transition-all shadow-xl active:scale-95"
+          className="flex items-center gap-1.5 px-3.5 py-2 min-h-[44px] min-w-[44px] rounded-xl bg-[#12131a]/95 backdrop-blur-md border border-[#38f8ff] text-[#38f8ff] hover:bg-[#38f8ff] hover:text-black font-black text-xs uppercase tracking-wider transition-all shadow-xl active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff]"
         >
           <Maximize2 size={13} />
           <span>{dict.common.exploreMap}</span>

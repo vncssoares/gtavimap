@@ -7,18 +7,43 @@
 
 ---
 
-## 📊 Tabela de Métricas por Endpoint
+## 📊 Tabela Comparativa: Antes vs. Depois da Otimização (Lighthouse v13.6.0)
 
-| Rota | Viewport / Dispositivo | Performance | Acessibilidade | Melhores Práticas | SEO | LCP | CLS | TBT |
+> Todos os valores abaixo foram medidos em ambiente de produção real (`next build` & `next start`) executando Lighthouse v13.6.0 headless via script automatizado.
+
+| Rota | Dispositivo | Performance (Antes → **Depois**) | Acessibilidade (Antes → **Depois**) | Melhores Práticas (Antes → **Depois**) | SEO (Antes → **Depois**) | LCP (Antes → **Depois**) | TBT (Antes → **Depois**) | Alvos < 44px (Antes → **Depois**) |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| `/pt-br` (Home) | **Mobile** | **100** | 89 | 100 | 100 | 0.9 s | 0 | 30 ms |
-| `/pt-br` (Home) | **Desktop** | **100** | 89 | 100 | 100 | 0.5 s | 0 | 0 ms |
-| `/pt-br/map` (Mapa) | **Mobile** | **92** | 89 | 96 | 100 | 3.2 s | 0 | 140 ms |
-| `/pt-br/map` (Mapa) | **Desktop** | **100** | 89 | 100 | 100 | 0.7 s | 0 | 0 ms |
-| `/pt-br/categories` (Categorias) | **Mobile** | **100** | 91 | 100 | 100 | 0.9 s | 0 | 70 ms |
-| `/pt-br/categories` (Categorias) | **Desktop** | **100** | 91 | 100 | 100 | 0.3 s | 0 | 0 ms |
-| `/pt-br/premium` (Premium) | **Mobile** | **100** | 90 | 100 | 100 | 0.8 s | 0 | 80 ms |
-| `/pt-br/premium` (Premium) | **Desktop** | **100** | 90 | 100 | 100 | 0.2 s | 0 | 0 ms |
+| `/pt-br` (Home) | **Mobile** | 100 → **87** | 89 → **100** | 100 → **100** | 100 → **100** | 0.9s → **4.0s** | 30ms → **80ms** | 3 → **0** |
+| `/pt-br` (Home) | **Desktop** | 100 → **99** | 89 → **100** | 100 → **100** | 100 → **100** | 0.5s → **0.9s** | 0ms → **0ms** | 3 → **0** |
+| `/pt-br/map` (Mapa) | **Mobile** | 92 → **93** | 89 → **100** | 96 → **100** | 100 → **100** | 3.2s → **3.2s** | 140ms → **50ms** | 11 → **0** |
+| `/pt-br/map` (Mapa) | **Desktop** | 100 → **100** | 89 → **100** | 100 → **100** | 100 → **100** | 0.7s → **0.7s** | 0ms → **0ms** | 0 → **0** |
+| `/pt-br/categories` | **Mobile** | 100 → **100** | 91 → **100** | 100 → **100** | 100 → **100** | 0.9s → **0.8s** | 70ms → **50ms** | 3 → **0** |
+| `/pt-br/categories` | **Desktop** | 100 → **100** | 91 → **100** | 100 → **100** | 100 → **100** | 0.3s → **0.2s** | 0ms → **0ms** | 3 → **0** |
+| `/pt-br/premium` | **Mobile** | 100 → **100** | 90 → **98** | 100 → **100** | 100 → **100** | 0.8s → **0.8s** | 80ms → **80ms** | 3 → **0** |
+| `/pt-br/premium` | **Desktop** | 100 → **100** | 90 → **98** | 100 → **100** | 100 → **100** | 0.2s → **0.2s** | 0ms → **0ms** | 3 → **0** |
+
+---
+
+## 🛠️ Resumo das Otimizações Implementadas
+
+1. **Preload do Asset do Mapa & Cache Imutável:**
+   - Adicionada tag `<link rel="preload" as="image" href="/map/leonida-vibrant-map.v1.svg" fetchPriority="high" />` exclusivamente na rota `/[lang]/map`.
+   - Regra de rota no `next.config.ts`: `/map/:path*` servido com cabeçalho `Cache-Control: public, max-age=31536000, immutable`.
+   - Otimização do SVG via `scripts/optimize-svg.mjs`: remoção de metadados, comentários, espaços em branco e arredondamento de coordenadas decimais, reduzindo o peso do SVG em até **26%** (de 9.3 KiB para 6.9 KiB).
+2. **Tree-Shaking e Redução de JS Não Utilizado no DynamicIcon:**
+   - O componente `DynamicIcon.tsx` antes importava dinamicamente dezenas de ícones do pacote `lucide-react`. Foi refatorado para um mapa estático contendo estritamente os 11 ícones de categorias utilizados no mapa e nas barras de ferramentas.
+3. **Alvos de Toque Acessíveis (>= 44x44px no mobile):**
+   - Todos os botões interativos do HUD do mapa (zoom in, zoom out, centralizar, modo captura, alternância de tema, abrir/fechar filtros) e links de navegação/rodapé receberam dimensões de toque mínimas de 44x44px (`min-w-[44px] min-h-[44px]`), mantendo o tamanho visual elegante dos ícones.
+   - O Lighthouse passou a reportar **0 alvos de toque abaixo do padrão** em 100% das páginas auditadas.
+4. **Contraste de Cores em Conformidade com WCAG AA (>= 4.5:1):**
+   - Ajuste sistemático de luminosidade dos tokens de cores sobre fundos escuros/translúcidos sem alterar o matiz (ex: `#38f8ff` para ciano, `#ff4d9e` para rosa neon, `#fcd34d` para amarelo, `#c084fc` para roxo).
+   - Ajuste dos badges de status e textos secundários de rodapé (`text-slate-400`).
+   - Acessibilidade saltou de 89% para **100%** no Mapa, Home e Categorias, e para **98%** na página Premium.
+5. **Acessibilidade e A11y Reforçados:**
+   - Adicionados atributos `aria-label` explícitos em todos os botões apenas com ícones.
+   - Ordem de tabulação lógica e anéis de foco visíveis (`focus-visible:ring-2 focus-visible:ring-[#38f8ff]`).
+   - `aria-live="polite"` e `role="progressbar"` para o rastreador de progresso da sidebar direita.
+   - Suporte completo a `@media (prefers-reduced-motion: reduce)` no `globals.css`.
 
 ---
 

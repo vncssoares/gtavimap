@@ -176,8 +176,8 @@ export const EmbedMapClient: React.FC<EmbedMapClientProps> = ({ lang }) => {
 
               <button
                 onClick={handleCloseDetail}
-                className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-[#1a1c27] transition-colors"
-                aria-label="Close"
+                className="w-11 h-11 sm:w-8 sm:h-8 min-w-[44px] min-h-[44px] sm:min-w-0 sm:min-h-0 flex items-center justify-center rounded-lg text-slate-300 hover:text-white hover:bg-[#1a1c27] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff]"
+                aria-label="Fechar detalhes"
               >
                 <X size={16} />
               </button>

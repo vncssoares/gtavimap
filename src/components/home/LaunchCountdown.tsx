@@ -41,7 +41,7 @@ export const LaunchCountdownFallback: React.FC<LaunchCountdownProps> = ({ lang }
 
   return (
     <div className="w-full max-w-3xl mx-auto p-4 sm:p-5 rounded-2xl bg-[#0e1017] border border-[#222538] shadow-xl text-center space-y-3">
-      <div className="flex items-center justify-center gap-2 text-xs font-mono uppercase tracking-widest text-[#00e5ff]">
+      <div className="flex items-center justify-center gap-2 text-xs font-mono uppercase tracking-widest text-[#38f8ff]">
         <Clock size={14} className="animate-pulse" />
         <span>{labels.expectedLaunch}</span>
       </div>
@@ -51,7 +51,7 @@ export const LaunchCountdownFallback: React.FC<LaunchCountdownProps> = ({ lang }
           <span className="text-2xl sm:text-4xl font-black font-mono tabular-nums text-white tracking-tight">
             --
           </span>
-          <span className="text-[10px] sm:text-xs font-mono uppercase tracking-wider text-slate-400 mt-1">
+          <span className="text-[10px] sm:text-xs font-mono uppercase tracking-wider text-slate-300 mt-1">
             {labels.days}
           </span>
         </div>
@@ -60,7 +60,7 @@ export const LaunchCountdownFallback: React.FC<LaunchCountdownProps> = ({ lang }
           <span className="text-2xl sm:text-4xl font-black font-mono tabular-nums text-white tracking-tight">
             --
           </span>
-          <span className="text-[10px] sm:text-xs font-mono uppercase tracking-wider text-slate-400 mt-1">
+          <span className="text-[10px] sm:text-xs font-mono uppercase tracking-wider text-slate-300 mt-1">
             {labels.hours}
           </span>
         </div>
@@ -69,7 +69,7 @@ export const LaunchCountdownFallback: React.FC<LaunchCountdownProps> = ({ lang }
           <span className="text-2xl sm:text-4xl font-black font-mono tabular-nums text-white tracking-tight">
             --
           </span>
-          <span className="text-[10px] sm:text-xs font-mono uppercase tracking-wider text-slate-400 mt-1">
+          <span className="text-[10px] sm:text-xs font-mono uppercase tracking-wider text-slate-300 mt-1">
             {labels.minutes}
           </span>
         </div>
@@ -78,7 +78,7 @@ export const LaunchCountdownFallback: React.FC<LaunchCountdownProps> = ({ lang }
           <span className="text-2xl sm:text-4xl font-black font-mono tabular-nums text-[#ff2a85] tracking-tight">
             --
           </span>
-          <span className="text-[10px] sm:text-xs font-mono uppercase tracking-wider text-slate-400 mt-1">
+          <span className="text-[10px] sm:text-xs font-mono uppercase tracking-wider text-slate-300 mt-1">
             {labels.seconds}
           </span>
         </div>
@@ -108,7 +108,7 @@ export const LaunchCountdown: React.FC<LaunchCountdownProps> = ({ lang }) => {
 
   return (
     <div className="w-full max-w-3xl mx-auto p-4 sm:p-5 rounded-2xl bg-[#0e1017] border border-[#222538] shadow-xl text-center space-y-3">
-      <div className="flex items-center justify-center gap-2 text-xs font-mono uppercase tracking-widest text-[#00e5ff]">
+      <div className="flex items-center justify-center gap-2 text-xs font-mono uppercase tracking-widest text-[#38f8ff]">
         <Clock size={14} className="animate-pulse" />
         <span>{labels.expectedLaunch}</span>
       </div>
@@ -127,7 +127,7 @@ export const LaunchCountdown: React.FC<LaunchCountdownProps> = ({ lang }) => {
             <span className="text-2xl sm:text-4xl font-black font-mono tabular-nums text-white tracking-tight">
               {isClient ? String(timeLeft.days).padStart(2, '0') : '--'}
             </span>
-            <span className="text-[10px] sm:text-xs font-mono uppercase tracking-wider text-slate-400 mt-1">
+            <span className="text-[10px] sm:text-xs font-mono uppercase tracking-wider text-slate-300 mt-1">
               {labels.days}
             </span>
           </div>
@@ -137,7 +137,7 @@ export const LaunchCountdown: React.FC<LaunchCountdownProps> = ({ lang }) => {
             <span className="text-2xl sm:text-4xl font-black font-mono tabular-nums text-white tracking-tight">
               {isClient ? String(timeLeft.hours).padStart(2, '0') : '--'}
             </span>
-            <span className="text-[10px] sm:text-xs font-mono uppercase tracking-wider text-slate-400 mt-1">
+            <span className="text-[10px] sm:text-xs font-mono uppercase tracking-wider text-slate-300 mt-1">
               {labels.hours}
             </span>
           </div>
@@ -147,7 +147,7 @@ export const LaunchCountdown: React.FC<LaunchCountdownProps> = ({ lang }) => {
             <span className="text-2xl sm:text-4xl font-black font-mono tabular-nums text-white tracking-tight">
               {isClient ? String(timeLeft.minutes).padStart(2, '0') : '--'}
             </span>
-            <span className="text-[10px] sm:text-xs font-mono uppercase tracking-wider text-slate-400 mt-1">
+            <span className="text-[10px] sm:text-xs font-mono uppercase tracking-wider text-slate-300 mt-1">
               {labels.minutes}
             </span>
           </div>
@@ -157,7 +157,7 @@ export const LaunchCountdown: React.FC<LaunchCountdownProps> = ({ lang }) => {
             <span className="text-2xl sm:text-4xl font-black font-mono tabular-nums text-[#ff2a85] tracking-tight">
               {isClient ? String(timeLeft.seconds).padStart(2, '0') : '--'}
             </span>
-            <span className="text-[10px] sm:text-xs font-mono uppercase tracking-wider text-slate-400 mt-1">
+            <span className="text-[10px] sm:text-xs font-mono uppercase tracking-wider text-slate-300 mt-1">
               {labels.seconds}
             </span>
           </div>

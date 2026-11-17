@@ -66,7 +66,7 @@ export const YouTubeFacade: React.FC<YouTubeFacadeProps> = ({ lang }) => {
         <h2 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tight mb-3">
           {content.heading}
         </h2>
-        <p className="text-slate-400 max-w-2xl text-sm md:text-base leading-relaxed">
+        <p className="text-slate-300 max-w-2xl text-sm md:text-base leading-relaxed">
           {content.subheading}
         </p>
       </div>
@@ -108,10 +108,10 @@ export const YouTubeFacade: React.FC<YouTubeFacadeProps> = ({ lang }) => {
                   <Play className="w-8 h-8 md:w-10 md:h-10 fill-white ml-1.5" />
                 </button>
 
-                <div className="inline-flex items-center gap-2 text-xs font-mono text-[#00e5ff] tracking-wider uppercase mb-2">
+                <div className="inline-flex items-center gap-2 text-xs font-mono text-[#38f8ff] tracking-wider uppercase mb-2">
                   <Sparkles className="w-3.5 h-3.5" />
                   <span>{trailer.views}</span>
-                  <span className="text-slate-600">•</span>
+                  <span className="text-slate-400">•</span>
                   <span>{trailer.releaseDate}</span>
                 </div>
 
@@ -132,7 +132,7 @@ export const YouTubeFacade: React.FC<YouTubeFacadeProps> = ({ lang }) => {
 
         {/* Footer controls & Age-restricted fallback */}
         <div className="p-4 bg-[#141622] border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
-          <p className="text-slate-500 text-center sm:text-left">
+          <p className="text-slate-400 text-center sm:text-left">
             {content.disclaimer}
           </p>
           <a

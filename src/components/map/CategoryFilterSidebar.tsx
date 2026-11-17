@@ -82,8 +82,9 @@ export const CategoryFilterSidebar: React.FC<CategoryFilterSidebarProps> = ({
       {isCollapsed && (
         <button
           onClick={() => setIsCollapsed(false)}
-          className="hidden md:flex absolute top-3 left-3 z-30 w-9 h-9 rounded-lg bg-[#12131a] border border-[#ff2a85] text-[#ff2a85] items-center justify-center shadow-xl hover:bg-[#1a1c27] transition-all"
+          className="hidden md:flex absolute top-3 left-3 z-30 w-11 h-11 sm:w-9 sm:h-9 min-w-[44px] min-h-[44px] sm:min-w-0 sm:min-h-0 rounded-lg bg-[#12131a] border border-[#ff2a85] text-[#ff2a85] items-center justify-center shadow-xl hover:bg-[#1a1c27] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff]"
           title={dict.common.expandPanel}
+          aria-label={dict.common.expandPanel}
         >
           <ChevronRight size={20} />
         </button>
@@ -102,19 +103,20 @@ export const CategoryFilterSidebar: React.FC<CategoryFilterSidebarProps> = ({
           {/* Botão de Colapsar no topo direito */}
           <button
             onClick={() => setIsCollapsed(true)}
-            className="hidden md:flex absolute top-3.5 right-3.5 w-7 h-7 rounded-lg bg-[#1a1c27] border border-[#2d3042] text-slate-400 hover:text-white items-center justify-center transition-colors"
+            className="hidden md:flex absolute top-3.5 right-3.5 w-8 h-8 rounded-lg bg-[#1a1c27] border border-[#2d3042] text-slate-300 hover:text-white items-center justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff]"
             title={dict.common.collapsePanel}
+            aria-label={dict.common.collapsePanel}
           >
             <ChevronLeft size={16} />
           </button>
 
-          {/* Botão Fechar no Mobile */}
+          {/* Botão Fechar no Mobile (mínimo 44x44px de toque) */}
           <button
             onClick={onCloseMobile}
-            className="md:hidden absolute top-3.5 right-3.5 w-8 h-8 rounded-lg bg-[#1a1c27] border border-[#ff2a85] text-[#ff2a85] flex items-center justify-center"
+            className="md:hidden absolute top-2.5 right-2.5 w-11 h-11 min-w-[44px] min-h-[44px] rounded-lg bg-[#1a1c27] border border-[#ff2a85] text-[#ff2a85] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff]"
             aria-label={dict.common.closeFilters}
           >
-            <X size={18} />
+            <X size={20} />
           </button>
 
           {/* Logo e Título VI GTA VI INTERACTIVE MAP */}
@@ -166,7 +168,8 @@ export const CategoryFilterSidebar: React.FC<CategoryFilterSidebarProps> = ({
               href="https://youtube.com"
               target="_blank"
               rel="noreferrer"
-              className="w-6 h-6 rounded bg-[#ef4444] text-white flex items-center justify-center text-xs font-bold hover:scale-110 transition-transform"
+              aria-label="YouTube"
+              className="w-6 h-6 rounded bg-[#b91c1c] text-white flex items-center justify-center text-xs font-bold hover:scale-110 transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff]"
             >
               yt
             </a>
@@ -174,7 +177,8 @@ export const CategoryFilterSidebar: React.FC<CategoryFilterSidebarProps> = ({
               href="https://twitter.com"
               target="_blank"
               rel="noreferrer"
-              className="w-6 h-6 rounded bg-[#0284c7] text-white flex items-center justify-center text-xs font-bold hover:scale-110 transition-transform"
+              aria-label="Twitter / X"
+              className="w-6 h-6 rounded bg-[#0369a1] text-white flex items-center justify-center text-xs font-bold hover:scale-110 transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff]"
             >
               tw
             </a>
@@ -182,7 +186,8 @@ export const CategoryFilterSidebar: React.FC<CategoryFilterSidebarProps> = ({
               href="https://twitch.tv"
               target="_blank"
               rel="noreferrer"
-              className="w-6 h-6 rounded bg-[#9333ea] text-white flex items-center justify-center text-xs font-bold hover:scale-110 transition-transform"
+              aria-label="Twitch"
+              className="w-6 h-6 rounded bg-[#7e22ce] text-white flex items-center justify-center text-xs font-bold hover:scale-110 transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff]"
             >
               tv
             </a>
@@ -190,7 +195,8 @@ export const CategoryFilterSidebar: React.FC<CategoryFilterSidebarProps> = ({
               href="https://telegram.org"
               target="_blank"
               rel="noreferrer"
-              className="w-6 h-6 rounded bg-[#0ea5e9] text-white flex items-center justify-center text-xs font-bold hover:scale-110 transition-transform"
+              aria-label="Telegram"
+              className="w-6 h-6 rounded bg-[#0369a1] text-white flex items-center justify-center text-xs font-bold hover:scale-110 transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff]"
             >
               tg
             </a>
@@ -200,36 +206,36 @@ export const CategoryFilterSidebar: React.FC<CategoryFilterSidebarProps> = ({
             </div>
           </div>
 
-          {/* Botões superiores em estilo pílula / contorno com texto aumentado */}
+          {/* Botões superiores em estilo pílula / contorno com texto aumentado e alvo de toque acessível */}
           <div className="flex items-center gap-1.5 flex-wrap pt-0.5">
             <button
               onClick={onSelectAllCategories}
-              className="px-3 py-1.5 rounded-full border border-[#00e5ff] text-[#00e5ff] hover:bg-[#00e5ff]/10 text-xs font-black uppercase tracking-wider transition-colors"
+              className="px-3 py-1.5 min-h-[44px] sm:min-h-0 flex items-center justify-center rounded-full border border-[#38f8ff] text-[#38f8ff] hover:bg-[#38f8ff]/10 text-xs font-black uppercase tracking-wider transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff]"
             >
               {dict.common.showAll}
             </button>
             <button
               onClick={onClearCategories}
-              className="px-3 py-1.5 rounded-full border border-slate-600 text-slate-200 hover:bg-slate-800 text-xs font-black uppercase tracking-wider transition-colors"
+              className="px-3 py-1.5 min-h-[44px] sm:min-h-0 flex items-center justify-center rounded-full border border-slate-500 text-slate-200 hover:bg-slate-800 text-xs font-black uppercase tracking-wider transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff]"
             >
               {dict.common.hideAll}
             </button>
             <button
               onClick={() => onFilterStatusChange(filterStatus === 'favorites' ? 'all' : 'favorites')}
-              className={`px-3 py-1.5 rounded-full border text-xs font-black uppercase tracking-wider transition-colors ${
+              className={`px-3 py-1.5 min-h-[44px] sm:min-h-0 flex items-center justify-center rounded-full border text-xs font-black uppercase tracking-wider transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#fcd34d] ${
                 filterStatus === 'favorites'
-                  ? 'border-[#fbbf24] bg-[#fbbf24]/20 text-[#fbbf24]'
-                  : 'border-slate-600 text-slate-200 hover:border-[#fbbf24]'
+                  ? 'border-[#fcd34d] bg-[#fcd34d]/15 text-[#fcd34d]'
+                  : 'border-slate-500 text-slate-200 hover:border-[#fcd34d]'
               }`}
             >
               {dict.common.favorites}
             </button>
             <button
               onClick={() => onFilterStatusChange(filterStatus === 'found' ? 'all' : 'found')}
-              className={`px-3 py-1.5 rounded-full border text-xs font-black uppercase tracking-wider transition-colors ${
+              className={`px-3 py-1.5 min-h-[44px] sm:min-h-0 flex items-center justify-center rounded-full border text-xs font-black uppercase tracking-wider transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff] ${
                 filterStatus === 'found'
-                  ? 'border-[#00e5ff] bg-[#00e5ff]/20 text-[#00e5ff]'
-                  : 'border-slate-600 text-slate-200 hover:border-[#00e5ff]'
+                  ? 'border-[#38f8ff] bg-[#38f8ff]/15 text-[#38f8ff]'
+                  : 'border-slate-500 text-slate-200 hover:border-[#38f8ff]'
               }`}
             >
               {dict.common.found}
@@ -244,21 +250,22 @@ export const CategoryFilterSidebar: React.FC<CategoryFilterSidebarProps> = ({
                 value={searchQuery}
                 onChange={(e) => onSearchChange(e.target.value)}
                 placeholder={dict.common.searchPlaceholder}
-                className="w-full px-3 py-2 rounded-lg bg-[#0b0c10] border border-[#262838] text-xs text-slate-100 placeholder-slate-400 focus:outline-none focus:border-[#ff2a85] transition-colors"
+                className="w-full px-3 py-2.5 rounded-lg bg-[#0b0c10] border border-[#262838] text-xs text-slate-100 placeholder-slate-400 focus:outline-none focus:border-[#ff2a85] focus-visible:ring-2 focus-visible:ring-[#38f8ff] transition-colors"
               />
               {searchQuery && (
                 <button
                   onClick={() => onSearchChange('')}
-                  className="absolute right-2.5 top-2.5 text-slate-400 hover:text-white"
+                  className="absolute right-1 top-1/2 -translate-y-1/2 w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center text-slate-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff]"
+                  aria-label="Limpar termo de busca"
                 >
-                  <X size={14} />
+                  <X size={15} />
                 </button>
               )}
             </div>
 
             <button
               type="button"
-              className="px-3.5 py-2 rounded-lg bg-[#161722] border border-[#ff2a85] text-[#ff2a85] hover:bg-[#ff2a85] hover:text-black font-black text-xs uppercase tracking-wider transition-all"
+              className="px-3.5 py-2.5 min-h-[44px] sm:min-h-0 flex items-center justify-center rounded-lg bg-[#161722] border border-[#ff2a85] text-[#ff4d9e] hover:bg-[#ff2a85] hover:text-black font-black text-xs uppercase tracking-wider transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff]"
             >
               {dict.common.search}
             </button>
@@ -289,17 +296,17 @@ export const CategoryFilterSidebar: React.FC<CategoryFilterSidebarProps> = ({
                       <button
                         key={cat.id}
                         onClick={() => onToggleCategory(cat.id)}
-                        className={`flex items-center justify-between p-2 rounded-lg font-bold tracking-tight transition-all border ${
+                        className={`flex items-center justify-between p-2 rounded-lg font-bold tracking-tight transition-all border min-h-[44px] sm:min-h-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff] ${
                           isChecked
                             ? 'bg-[#181a24] border-[#2d3042] text-white hover:border-[#41455e]'
-                            : 'bg-[#0e0f14]/80 border-transparent text-slate-500 hover:text-slate-400 opacity-40'
+                            : 'bg-[#0e0f14]/80 border-transparent text-slate-300 hover:text-white opacity-85'
                         }`}
                       >
                         <div className="flex items-center gap-2 truncate">
                           <DynamicIcon
                             name={cat.iconName}
                             size={14}
-                            color={isChecked ? cat.color : '#64748b'}
+                            color={isChecked ? cat.color : '#94a3b8'}
                             className="shrink-0"
                           />
                           <span className="truncate uppercase font-mono text-[11px] sm:text-xs">
@@ -311,8 +318,8 @@ export const CategoryFilterSidebar: React.FC<CategoryFilterSidebarProps> = ({
                         <span
                           className="px-1.5 py-0.5 rounded text-[10.5px] font-mono font-bold shrink-0 ml-1.5"
                           style={{
-                            color: isChecked ? cat.color : '#64748b',
-                            backgroundColor: isChecked ? cat.badgeBg : '#12131a',
+                            color: isChecked ? cat.color : '#94a3b8',
+                            backgroundColor: isChecked ? cat.badgeBg : '#181a24',
                           }}
                         >
                           {total}

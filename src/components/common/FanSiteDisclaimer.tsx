@@ -33,7 +33,7 @@ export const FanSiteDisclaimer: React.FC<FanSiteDisclaimerProps> = ({
 
   if (variant === 'footer') {
     return (
-      <p className={`text-[11px] text-slate-500 leading-relaxed ${className}`}>
+      <p className={`text-[11px] text-slate-400 leading-relaxed ${className}`}>
         {disclaimerText.text}
       </p>
     );
@@ -41,7 +41,7 @@ export const FanSiteDisclaimer: React.FC<FanSiteDisclaimerProps> = ({
 
   if (variant === 'inline') {
     return (
-      <span className={`text-xs text-slate-400 ${className}`}>
+      <span className={`text-xs text-slate-300 ${className}`}>
         {disclaimerText.text}
       </span>
     );
@@ -52,14 +52,14 @@ export const FanSiteDisclaimer: React.FC<FanSiteDisclaimerProps> = ({
     <aside
       role="note"
       aria-label={disclaimerText.title}
-      className={`rounded-xl p-4 sm:p-5 bg-[#12141f] border border-amber-500/20 text-slate-400 text-xs flex items-start gap-3.5 ${className}`}
+      className={`rounded-xl p-4 sm:p-5 bg-[#12141f] border border-amber-500/20 text-slate-300 text-xs flex items-start gap-3.5 ${className}`}
     >
       <ShieldAlert className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
       <div className="space-y-1">
         <h4 className="font-bold text-slate-200 text-xs uppercase tracking-wider font-mono">
           {disclaimerText.title}
         </h4>
-        <p className="leading-relaxed text-slate-400 text-xs">
+        <p className="leading-relaxed text-slate-300 text-xs">
           {disclaimerText.text}
         </p>
       </div>

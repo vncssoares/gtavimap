@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "validate:data": "node scripts/validate-markers.mjs"
+    "validate:data": "node scripts/validate-markers.mjs",
+    "optimize:svg": "node scripts/optimize-svg.mjs"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

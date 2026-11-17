@@ -255,7 +255,7 @@ export const ConsentBanner: React.FC<ConsentBannerProps> = ({ lang }) => {
           <button
             type="button"
             onClick={() => setShowDetails(!showDetails)}
-            className="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-white transition-colors py-2 font-mono"
+            className="inline-flex items-center gap-1.5 text-xs text-slate-300 hover:text-white transition-colors py-2 min-h-[44px] font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff]"
           >
             <Sliders className="w-3.5 h-3.5" />
             <span>{showDetails ? t.hideCustomize : t.customize}</span>
@@ -271,7 +271,7 @@ export const ConsentBanner: React.FC<ConsentBannerProps> = ({ lang }) => {
               <button
                 type="button"
                 onClick={handleSaveCustom}
-                className="px-4 py-2 rounded-lg bg-[#1e2233] hover:bg-[#282d44] text-white text-xs font-bold uppercase tracking-wider transition-colors border border-white/10"
+                className="px-4 py-2 min-h-[44px] inline-flex items-center justify-center rounded-lg bg-[#1e2233] hover:bg-[#282d44] text-white text-xs font-bold uppercase tracking-wider transition-colors border border-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff]"
               >
                 {t.saveCustom}
               </button>
@@ -279,7 +279,7 @@ export const ConsentBanner: React.FC<ConsentBannerProps> = ({ lang }) => {
               <button
                 type="button"
                 onClick={handleRejectOptional}
-                className="px-4 py-2 rounded-lg bg-[#1a1c27] hover:bg-[#222535] text-slate-300 text-xs font-bold uppercase tracking-wider transition-colors border border-white/5"
+                className="px-4 py-2 min-h-[44px] inline-flex items-center justify-center rounded-lg bg-[#1a1c27] hover:bg-[#222535] text-slate-200 hover:text-white text-xs font-bold uppercase tracking-wider transition-colors border border-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff]"
               >
                 {t.rejectOptional}
               </button>
@@ -288,7 +288,7 @@ export const ConsentBanner: React.FC<ConsentBannerProps> = ({ lang }) => {
             <button
               type="button"
               onClick={handleAcceptAll}
-              className="px-5 py-2 rounded-lg bg-gradient-to-r from-[#ff2a85] to-[#ff599c] hover:opacity-95 text-white text-xs font-black uppercase tracking-wider shadow-lg shadow-[#ff2a85]/20 transition-all"
+              className="px-5 py-2 min-h-[44px] inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-[#ff2a85] to-[#ff599c] hover:opacity-95 text-white text-xs font-black uppercase tracking-wider shadow-lg shadow-[#ff2a85]/20 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff]"
             >
               {t.acceptAll}
             </button>

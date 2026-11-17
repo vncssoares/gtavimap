@@ -20,7 +20,7 @@ export interface MapLayerConfig {
 export const MAP_CONFIG: MapLayerConfig = {
   // Atualmente usando a imagem vetorial cartográfica estilizada do estado de Leonida / Vice City
   type: 'image',
-  url: '/map/leonida-demo-map.svg',
+  url: '/map/leonida-vibrant-map.v1.svg',
   attribution: 'GTAVIMap • Mapa Cartográfico Fictício para Demonstração (Não Oficial)',
   width: 2000,
   height: 2000,

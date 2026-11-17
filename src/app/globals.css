@@ -67,3 +67,21 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #ff2a85;
 }
+
+/* Acessibilidade WCAG: Foco visível consistente para navegação por teclado */
+:focus-visible {
+  outline: 2px solid #38f8ff !important;
+  outline-offset: 2px !important;
+}
+
+/* Acessibilidade WCAG: Respeito a usuários com prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

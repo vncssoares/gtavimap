@@ -96,32 +96,32 @@ export default async function PremiumPage({ params }: PageProps) {
 
   const perks = [
     {
-      icon: <Zap size={20} className="text-[#00e5ff]" />,
+      icon: <Zap size={20} className="text-[#38f8ff]" />,
       title: dict.premium.feature1Title,
       description: dict.premium.feature1Desc,
       status: dict.common.activeNow.toUpperCase(),
-      statusColor: '#00e5ff',
+      statusColor: '#38f8ff',
     },
     {
-      icon: <Cloud size={20} className="text-[#ff2a85]" />,
+      icon: <Cloud size={20} className="text-[#ff4d9e]" />,
       title: dict.premium.feature2Title,
       description: dict.premium.feature2Desc,
       status: dict.common.planned.toUpperCase(),
-      statusColor: '#ff2a85',
+      statusColor: '#ff4d9e',
     },
     {
-      icon: <Sliders size={20} className="text-[#fbbf24]" />,
+      icon: <Sliders size={20} className="text-[#fcd34d]" />,
       title: dict.premium.feature3Title,
       description: dict.premium.feature3Desc,
       status: dict.common.planned.toUpperCase(),
-      statusColor: '#fbbf24',
+      statusColor: '#fcd34d',
     },
     {
-      icon: <Layers size={20} className="text-[#a855f7]" />,
+      icon: <Layers size={20} className="text-[#c084fc]" />,
       title: dict.premium.feature4Title,
       description: dict.premium.feature4Desc,
       status: dict.common.planned.toUpperCase(),
-      statusColor: '#a855f7',
+      statusColor: '#c084fc',
     },
   ];
 
@@ -142,7 +142,7 @@ export default async function PremiumPage({ params }: PageProps) {
               {dict.premium.title}
             </h1>
 
-            <p className="text-sm sm:text-base text-slate-400 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed">
               {dict.premium.subtitle}
             </p>
           </div>
@@ -186,7 +186,7 @@ export default async function PremiumPage({ params }: PageProps) {
                 <h3 className="text-base font-black text-white uppercase tracking-wide">
                   {perk.title}
                 </h3>
-                <p className="text-xs text-slate-400 leading-relaxed">
+                <p className="text-xs text-slate-300 leading-relaxed">
                   {perk.description}
                 </p>
               </div>
@@ -201,13 +201,13 @@ export default async function PremiumPage({ params }: PageProps) {
             }}
           >
             <div className="space-y-1">
-              <span className="text-xs font-mono uppercase tracking-widest text-[#00e5ff] font-bold">
+              <span className="text-xs font-mono uppercase tracking-widest text-[#38f8ff] font-bold">
                 PROJETADO PARA O LANÇAMENTO
               </span>
               <div className="text-4xl sm:text-5xl font-black text-white font-mono">
                 {dict.premium.monthlyPrice}
               </div>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-slate-300">
                 {annualPlanText}
               </p>
             </div>
@@ -216,13 +216,13 @@ export default async function PremiumPage({ params }: PageProps) {
               <NotifyMeButton label={dict.common.comingSoon} />
             </div>
 
-            <div className="pt-4 border-t border-[#1e202d] flex items-center justify-center gap-6 text-[11px] text-slate-400 font-mono">
+            <div className="pt-4 border-t border-[#1e202d] flex items-center justify-center gap-6 text-[11px] text-slate-300 font-mono">
               <span className="flex items-center gap-1.5">
-                <Shield size={14} className="text-[#00e5ff]" />
+                <Shield size={14} className="text-[#38f8ff]" />
                 Zero cobrança no protótipo
               </span>
               <span className="flex items-center gap-1.5">
-                <CheckCircle2 size={14} className="text-[#00e5ff]" />
+                <CheckCircle2 size={14} className="text-[#38f8ff]" />
                 Cancelamento instantâneo
               </span>
             </div>
@@ -232,7 +232,7 @@ export default async function PremiumPage({ params }: PageProps) {
           <div className="text-center pt-2">
             <Link
               href={`${langPrefix}/map`}
-              className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-[#00e5ff] hover:underline"
+              className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-[#38f8ff] hover:underline min-h-[44px] min-w-[44px] px-3 py-2 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff]"
             >
               <ArrowLeft size={14} />
               <span>{dict.common.backToMap}</span>

@@ -76,6 +76,13 @@ export default async function MapPage({ params }: PageProps) {
 
   return (
     <div className="h-screen h-[100dvh] flex flex-col bg-[#070b12] text-slate-100 overflow-hidden">
+      {/* Preload do asset cartográfico para LCP ideal no mapa mobile */}
+      <link
+        rel="preload"
+        as="image"
+        href="/map/leonida-vibrant-map.v1.svg"
+        fetchPriority="high"
+      />
       <Header lang={currentLang} />
       <div className="flex-1 w-full relative overflow-hidden">
         <Suspense
