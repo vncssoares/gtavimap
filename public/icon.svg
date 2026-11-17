@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="gtavi-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ff007a" />
+      <stop offset="45%" stop-color="#d946ef" />
+      <stop offset="75%" stop-color="#8b5cf6" />
+      <stop offset="100%" stop-color="#00e5ff" />
+    </linearGradient>
+    <filter id="neon-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background Squircle escuro para contraste absoluto na aba -->
+  <rect x="16" y="16" width="480" height="480" rx="110" fill="#090a10" stroke="#ff2a85" stroke-width="6" stroke-opacity="0.6"/>
+
+  <!-- Letra V e I com glow neon -->
+  <g filter="url(#neon-glow)">
+    <!-- Numeral Romano V -->
+    <polygon points="55,105 130,105 195,310 260,105 335,105 235,407 155,407" fill="url(#gtavi-grad)" stroke="#ffffff" stroke-width="3" stroke-opacity="0.7"/>
+
+    <!-- Numeral Romano I -->
+    <polygon points="360,105 435,105 435,407 360,407" fill="url(#gtavi-grad)" stroke="#ffffff" stroke-width="3" stroke-opacity="0.7"/>
+  </g>
+</svg>

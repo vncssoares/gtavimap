@@ -4,11 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node -e \"if (process.env.DATA_MODE === 'verified') { require('child_process').execSync('node scripts/validate-markers.mjs', { stdio: 'inherit' }); }\"",
+    "prebuild": "node -e \"if (process.env.DATA_MODE === 'verified') { require('child_process').execSync('node scripts/validate-markers.mjs && node scripts/validate-content.mjs', { stdio: 'inherit' }); }\"",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
     "validate:data": "node scripts/validate-markers.mjs",
+    "validate:content": "node scripts/validate-content.mjs",
     "check:seo": "node scripts/check-seo.mjs",
     "optimize:svg": "node scripts/optimize-svg.mjs"
   },

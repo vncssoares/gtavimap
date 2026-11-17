@@ -1,12 +1,17 @@
 import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { ExternalLink, Calendar, Gamepad2, Globe, AlertCircle, ShieldCheck, Users, ArrowLeft } from 'lucide-react';
+import { Calendar, Gamepad2, Globe, AlertCircle, ShieldCheck, Users, ArrowLeft } from 'lucide-react';
 import { Language } from '@/types';
 import { getDictionary, formatReviewDate } from '@/i18n/translations';
 import { Header } from '@/components/common/Header';
 import { Footer } from '@/components/common/Footer';
+import { SourceLine } from '@/components/common/SourceLine';
+import { MapCta } from '@/components/common/MapCta';
+import { TimestampedHighlights } from '@/components/common/TimestampedHighlights';
 import { getNewsItems, LAST_REVIEWED_NEWS_ISO } from '@/data/news';
+
+export const instant = false;
 
 interface PageProps {
   params: Promise<{ lang: string }>;
@@ -67,6 +72,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
+function formatNewsDate(isoDate: string, lang: Language): string {
+  try {
+    const date = new Date(isoDate);
+    const locale = lang === 'pt-BR' ? 'pt-BR' : lang === 'es' ? 'es-ES' : 'en-US';
+    return new Intl.DateTimeFormat(locale, {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric',
+    }).format(date);
+  } catch {
+    return isoDate;
+  }
+}
+
 export default async function NewsPage({ params }: PageProps) {
   const { lang } = await params;
   const normalizedLang = lang.toLowerCase();
@@ -74,16 +93,24 @@ export default async function NewsPage({ params }: PageProps) {
     normalizedLang === 'pt-br' ? 'pt-BR' : normalizedLang === 'es' ? 'es' : 'en';
 
   const dict = getDictionary(currentLang);
-  const items = getNewsItems();
+  const rawItems = getNewsItems();
+
+  // Linha do tempo ordenada por data decrescente
+  const items = [...rawItems].sort((a, b) => {
+    const timeA = new Date(a.publishedAt).getTime();
+    const timeB = new Date(b.publishedAt).getTime();
+    return timeB - timeA;
+  });
+
   const formattedReviewDate = formatReviewDate(LAST_REVIEWED_NEWS_ISO, currentLang);
 
   return (
     <div className="min-h-screen flex flex-col bg-[#0a0b10] text-slate-100 selection:bg-[#ff2a85]/30 selection:text-[#ff2a85]">
       <Header lang={currentLang} />
 
-      <main className="flex-1 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+      <main className="flex-1 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 w-full space-y-12">
         {/* Breadcrumb / Botão Voltar */}
-        <div className="mb-6">
+        <div>
           <Link
             href={`/${normalizedLang}`}
             className="inline-flex items-center gap-1.5 min-h-[44px] text-xs font-mono font-bold text-slate-400 hover:text-[#38f8ff] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff]"
@@ -93,8 +120,8 @@ export default async function NewsPage({ params }: PageProps) {
           </Link>
         </div>
 
-        {/* Cabeçalho da Página */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-8 border-b border-[#222433] mb-10">
+        {/* Cabeçalho da Página com o único H1 */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-8 border-b border-[#222433]">
           <div className="space-y-2">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[#ff2a85] animate-pulse" />
@@ -117,21 +144,35 @@ export default async function NewsPage({ params }: PageProps) {
           </div>
         </div>
 
-        {/* Lista Completa de Notícias e Changelog */}
+        {/* Linha do Tempo Vertical de Notícias */}
         {items.length === 0 ? (
           <div className="p-12 rounded-2xl bg-[#0e1017] border border-[#222433] text-center max-w-xl mx-auto">
             <p className="text-sm text-slate-300">{dict.newsSection.emptyProductionNotice}</p>
           </div>
         ) : (
-          <div className="space-y-6">
+          <div className="relative border-l-2 border-[#1e2333] pl-4 sm:pl-8 ml-2 sm:ml-4 space-y-8 sm:space-y-10">
             {items.map((item) => {
-              const formattedItemDate = formatReviewDate(item.publishedAt, currentLang);
+              const formattedItemDate = formatNewsDate(item.publishedAt, currentLang);
+              const sources = item.sourceUrl
+                ? [
+                    {
+                      label:
+                        item.kind === 'game'
+                          ? 'Rockstar Games Official'
+                          : 'GTAVIMap Changelog',
+                      url: item.sourceUrl,
+                    },
+                  ]
+                : [];
 
               return (
                 <article
                   key={item.id}
-                  className="p-6 sm:p-8 rounded-2xl bg-[#0e1017] border border-[#222433] hover:border-[#38f8ff]/30 transition-all shadow-xl shadow-black/20 space-y-4"
+                  className="relative p-6 sm:p-8 rounded-2xl bg-[#0e1017] border border-[#222433] hover:border-[#38f8ff]/30 transition-all shadow-xl shadow-black/20 space-y-4"
                 >
+                  {/* Marcador na linha do tempo vertical */}
+                  <span className="absolute -left-[25px] sm:-left-[41px] top-7 w-4 h-4 rounded-full bg-[#12141f] border-2 border-[#ff2a85] shadow-[0_0_8px_#ff2a85]" />
+
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <div className="flex flex-wrap items-center gap-2">
                       {item.kind === 'game' ? (
@@ -170,7 +211,7 @@ export default async function NewsPage({ params }: PageProps) {
 
                     <div className="flex items-center gap-1.5 text-xs font-mono text-slate-400">
                       <Calendar size={13} />
-                      <span>{formattedItemDate}</span>
+                      <time dateTime={item.publishedAt}>{formattedItemDate}</time>
                     </div>
                   </div>
 
@@ -182,30 +223,33 @@ export default async function NewsPage({ params }: PageProps) {
                     {item.summary[currentLang] || item.summary.en}
                   </p>
 
-                  {/* Rodapé do Artigo */}
-                  <div className="pt-4 border-t border-white/5 flex items-center justify-between">
-                    {item.sourceUrl ? (
-                      <a
-                        href={item.sourceUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 min-h-[44px] text-xs font-mono font-bold text-[#38f8ff] hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38f8ff]"
-                        aria-label={`${dict.newsSection.readSource}: ${item.title[currentLang] || item.title.en}`}
-                      >
-                        <span>{dict.newsSection.readSource}</span>
-                        <ExternalLink size={13} />
-                      </a>
-                    ) : (
-                      <span className="text-xs font-mono text-slate-400">
-                        GTAVIMap Changelog
-                      </span>
-                    )}
-                  </div>
+                  {/* Linha de Fontes Padronizada */}
+                  {sources.length > 0 && (
+                    <SourceLine
+                      sources={sources}
+                      lang={currentLang}
+                      note={
+                        item.kind === 'game'
+                          ? dict.sourceLine?.defaultNote
+                          : 'Publicação oficial de desenvolvimento da equipe GTAVIMap'
+                      }
+                    />
+                  )}
                 </article>
               );
             })}
           </div>
         )}
+
+        {/* ================= SEÇÃO: DESTAQUES DO TRAILER ================= */}
+        <section className="pt-4 border-t border-[#1e2333]">
+          <TimestampedHighlights lang={currentLang} />
+        </section>
+
+        {/* ================= MAP CTA AO FINAL DA PÁGINA ================= */}
+        <section className="pt-4">
+          <MapCta lang={currentLang} />
+        </section>
       </main>
 
       <Footer lang={currentLang} />

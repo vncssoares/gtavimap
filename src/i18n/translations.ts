@@ -377,6 +377,40 @@ export const DICTIONARIES = {
     },
     mapHint: 'Drag to pan, use pinch or scroll to zoom',
     freshnessBadge: 'NEW',
+    sourceLine: {
+      label: 'Sources:',
+      defaultNote: 'Paraphrased descriptions from official sources',
+    },
+    unconfirmedCallout: {
+      title: 'Reported, but not officially confirmed',
+      sourcePrefix: 'Origin:',
+    },
+    mapCta: {
+      title: 'See where it all happens',
+      subtitle: 'Explore the full interactive map of Vice City and Leonida with live filters and GPS tracking.',
+      buttonText: 'Open Interactive Map',
+    },
+    creditsPage: {
+      title: 'Credits and Attributions',
+      subtitle: 'Methodology, open source libraries, cartographic sources, and legal notices.',
+      mapSectionTitle: 'Cartographic Base & Assets',
+      mapSectionDesc: 'Cartographic vectors and geographical interpretations based on publicly disclosed trailer and teaser materials.',
+      libsSectionTitle: 'Open Source Software & Libraries',
+      dataSectionTitle: 'Data Methodology',
+      dataSectionDesc: 'All coordinates, points of interest, and mission checkpoints are verified through in-game and trailer visual observation.',
+      disclaimerTitle: 'Fan Site & Trademark Notice',
+      contactTitle: 'Content Removal and Copyright',
+      contactDesc: 'For copyright or trademark removal requests, reach out directly to our designated team.',
+    },
+    highlights: {
+      title: 'Trailer Timeline & Highlights',
+      subtitle: 'Direct timestamps to key moments from the official Rockstar Games trailer.',
+      colTime: 'Timestamp',
+      colDescription: 'Scene & Details',
+      colLink: 'Watch Scene',
+      watchOnYoutube: 'Watch on YouTube',
+      officialTrailerNotice: 'All links redirect directly to the official Rockstar Games YouTube upload.',
+    },
   },
 
   'pt-BR': {
@@ -730,6 +764,40 @@ export const DICTIONARIES = {
     },
     mapHint: 'Arraste para mover, use pinça ou scroll para zoom',
     freshnessBadge: 'NOVO',
+    sourceLine: {
+      label: 'Fontes:',
+      defaultNote: 'Descrições parafraseadas de fontes oficiais',
+    },
+    unconfirmedCallout: {
+      title: 'Divulgado, mas não confirmado oficialmente',
+      sourcePrefix: 'Origem:',
+    },
+    mapCta: {
+      title: 'Veja onde tudo acontece',
+      subtitle: 'Explore o mapa interativo completo de Vice City e Leonida com filtros em tempo real e rastreamento GPS.',
+      buttonText: 'Abrir Mapa Interativo',
+    },
+    creditsPage: {
+      title: 'Créditos e Atribuições',
+      subtitle: 'Metodologia, bibliotecas de código aberto, fontes cartográficas e avisos legais.',
+      mapSectionTitle: 'Base Cartográfica e Assets',
+      mapSectionDesc: 'Vetores cartográficos e interpretações geográficas baseados em materiais públicos e trailers divulgados.',
+      libsSectionTitle: 'Software e Bibliotecas de Código Aberto',
+      dataSectionTitle: 'Metodologia de Dados',
+      dataSectionDesc: 'Todas as coordenadas, pontos de interesse e checkpoints são verificados por observação visual no jogo e trailers.',
+      disclaimerTitle: 'Aviso de Site de Fãs e Marcas Registradas',
+      contactTitle: 'Pedidos de Remoção e Direitos Autorais',
+      contactDesc: 'Para solicitações de remoção ou questões de direitos autorais, contate diretamente nossa equipe.',
+    },
+    highlights: {
+      title: 'Linha do Tempo e Destaques do Trailer',
+      subtitle: 'Timestamps diretos para os momentos-chave do trailer oficial da Rockstar Games.',
+      colTime: 'Timestamp',
+      colDescription: 'Cena e Detalhes',
+      colLink: 'Assistir Cena',
+      watchOnYoutube: 'Assistir no YouTube',
+      officialTrailerNotice: 'Todos os links redirecionam diretamente para o vídeo oficial da Rockstar Games no YouTube.',
+    },
   },
 
   es: {
@@ -1083,6 +1151,40 @@ export const DICTIONARIES = {
     },
     mapHint: 'Arrastra para mover, usa pellizco o rueda para zoom',
     freshnessBadge: 'NUEVO',
+    sourceLine: {
+      label: 'Fuentes:',
+      defaultNote: 'Descripciones parafraseadas de fuentes oficiales',
+    },
+    unconfirmedCallout: {
+      title: 'Divulgado, pero no confirmado oficialmente',
+      sourcePrefix: 'Origen:',
+    },
+    mapCta: {
+      title: 'Mira dónde sucede todo',
+      subtitle: 'Explora el mapa interactivo completo de Vice City y Leonida con filtros en tiempo real y rastreo GPS.',
+      buttonText: 'Abrir Mapa Interactivo',
+    },
+    creditsPage: {
+      title: 'Créditos y Atribuciones',
+      subtitle: 'Metodología, librerías de código abierto, fuentes cartográficas y avisos legales.',
+      mapSectionTitle: 'Base Cartográfica y Recursos',
+      mapSectionDesc: 'Vectores cartográficos e interpretaciones geográficas basadas en materiales públicos y tráileres divulgados.',
+      libsSectionTitle: 'Software y Librerías de Código Abierto',
+      dataSectionTitle: 'Metodología de Datos',
+      dataSectionDesc: 'Todas las coordenadas, puntos de interés y checkpoints se verifican mediante observación visual en el juego y tráileres.',
+      disclaimerTitle: 'Aviso de Sitio de Fans y Marcas Registradas',
+      contactTitle: 'Solicitudes de Retirada y Derechos de Autor',
+      contactDesc: 'Para solicitudes de retirada o cuestiones de derechos de autor, contacta directamente con nuestro equipo.',
+    },
+    highlights: {
+      title: 'Cronología y Momentos Destacados del Tráiler',
+      subtitle: 'Timestamps directos a los momentos clave del tráiler oficial de Rockstar Games.',
+      colTime: 'Timestamp',
+      colDescription: 'Escena y Detalles',
+      colLink: 'Ver Escena',
+      watchOnYoutube: 'Ver en YouTube',
+      officialTrailerNotice: 'Todos los enlaces redirigen directamente al vídeo oficial de Rockstar Games en YouTube.',
+    },
   },
 };
 

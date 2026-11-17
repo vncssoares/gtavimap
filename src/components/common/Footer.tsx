@@ -22,6 +22,7 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
       terms: 'Termos de Uso',
       privacy: 'Política de Privacidade',
       contact: 'Contato & Remoção',
+      credits: 'Créditos & Atribuições',
       manageCookies: 'Gerenciar cookies',
       navigation: 'Navegação',
       transparency: 'Transparência',
@@ -31,6 +32,7 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
       terms: 'Terms of Service',
       privacy: 'Privacy Policy',
       contact: 'Contact & Takedowns',
+      credits: 'Credits & Attributions',
       manageCookies: 'Manage cookies',
       navigation: 'Navigation',
       transparency: 'Transparency',
@@ -40,6 +42,7 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
       terms: 'Términos de Servicio',
       privacy: 'Política de Privacidad',
       contact: 'Contacto y Retirada',
+      credits: 'Créditos y Atribuciones',
       manageCookies: 'Gestionar cookies',
       navigation: 'Navegación',
       transparency: 'Transparencia',
@@ -49,6 +52,7 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
     terms: 'Terms of Service',
     privacy: 'Privacy Policy',
     contact: 'Contact & Takedowns',
+    credits: 'Credits & Attributions',
     manageCookies: 'Manage cookies',
     navigation: 'Navigation',
     transparency: 'Transparency',
@@ -135,6 +139,11 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
               <li>
                 <Link href={`${langPrefix}/contact`} className="min-h-[44px] inline-flex items-center hover:text-[#00e5ff] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#38f8ff]">
                   {legalLabels.contact}
+                </Link>
+              </li>
+              <li>
+                <Link href={`${langPrefix}/credits`} className="min-h-[44px] inline-flex items-center hover:text-[#00e5ff] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#38f8ff]">
+                  {legalLabels.credits}
                 </Link>
               </li>
               <li>

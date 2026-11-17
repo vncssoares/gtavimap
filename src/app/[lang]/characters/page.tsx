@@ -5,6 +5,7 @@ import { Language } from '@/types';
 import { getDictionary } from '@/i18n/translations';
 import { Header } from '@/components/common/Header';
 import { Footer } from '@/components/common/Footer';
+import { MapCta } from '@/components/common/MapCta';
 import { PROTAGONISTS, OFFICIAL_GALLERY, SUPPORTING_CAST } from '@/data/characters';
 
 export const instant = false;
@@ -228,6 +229,11 @@ export default async function CharactersPage({ params }: PageProps) {
               );
             })}
           </div>
+        </section>
+
+        {/* Map CTA para explorar os locais dos personagens */}
+        <section className="pt-2">
+          <MapCta lang={currentLang} />
         </section>
 
         {/* Rodapé informativo */}
