@@ -6,7 +6,7 @@ import { useSearchParams } from 'next/navigation';
 import { ExternalLink, X, MapPin, Compass } from 'lucide-react';
 import { CategoryId, Language, MarkerLocation, UserProgress } from '@/types';
 import { CATEGORIES } from '@/data/categories';
-import { DEMO_MARKERS } from '@/data/markers';
+import { getMarkers } from '@/data/markerRepository';
 import { MarkerService } from '@/services/markerService';
 import { getDictionary } from '@/i18n/translations';
 import { DynamicIcon } from '@/components/common/DynamicIcon';
@@ -54,7 +54,7 @@ export const EmbedMapClient: React.FC<EmbedMapClientProps> = ({ lang }) => {
       if (isValid) {
         const list: CategoryId[] = [categoryParam as CategoryId];
         if (markerParam) {
-          const foundMarker = DEMO_MARKERS.find((m) => m.id === markerParam);
+          const foundMarker = getMarkers().find((m) => m.id === markerParam);
           if (foundMarker && !list.includes(foundMarker.category)) {
             list.push(foundMarker.category);
           }
@@ -68,7 +68,7 @@ export const EmbedMapClient: React.FC<EmbedMapClientProps> = ({ lang }) => {
   // Validação silenciosa de marcador (?m=<markerId>)
   const [selectedMarker, setSelectedMarker] = useState<MarkerLocation | null>(() => {
     if (markerParam) {
-      return DEMO_MARKERS.find((m) => m.id === markerParam) || null;
+      return getMarkers().find((m) => m.id === markerParam) || null;
     }
     return null;
   });
@@ -76,7 +76,7 @@ export const EmbedMapClient: React.FC<EmbedMapClientProps> = ({ lang }) => {
   // Filtra marcadores visíveis
   const visibleMarkers = useMemo(() => {
     return MarkerService.filterMarkers(
-      DEMO_MARKERS,
+      getMarkers(),
       {
         searchQuery: '',
         selectedCategories,

@@ -1,6 +1,6 @@
 import { Category, CategoryId, MarkerLocation } from '@/types';
 import { CATEGORIES } from '@/data/categories';
-import { DEMO_MARKERS } from '@/data/markers';
+import { getMarkers } from '@/data/markerRepository';
 
 /**
  * Converte um CategoryId (formato snake_case, ex: 'stunt_jump')
@@ -27,7 +27,7 @@ export function slugToCategoryId(slug: string): CategoryId | null {
  * Marcadores 'demo', 'trailer_rumor' ou 'unconfirmed' nunca são retornados.
  */
 export function getIndexableMarkers(): MarkerLocation[] {
-  return DEMO_MARKERS.filter((marker) => marker.confirmationStatus === 'verified');
+  return getMarkers().filter((marker) => marker.confirmationStatus === 'verified');
 }
 
 /**

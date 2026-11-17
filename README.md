@@ -68,7 +68,22 @@
 - Identificação explícita de recursos em desenvolvimento vs protótipo liberado.
 - Sem implementação de cobranças reais nesta fase.
 
-### 7. Privacidade, Consentimento de Cookies & Notificações DMCA
+### 7. Política Ética de Dados Verificados & Proteção contra Spoilers
+- **Origem Exclusiva e Ética:** Todo e qualquer dado marcado como `verified` provém estritamente de **observação direta e em primeira mão dentro do jogo** após seu lançamento oficial. É categoricamente proibido o uso de vazamentos (*leaks*), ataques cibernéticos, materiais não autorizados ou arquivos obtidos de forma ilegítima antes do lançamento.
+- **Validação de Integridade Automatizada:** O comando `npm run validate:data` (`scripts/validate-markers.mjs`) audita o arquivo `src/data/verified/markers.json` garantindo IDs únicos, coordenadas `X`/`Y` no intervalo `[0, 1000]`, slugs únicos em kebab-case por categoria, descrições nos 3 idiomas (`en`, `pt-BR`, `es`), e quando `confirmationStatus: 'verified'`, exige `source` preenchido e data de verificação `verifiedAt` em formato ISO 8601.
+- **Modos de Dados (`DATA_MODE`):**
+  - `"demo"` (padrão em desenvolvimento): Carrega marcadores de demonstração com aviso visual discreto no mapa.
+  - `"verified"` (padrão em produção): Carrega exclusivamente os marcadores verificados em jogo de `src/data/verified/markers.json`.
+  - `"both"` (apenas dev): Concatena ambos os conjuntos para auditoria e testes de interface.
+- **Proteção Contra Spoilers de História:**
+  - Missões recebem `spoiler: true` por padrão.
+  - No painel de detalhes, o título e a descrição são protegidos por uma tarja e botão *"Mostrar spoiler"*; o conteúdo só é revelado sob clique explícito do usuário (estado em memória, não persistido).
+  - Páginas públicas indexáveis (`/[lang]/map/[category]` e `/[lang]/map/[category]/[slug]`) não expõem descrições com spoiler no HTML para crawlers nem metadados de busca.
+- **Ferramenta de Captura de Coordenadas (Dev Tools):**
+  - Em ambiente de desenvolvimento (`NODE_ENV !== 'production'` ou `NEXT_PUBLIC_DEV_TOOLS=on`), o mapa oferece o modo *"Capturar Ponto"* que copia com 1 clique a estrutura JSON do marcador pronta para `src/data/verified/markers.json` com `x` e `y` arredondados.
+  - Esta ferramenta é removida/desabilitada nos builds de produção.
+
+### 8. Privacidade, Consentimento de Cookies & Notificações DMCA
 - **ConsentBanner (Client):** Categorias claras de cookies (*Necessários*, *Medição/Telemetria* e *Marketing*), todas desligadas por padrão (opt-in estrito) e salvas em cookie de 12 meses (`cookie_consent`).
 - **Zero Scripts de Terceiros antes do Consentimento:** Nenhum script de análise ou publicidade é baixado ou executado sem aprovação prévia.
 - **Páginas Institucionais & Legais Dedicadas:**
@@ -98,6 +113,8 @@
    cp .env.example .env.local
    ```
    Variáveis suportadas:
+   - `DATA_MODE`: Fonte do dataset de marcadores (`demo`, `verified` ou `both`; padrão: `demo` em dev, `verified` em prod).
+   - `NEXT_PUBLIC_DEV_TOOLS`: Habilita a ferramenta de captura de coordenadas no mapa (`on` / `off`).
    - `NEXT_PUBLIC_CONTACT_EMAIL`: E-mail para contato e pedidos de remoção / DMCA (padrão: `contact@gtavimap.com`).
    - `NEXT_PUBLIC_ANALYTICS_SRC`: URL do script de medição/analytics (injetado **apenas com consentimento** explícito do usuário).
    - `NEXT_PUBLIC_ANALYTICS_ID`: Identificador do site/domínio no provedor de métricas (opcional).
@@ -160,7 +177,11 @@ gtavimap/
 │   │   └── mapConfig.ts            # Configurações de camadas e projeção do mapa
 │   ├── data/
 │   │   ├── categories.ts           # 8 categorias catalogadas
-│   │   └── markers.ts              # Marcadores com coordenadas e dados de demonstração
+│   │   ├── markers.ts              # Exportador compatível de marcadores
+│   │   ├── markerRepository.ts     # Repositório com suporte a DATA_MODE (demo, verified, both)
+│   │   ├── markers.demo.ts         # Dataset de demonstração
+│   │   └── verified/
+│   │       └── markers.json        # Dataset verificado de observações em jogo
 │   ├── hooks/
 │   │   └── useUserProgress.ts      # Hook reativo de progresso do jogador
 │   ├── i18n/

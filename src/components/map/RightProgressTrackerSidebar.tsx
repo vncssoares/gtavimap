@@ -13,6 +13,8 @@ import {
   X,
   MapPin,
   Share2,
+  Eye,
+  EyeOff,
 } from 'lucide-react';
 import { Language, MarkerLocation, UserProgress } from '@/types';
 import { CATEGORIES } from '@/data/categories';
@@ -51,16 +53,19 @@ export const RightProgressTrackerSidebar: React.FC<RightProgressTrackerSidebarPr
   const [copiedCoords, setCopiedCoords] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
   const [noteSavedFeedback, setNoteSavedFeedback] = useState(false);
+  const [showSpoiler, setShowSpoiler] = useState(false);
   const [prevMarkerId, setPrevMarkerId] = useState<string | null>(null);
 
   if (selectedMarker && selectedMarker.id !== prevMarkerId) {
     setPrevMarkerId(selectedMarker.id);
     setNoteText(progress.userNotes[selectedMarker.id] || '');
+    setShowSpoiler(false);
     if (isCollapsed) {
       setIsCollapsed(false);
     }
   } else if (!selectedMarker && prevMarkerId !== null) {
     setPrevMarkerId(null);
+    setShowSpoiler(false);
   }
 
   const overallStats = MarkerService.getOverallStats(allMarkers, progress);
@@ -177,12 +182,37 @@ export const RightProgressTrackerSidebar: React.FC<RightProgressTrackerSidebarPr
 
               <div>
                 <h3 className="text-base font-black text-white leading-snug">
-                  {selectedMarker.name}
+                  {selectedMarker.spoiler && !showSpoiler
+                    ? (markerCategory ? (dict.categories as Record<string, string>)[markerCategory.id] : null) || markerCategory?.shortLabel || selectedMarker.category
+                    : selectedMarker.name}
                 </h3>
                 <div className="flex items-center gap-1.5 text-xs text-slate-400 mt-1">
                   <MapPin size={13} className="text-[#00e5ff]" />
                   <span>{selectedMarker.region}</span>
                 </div>
+
+                {selectedMarker.spoiler && !showSpoiler && (
+                  <div className="mt-2.5 flex items-center justify-between p-2 rounded-lg bg-amber-500/10 border border-amber-500/30">
+                    <div className="flex items-center gap-1.5 text-amber-400 text-xs font-mono">
+                      <EyeOff size={13} />
+                      <span>Spoiler</span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setShowSpoiler(true)}
+                      className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-amber-500 hover:bg-amber-400 text-black font-black text-[10px] uppercase tracking-wider transition-colors"
+                    >
+                      <Eye size={11} />
+                      <span>
+                        {lang === 'pt-BR'
+                          ? 'Mostrar spoiler'
+                          : lang === 'es'
+                          ? 'Mostrar spoiler'
+                          : 'Show spoiler'}
+                      </span>
+                    </button>
+                  </div>
+                )}
               </div>
 
               {/* Botão de Compartilhar (Ação Principal de Link) */}
@@ -270,10 +300,36 @@ export const RightProgressTrackerSidebar: React.FC<RightProgressTrackerSidebarPr
                 </button>
               </div>
 
-              {/* Descrição com texto maior */}
-              <div className="p-3 rounded-xl bg-[#0b0c10] border border-[#202230] text-xs text-slate-300 leading-relaxed">
-                {selectedMarker.description[lang] || selectedMarker.description.en}
-              </div>
+              {/* Descrição com texto maior ou proteção de spoiler */}
+              {selectedMarker.spoiler && !showSpoiler ? (
+                <div className="p-3 rounded-xl bg-[#0b0c10] border border-amber-500/30 text-center space-y-2">
+                  <p className="text-xs text-slate-400 italic">
+                    {lang === 'pt-BR'
+                      ? 'Descrição oculta para proteger revelações da história.'
+                      : lang === 'es'
+                      ? 'Descripción oculta para proteger detalles de la historia.'
+                      : 'Description hidden to prevent story spoilers.'}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setShowSpoiler(true)}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-400 border border-amber-500/40 text-xs font-bold uppercase tracking-wider transition-colors"
+                  >
+                    <Eye size={13} />
+                    <span>
+                      {lang === 'pt-BR'
+                        ? 'Mostrar spoiler'
+                        : lang === 'es'
+                        ? 'Mostrar spoiler'
+                        : 'Show spoiler'}
+                    </span>
+                  </button>
+                </div>
+              ) : (
+                <div className="p-3 rounded-xl bg-[#0b0c10] border border-[#202230] text-xs text-slate-300 leading-relaxed">
+                  {selectedMarker.description[lang] || selectedMarker.description.en}
+                </div>
+              )}
 
               {/* Anotações Pessoais */}
               <div className="space-y-2 pt-1">

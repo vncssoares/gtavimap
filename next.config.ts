@@ -4,6 +4,9 @@ const nextConfig: NextConfig = {
   /* config options here */
   cacheComponents: true,
   partialPrefetching: true,
+  env: {
+    DATA_MODE: process.env.DATA_MODE || '',
+  },
   async headers() {
     return [
       {

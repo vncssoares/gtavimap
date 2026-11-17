@@ -55,6 +55,8 @@ export interface MarkerLocation {
   reward?: string;
   tags?: string[];
   updatedAt?: string; // Data ISO da última atualização (usado no sitemap)
+  verifiedAt?: string; // Data ISO de quando o ponto foi verificado no jogo
+  spoiler?: boolean; // Se verdadeiro, oculta a descrição até o clique para evitar spoilers
 }
 
 export interface UserProgress {

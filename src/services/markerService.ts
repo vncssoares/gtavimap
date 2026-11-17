@@ -1,5 +1,5 @@
 import { MarkerLocation, CategoryId, MapFilterState, UserProgress, Language } from '@/types';
-import { DEMO_MARKERS } from '@/data/markers';
+import { getMarkers } from '@/data/markerRepository';
 import { CATEGORIES } from '@/data/categories';
 
 export interface CategoryStats {
@@ -11,11 +11,11 @@ export interface CategoryStats {
 
 export const MarkerService = {
   getAllMarkers(): MarkerLocation[] {
-    return DEMO_MARKERS;
+    return getMarkers();
   },
 
   getMarkerById(id: string): MarkerLocation | undefined {
-    return DEMO_MARKERS.find((m) => m.id === id);
+    return getMarkers().find((m) => m.id === id);
   },
 
   filterMarkers(

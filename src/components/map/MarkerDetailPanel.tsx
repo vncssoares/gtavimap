@@ -16,6 +16,8 @@ import {
   Save,
   Compass,
   Share2,
+  Eye,
+  EyeOff,
 } from 'lucide-react';
 import { MarkerLocation, Language } from '@/types';
 import { CATEGORIES } from '@/data/categories';
@@ -50,6 +52,7 @@ export const MarkerDetailPanel: React.FC<MarkerDetailPanelProps> = ({
   const [copiedCoords, setCopiedCoords] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
   const [noteSavedFeedback, setNoteSavedFeedback] = useState(false);
+  const [showSpoiler, setShowSpoiler] = useState(false);
   const [prevMarkerId, setPrevMarkerId] = useState(marker?.id);
   const [prevUserNote, setPrevUserNote] = useState(userNote);
 
@@ -57,6 +60,7 @@ export const MarkerDetailPanel: React.FC<MarkerDetailPanelProps> = ({
     setPrevMarkerId(marker?.id);
     setPrevUserNote(userNote);
     setNoteText(userNote);
+    setShowSpoiler(false);
   }
 
   if (!marker) return null;
@@ -151,12 +155,39 @@ export const MarkerDetailPanel: React.FC<MarkerDetailPanelProps> = ({
         {/* Título e Região */}
         <div>
           <h2 className="text-xl font-black text-white tracking-tight leading-snug">
-            {marker.name}
+            {marker.spoiler && !showSpoiler
+              ? category
+                ? (dict.categories as Record<string, string>)[category.id] || category.shortLabel
+                : marker.category
+              : marker.name}
           </h2>
           <div className="flex items-center gap-1.5 mt-1 text-xs text-slate-400">
             <MapPin size={14} className="text-[#00e5ff]" />
             <span className="font-medium text-slate-300">{marker.region}</span>
           </div>
+
+          {marker.spoiler && !showSpoiler && (
+            <div className="mt-2.5 flex items-center justify-between p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30">
+              <div className="flex items-center gap-1.5 text-amber-400 text-xs font-mono">
+                <EyeOff size={14} />
+                <span>Spoiler da História</span>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowSpoiler(true)}
+                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-amber-500 hover:bg-amber-400 text-black font-black text-[11px] uppercase tracking-wider transition-colors"
+              >
+                <Eye size={12} />
+                <span>
+                  {lang === 'pt-BR'
+                    ? 'Mostrar spoiler'
+                    : lang === 'es'
+                    ? 'Mostrar spoiler'
+                    : 'Show spoiler'}
+                </span>
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Compartilhar (Ação Principal de Link) */}
@@ -237,10 +268,39 @@ export const MarkerDetailPanel: React.FC<MarkerDetailPanelProps> = ({
 
         {/* Descrição do Local */}
         <div className="p-3.5 rounded-xl bg-[#111c2c] border border-[#1d2d42] space-y-1.5">
-          <h4 className="text-[11px] font-mono uppercase tracking-wider text-slate-400">
-            Descrição
+          <h4 className="text-[11px] font-mono uppercase tracking-wider text-slate-400 flex items-center justify-between">
+            <span>Descrição</span>
+            {marker.spoiler && showSpoiler && (
+              <span className="text-amber-400 text-[10px] font-mono">Spoiler Revelado</span>
+            )}
           </h4>
-          <p className="text-xs text-slate-200 leading-relaxed">{descriptionText}</p>
+          {marker.spoiler && !showSpoiler ? (
+            <div className="py-2 text-center space-y-2">
+              <p className="text-xs text-slate-400 italic">
+                {lang === 'pt-BR'
+                  ? 'Descrição oculta para proteger revelações da história.'
+                  : lang === 'es'
+                  ? 'Descripción oculta para proteger detalles de la historia.'
+                  : 'Description hidden to prevent story spoilers.'}
+              </p>
+              <button
+                type="button"
+                onClick={() => setShowSpoiler(true)}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-400 border border-amber-500/40 text-xs font-bold uppercase tracking-wider transition-colors"
+              >
+                <Eye size={13} />
+                <span>
+                  {lang === 'pt-BR'
+                    ? 'Mostrar spoiler'
+                    : lang === 'es'
+                    ? 'Mostrar spoiler'
+                    : 'Show spoiler'}
+                </span>
+              </button>
+            </div>
+          ) : (
+            <p className="text-xs text-slate-200 leading-relaxed">{descriptionText}</p>
+          )}
         </div>
 
         {/* Informações Extras (Horário, Recompensa) */}

@@ -13,7 +13,9 @@ import {
   Hand,
   PenTool,
   SlidersHorizontal,
+  Target,
 } from 'lucide-react';
+import { isDemoOrBoth } from '@/data/markerRepository';
 
 interface CustomLeafletMapProps {
   markers: MarkerLocation[];
@@ -27,6 +29,8 @@ interface CustomLeafletMapProps {
   targetRegionBounds?: [[number, number], [number, number]] | null;
   interactiveScroll?: boolean;
 }
+
+const IS_DEV_TOOLS = process.env.NODE_ENV !== 'production' || process.env.NEXT_PUBLIC_DEV_TOOLS === 'on';
 
 export const CustomLeafletMap: React.FC<CustomLeafletMapProps> = ({
   markers,
@@ -46,6 +50,19 @@ export const CustomLeafletMap: React.FC<CustomLeafletMapProps> = ({
   const imageOverlayRef = useRef<L.ImageOverlay | null>(null);
   const [mapTheme, setMapTheme] = useState<'default' | 'detailed'>('default');
   const [cursorCoords, setCursorCoords] = useState<{ x: number; y: number } | null>(null);
+
+  // Ferramenta de captura de coordenadas em desenvolvimento
+  const isDevTools = IS_DEV_TOOLS;
+  const [isCaptureMode, setIsCaptureMode] = useState(false);
+  const [captureToast, setCaptureToast] = useState<string | null>(null);
+  const isCaptureModeRef = useRef(false);
+
+  useEffect(() => {
+    isCaptureModeRef.current = isCaptureMode;
+    if (mapContainerRef.current) {
+      mapContainerRef.current.style.cursor = isCaptureMode ? 'crosshair' : '';
+    }
+  }, [isCaptureMode]);
 
   // Inicializa mapa com CRS.Simple
   useEffect(() => {
@@ -90,6 +107,38 @@ export const CustomLeafletMap: React.FC<CustomLeafletMapProps> = ({
         setCursorCoords(null);
       }
     });
+
+    if (IS_DEV_TOOLS) {
+      map.on('click', (e: L.LeafletMouseEvent) => {
+        if (!isCaptureModeRef.current) return;
+        const x = Number(e.latlng.lng.toFixed(1));
+        const y = Number(e.latlng.lat.toFixed(1));
+        const template = {
+          id: `point_${Date.now().toString(36)}`,
+          slug: 'novo-ponto',
+          name: 'Nome do Ponto',
+          category: 'collectibles',
+          subCategory: '',
+          x,
+          y,
+          region: 'Vice City',
+          confirmationStatus: 'verified',
+          source: 'Observação própria no jogo',
+          description: {
+            en: '',
+            'pt-BR': '',
+            es: '',
+          },
+          verifiedAt: new Date().toISOString(),
+          spoiler: false,
+        };
+        if (typeof navigator !== 'undefined' && navigator.clipboard) {
+          navigator.clipboard.writeText(JSON.stringify(template, null, 2));
+        }
+        setCaptureToast(`Coordenadas X: ${x} | Y: ${y} copiadas!`);
+        setTimeout(() => setCaptureToast(null), 3000);
+      });
+    }
 
     return () => {
       map.remove();
@@ -361,6 +410,27 @@ export const CustomLeafletMap: React.FC<CustomLeafletMapProps> = ({
       {/* Contêiner Leaflet */}
       <div ref={mapContainerRef} className="w-full h-full z-0" />
 
+      {/* Faixa Discreta de Dados Demonstrativos (quando DATA_MODE=demo ou both) */}
+      {isDemoOrBoth() && (
+        <div className="absolute top-3 left-1/2 -translate-x-1/2 z-20 px-3.5 py-1.5 rounded-full bg-[#12131a]/95 backdrop-blur-md border border-amber-500/40 text-amber-400 text-[11px] font-mono shadow-2xl flex items-center gap-2 pointer-events-none select-none max-w-[90vw] text-center">
+          <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse shrink-0" />
+          <span className="tracking-wide truncate">
+            {lang === 'pt-BR'
+              ? 'Dados de demonstração (não são localizações do jogo)'
+              : lang === 'es'
+              ? 'Datos de demostración (no son ubicaciones del juego)'
+              : 'Demonstration data (not in-game locations)'}
+          </span>
+        </div>
+      )}
+
+      {/* Feedback Toast de Captura de Coordenadas (Dev Tools) */}
+      {captureToast && (
+        <div className="absolute bottom-20 left-1/2 -translate-x-1/2 z-30 px-4 py-2 rounded-xl bg-[#00e5ff] text-black font-mono text-xs font-black shadow-2xl animate-in fade-in zoom-in-95">
+          {captureToast}
+        </div>
+      )}
+
       {/* Botão Mobile para Abrir HUD de Filtros */}
       <div className="absolute top-4 left-4 z-20 md:hidden flex items-center gap-2">
         <button
@@ -401,6 +471,21 @@ export const CustomLeafletMap: React.FC<CustomLeafletMapProps> = ({
           >
             <PenTool size={14} />
           </button>
+          {/* Botão de Captura de Coordenadas (disponível exclusivamente em dev/NEXT_PUBLIC_DEV_TOOLS) */}
+          {isDevTools && (
+            <button
+              type="button"
+              onClick={() => setIsCaptureMode((prev) => !prev)}
+              className={`w-8 h-8 rounded flex items-center justify-center transition-colors shadow-sm ${
+                isCaptureMode
+                  ? 'bg-[#ff2a85] text-white shadow-[0_0_15px_rgba(255,42,133,0.7)] animate-pulse'
+                  : 'bg-[#1a1c26] hover:bg-[#252836] text-slate-300 hover:text-[#ff2a85]'
+              }`}
+              title={isCaptureMode ? 'Desativar captura de ponto' : 'Capturar ponto (Dev Tool)'}
+            >
+              <Target size={15} />
+            </button>
+          )}
           <button
             onClick={() => mapInstanceRef.current?.zoomIn()}
             className="w-8 h-8 rounded bg-[#1a1c26] hover:bg-[#252836] text-slate-200 hover:text-[#00e5ff] flex items-center justify-center transition-colors shadow-sm"

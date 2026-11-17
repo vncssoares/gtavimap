@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node -e \"if (process.env.DATA_MODE === 'verified') { require('child_process').execSync('node scripts/validate-markers.mjs', { stdio: 'inherit' }); }\"",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "validate:data": "node scripts/validate-markers.mjs"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

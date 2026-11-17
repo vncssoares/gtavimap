@@ -7,9 +7,9 @@ import { getDictionary } from '@/i18n/translations';
 import { Header } from '@/components/common/Header';
 import { Footer } from '@/components/common/Footer';
 import { CATEGORIES } from '@/data/categories';
-import { DEMO_MARKERS } from '@/data/markers';
 import { DynamicIcon } from '@/components/common/DynamicIcon';
 import { getIndexableCategories, categoryIdToSlug } from '@/data/seoSelectors';
+import { getMarkers } from '@/data/markerRepository';
 
 export const instant = false;
 
@@ -129,7 +129,8 @@ export default async function CategoriesPage({ params }: PageProps) {
                   {/* Grid das Categorias do Grupo */}
                   <div className="space-y-6">
                     {groupCategories.map((category) => {
-                      const categoryMarkers = DEMO_MARKERS.filter(
+                      const allMarkers = getMarkers();
+                      const categoryMarkers = allMarkers.filter(
                         (m) => m.category === category.id
                       );
                       const hasVerified = indexableCategories.some((c) => c.id === category.id);

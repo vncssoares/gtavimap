@@ -77,7 +77,15 @@ export async function generateMetadata({ params }: MarkerPageProps): Promise<Met
     return { title: 'Not Found — GTAVIMap' };
   }
 
-  const desc = marker.description[currentLang] || marker.description.en;
+  const rawDesc = marker.description[currentLang] || marker.description.en;
+  const desc = marker.spoiler
+    ? currentLang === 'pt-BR'
+      ? `${marker.name} em ${marker.region} — Ponto confirmado em Leonida. Detalhes de história ocultos contra spoilers.`
+      : currentLang === 'es'
+      ? `${marker.name} en ${marker.region} — Punto confirmado en Leonida. Detalles de historia ocultos contra spoilers.`
+      : `${marker.name} in ${marker.region} — Confirmed location in Leonida. Story details hidden to prevent spoilers.`
+    : rawDesc;
+
   const title = `${marker.name} — GTAVIMap`;
   const canonicalPath = `/${normalizedLang}/map/${categorySlug}/${markerSlug}`;
   const ogImageUrl = `/${normalizedLang}/map/${categorySlug}/${markerSlug}/opengraph-image`;
@@ -242,9 +250,22 @@ export default async function MarkerLandingPage({ params }: MarkerPageProps) {
                 {marker.name}
               </h1>
 
-              <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
-                {desc}
-              </p>
+              {marker.spoiler ? (
+                <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs sm:text-sm font-mono space-y-1">
+                  <span className="font-bold uppercase tracking-wider block">⚠️ Contém Spoilers da História</span>
+                  <span className="text-slate-300">
+                    {currentLang === 'pt-BR'
+                      ? 'A descrição detalhada deste ponto está oculta para preservar sua experiência de jogo. Abra o ponto no mapa interativo para revelar.'
+                      : currentLang === 'es'
+                      ? 'La descripción detallada de este punto está oculta para preservar su experiencia de juego. Ábralo en el mapa interactivo para revelarla.'
+                      : 'The detailed description of this location is hidden to preserve your gameplay experience. Open it in the interactive map to reveal.'}
+                  </span>
+                </div>
+              ) : (
+                <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
+                  {desc}
+                </p>
+              )}
             </div>
 
             {/* Dados Cartográficos e Atributos */}

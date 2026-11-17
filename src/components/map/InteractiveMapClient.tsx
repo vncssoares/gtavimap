@@ -7,7 +7,7 @@ import { useSearchParams } from 'next/navigation';
 import { Maximize2, Compass } from 'lucide-react';
 import { CategoryId, FilterStatus, Language, MarkerLocation } from '@/types';
 import { CATEGORIES } from '@/data/categories';
-import { DEMO_MARKERS } from '@/data/markers';
+import { getMarkers } from '@/data/markerRepository';
 import { getRegionById } from '@/data/regions';
 import { MarkerService } from '@/services/markerService';
 import { useUserProgress } from '@/hooks/useUserProgress';
@@ -72,7 +72,7 @@ export const InteractiveMapClient: React.FC<InteractiveMapClientProps> = ({
       if (isValid) {
         const list: CategoryId[] = [categoryParam as CategoryId];
         if (markerParam) {
-          const foundMarker = DEMO_MARKERS.find((m) => m.id === markerParam);
+          const foundMarker = getMarkers().find((m) => m.id === markerParam);
           if (foundMarker && !list.includes(foundMarker.category)) {
             list.push(foundMarker.category);
           }
@@ -103,7 +103,7 @@ export const InteractiveMapClient: React.FC<InteractiveMapClientProps> = ({
   // Inicializa marcador com suporte a deep link (?m=<markerId>)
   const [selectedMarker, setSelectedMarker] = useState<MarkerLocation | null>(() => {
     if (markerParam) {
-      return DEMO_MARKERS.find((m) => m.id === markerParam) || null;
+      return getMarkers().find((m) => m.id === markerParam) || null;
     }
     return null;
   });
@@ -117,7 +117,7 @@ export const InteractiveMapClient: React.FC<InteractiveMapClientProps> = ({
   const [prevParamM, setPrevParamM] = useState(markerParam);
   if (markerParam !== prevParamM) {
     setPrevParamM(markerParam);
-    const found = markerParam ? DEMO_MARKERS.find((m) => m.id === markerParam) || null : null;
+    const found = markerParam ? getMarkers().find((m) => m.id === markerParam) || null : null;
     setSelectedMarker(found);
     if (found) {
       setSelectedCategories((prev) =>
@@ -187,7 +187,7 @@ export const InteractiveMapClient: React.FC<InteractiveMapClientProps> = ({
 
   const filteredMarkers = useMemo(() => {
     return MarkerService.filterMarkers(
-      DEMO_MARKERS,
+      getMarkers(),
       {
         searchQuery,
         selectedCategories,
@@ -255,7 +255,7 @@ export const InteractiveMapClient: React.FC<InteractiveMapClientProps> = ({
           onFilterStatusChange={setFilterStatus}
           selectedRegion={selectedRegion}
           onRegionChange={setSelectedRegion}
-          allMarkers={DEMO_MARKERS}
+          allMarkers={getMarkers()}
           progress={progress}
           onResetProgress={resetAll}
           isOpenMobile={isMobileFiltersOpen}
@@ -284,7 +284,7 @@ export const InteractiveMapClient: React.FC<InteractiveMapClientProps> = ({
         <RightProgressTrackerSidebar
           lang={lang}
           progress={progress}
-          allMarkers={DEMO_MARKERS}
+          allMarkers={getMarkers()}
           selectedMarker={selectedMarker}
           onCloseMarkerDetails={handleCloseMarkerDetails}
           onToggleFound={toggleFound}

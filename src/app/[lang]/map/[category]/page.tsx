@@ -313,7 +313,13 @@ export default async function CategoryLandingPage({ params }: CategoryPageProps)
                       </h3>
 
                       <p className="text-xs text-slate-400 line-clamp-3 leading-relaxed">
-                        {desc}
+                        {marker.spoiler
+                          ? currentLang === 'pt-BR'
+                            ? '[Conteúdo de história com spoiler oculto]'
+                            : currentLang === 'es'
+                            ? '[Contenido de historia con spoiler oculto]'
+                            : '[Story spoiler content hidden]'
+                          : desc}
                       </p>
 
                       {marker.reward && (
