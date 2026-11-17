@@ -21,6 +21,7 @@ import { CATEGORIES } from '@/data/categories';
 import { MarkerService } from '@/services/markerService';
 import { getDictionary } from '@/i18n/translations';
 import { EmbedSnippetButton } from '@/components/common/EmbedSnippetButton';
+import { ConfidenceBadge } from '@/components/common/ConfidenceBadge';
 
 interface RightProgressTrackerSidebarProps {
   lang: Language;
@@ -189,9 +190,12 @@ export const RightProgressTrackerSidebar: React.FC<RightProgressTrackerSidebarPr
                     ? (markerCategory ? (dict.categories as Record<string, string>)[markerCategory.id] : null) || markerCategory?.shortLabel || selectedMarker.category
                     : selectedMarker.name}
                 </h3>
-                <div className="flex items-center gap-1.5 text-xs text-slate-400 mt-1">
-                  <MapPin size={13} className="text-[#00e5ff]" />
-                  <span>{selectedMarker.region}</span>
+                <div className="flex flex-wrap items-center gap-2 mt-1.5">
+                  <div className="flex items-center gap-1.5 text-xs text-slate-400">
+                    <MapPin size={13} className="text-[#00e5ff]" />
+                    <span>{selectedMarker.region}</span>
+                  </div>
+                  <ConfidenceBadge status={selectedMarker.confirmationStatus} lang={lang} />
                 </div>
 
                 {selectedMarker.spoiler && !showSpoiler && (
@@ -359,6 +363,14 @@ export const RightProgressTrackerSidebar: React.FC<RightProgressTrackerSidebarPr
                   <Save size={13} />
                   <span>{dict.common.saveNote.toUpperCase()}</span>
                 </button>
+              </div>
+
+              {/* Fonte e Verificação do Marcador */}
+              <div className="pt-2 border-t border-[#1c1e2b] flex items-center justify-between text-[10px] text-slate-400 font-mono">
+                <span className="font-semibold text-slate-300">{dict.common.source}:</span>
+                <span className="text-slate-400 truncate max-w-[200px]" title={selectedMarker.source}>
+                  {selectedMarker.source}
+                </span>
               </div>
             </div>
           ) : (

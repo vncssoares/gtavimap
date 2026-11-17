@@ -11,7 +11,6 @@ import {
   Tag,
   Copy,
   CheckCheck,
-  AlertTriangle,
   FileText,
   Save,
   Compass,
@@ -24,6 +23,7 @@ import { CATEGORIES } from '@/data/categories';
 import { getDictionary } from '@/i18n/translations';
 import { DynamicIcon } from '@/components/common/DynamicIcon';
 import { EmbedSnippetButton } from '@/components/common/EmbedSnippetButton';
+import { ConfidenceBadge } from '@/components/common/ConfidenceBadge';
 
 interface MarkerDetailPanelProps {
   marker: MarkerLocation | null;
@@ -233,10 +233,7 @@ export const MarkerDetailPanel: React.FC<MarkerDetailPanelProps> = ({
             )}
           </button>
 
-          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-[#f59e0b]/10 border border-[#f59e0b]/30 text-[10px] font-mono text-[#f59e0b]">
-            <AlertTriangle size={12} />
-            <span>Demonstração Fictícia</span>
-          </span>
+          <ConfidenceBadge status={marker.confirmationStatus} lang={lang} />
         </div>
 
         {/* Botões de Ação Principal (Encontrado & Favorito) */}

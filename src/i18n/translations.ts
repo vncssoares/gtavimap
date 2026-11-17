@@ -353,6 +353,30 @@ export const DICTIONARIES = {
       mailtoSubject: 'GTAVIMap - Copyright / Removal Request',
       noFormNotice: 'For document tracking and security verification, all formal requests are handled directly via email with no intermediary web forms.',
     },
+    confidenceBadges: {
+      verified: 'Verified In-Game',
+      trailer_rumor: 'Seen in Trailer, Unconfirmed',
+      demo_unconfirmed: 'Demonstration / Unconfirmed',
+    },
+    quickFacts: {
+      title: 'QUICK SPECIFICATIONS',
+      subtitle: 'Verified game specifications, confirmed platforms, and community estimates.',
+      colFeature: 'Feature',
+      colDetail: 'Details',
+      colStatus: 'Status & Source',
+      officialSource: 'Official Source',
+      communityEstimate: 'Community Estimate',
+      unconfirmed: 'Unconfirmed',
+      placeholderNotice: 'Specifications are currently in editorial verification and will appear once confirmed.',
+    },
+    stickyNav: {
+      map: 'Interactive Map',
+      regions: 'Regions',
+      faq: 'FAQ',
+      language: 'Language',
+    },
+    mapHint: 'Drag to pan, use pinch or scroll to zoom',
+    freshnessBadge: 'NEW',
   },
 
   'pt-BR': {
@@ -682,6 +706,30 @@ export const DICTIONARIES = {
       mailtoSubject: 'GTAVIMap - Solicitação de Remoção / DMCA Notice',
       noFormNotice: 'Para fins de auditoria, validade jurídica e rastreabilidade documental, todas as solicitações são recebidas exclusivamente via e-mail direto, sem formulários na web.',
     },
+    confidenceBadges: {
+      verified: 'Verificado no jogo',
+      trailer_rumor: 'Visto em trailer, não confirmado',
+      demo_unconfirmed: 'Demonstração / Não confirmado',
+    },
+    quickFacts: {
+      title: 'ESPECIFICAÇÕES RÁPIDAS',
+      subtitle: 'Fatos essenciais verificados, plataformas confirmadas e estimativas da comunidade.',
+      colFeature: 'Característica',
+      colDetail: 'Detalhes',
+      colStatus: 'Status & Fonte',
+      officialSource: 'Fonte Oficial',
+      communityEstimate: 'Estimativa da comunidade',
+      unconfirmed: 'Não confirmado',
+      placeholderNotice: 'As especificações estão em fase de catalogação editorial e serão publicadas após confirmação.',
+    },
+    stickyNav: {
+      map: 'Mapa',
+      regions: 'Regiões',
+      faq: 'Perguntas Frequentes',
+      language: 'Idioma',
+    },
+    mapHint: 'Arraste para mover, use pinça ou scroll para zoom',
+    freshnessBadge: 'NOVO',
   },
 
   es: {
@@ -1011,6 +1059,30 @@ export const DICTIONARIES = {
       mailtoSubject: 'GTAVIMap - Solicitud de Retirada / DMCA Notice',
       noFormNotice: 'Por razones de seguridad y trazabilidad documental, todas las notificaciones se tramitan directamente por correo electrónico sin formularios intermediarios.',
     },
+    confidenceBadges: {
+      verified: 'Verificado en el juego',
+      trailer_rumor: 'Visto en tráiler, no confirmado',
+      demo_unconfirmed: 'Demostración / No confirmado',
+    },
+    quickFacts: {
+      title: 'ESPECIFICACIONES RÁPIDAS',
+      subtitle: 'Datos esenciales verificados, plataformas confirmadas y estimaciones comunitarias.',
+      colFeature: 'Característica',
+      colDetail: 'Detalles',
+      colStatus: 'Estado y Fuente',
+      officialSource: 'Fuente Oficial',
+      communityEstimate: 'Estimación de la comunidad',
+      unconfirmed: 'No confirmado',
+      placeholderNotice: 'Las especificaciones están en proceso de verificación editorial y se publicarán al confirmarse.',
+    },
+    stickyNav: {
+      map: 'Mapa',
+      regions: 'Regiones',
+      faq: 'Preguntas Frecuentes',
+      language: 'Idioma',
+    },
+    mapHint: 'Arrastra para mover, usa pellizco o rueda para zoom',
+    freshnessBadge: 'NUEVO',
   },
 };
 

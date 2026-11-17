@@ -14,6 +14,7 @@ import {
   PenTool,
   SlidersHorizontal,
   Target,
+  X,
 } from 'lucide-react';
 import { isDemoOrBoth } from '@/data/markerRepository';
 
@@ -44,12 +45,35 @@ export const CustomLeafletMap: React.FC<CustomLeafletMapProps> = ({
   targetRegionBounds,
   interactiveScroll = true,
 }) => {
+  const dict = getDictionary(lang);
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
   const markersLayerRef = useRef<L.LayerGroup | null>(null);
   const imageOverlayRef = useRef<L.ImageOverlay | null>(null);
   const [mapTheme, setMapTheme] = useState<'default' | 'detailed'>('default');
   const [cursorCoords, setCursorCoords] = useState<{ x: number; y: number } | null>(null);
+
+  // Dica de interação na primeira visita (dispensada no primeiro gesto)
+  const [showInteractionHint, setShowInteractionHint] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return false;
+    try {
+      return !localStorage.getItem('gtavimap_map_hint_dismissed');
+    } catch {
+      return false;
+    }
+  });
+
+  const dismissHint = useCallback(() => {
+    setShowInteractionHint((prev) => {
+      if (!prev) return false;
+      try {
+        localStorage.setItem('gtavimap_map_hint_dismissed', 'true');
+      } catch {
+        // Silencioso
+      }
+      return false;
+    });
+  }, []);
 
   // Ferramenta de captura de coordenadas em desenvolvimento
   const isDevTools = IS_DEV_TOOLS;
@@ -98,6 +122,9 @@ export const CustomLeafletMap: React.FC<CustomLeafletMapProps> = ({
     markersLayerRef.current = layerGroup;
     mapInstanceRef.current = map;
 
+    // Dispensar a dica no primeiro gesto no mapa
+    map.on('movestart zoomstart dragstart', dismissHint);
+
     map.on('mousemove', (e: L.LeafletMouseEvent) => {
       const x = Math.round(e.latlng.lng);
       const y = Math.round(e.latlng.lat);
@@ -141,10 +168,11 @@ export const CustomLeafletMap: React.FC<CustomLeafletMapProps> = ({
     }
 
     return () => {
+      map.off('movestart zoomstart dragstart', dismissHint);
       map.remove();
       mapInstanceRef.current = null;
     };
-  }, []);
+  }, [dismissHint]);
 
   // Observa mudanças de dimensão no container do mapa (redimensionamento de janela ou abertura/fecho de sidebars)
   useEffect(() => {
@@ -406,9 +434,37 @@ export const CustomLeafletMap: React.FC<CustomLeafletMapProps> = ({
   }, [interactiveScroll]);
 
   return (
-    <div className="relative w-full h-full bg-[#3b9cb0] overflow-hidden select-none">
+    <div
+      onTouchStart={dismissHint}
+      onMouseDown={dismissHint}
+      className="relative w-full h-full bg-[#3b9cb0] overflow-hidden select-none"
+    >
       {/* Contêiner Leaflet */}
       <div ref={mapContainerRef} className="w-full h-full z-0" />
+
+      {/* Dica de navegação no mapa (exibida apenas na 1ª visita até o primeiro gesto) */}
+      {showInteractionHint && (
+        <div
+          role="status"
+          aria-live="polite"
+          className={`absolute left-1/2 -translate-x-1/2 z-30 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0d1017]/95 border border-[#38f8ff]/60 text-slate-100 text-xs shadow-2xl backdrop-blur-md animate-in fade-in slide-in-from-top-2 pointer-events-auto max-w-[95vw] ${
+            isDemoOrBoth() ? 'top-12 sm:top-14' : 'top-3 sm:top-4'
+          }`}
+        >
+          <Hand size={14} className="text-[#38f8ff] animate-pulse shrink-0" />
+          <span className="font-medium whitespace-nowrap text-[11px] sm:text-xs">
+            {dict.mapHint}
+          </span>
+          <button
+            type="button"
+            onClick={dismissHint}
+            className="ml-1 p-0.5 rounded-full text-slate-400 hover:text-white transition-colors"
+            aria-label="Dispensar dica de navegação"
+          >
+            <X size={13} />
+          </button>
+        </div>
+      )}
 
       {/* Faixa Discreta de Dados Demonstrativos (quando DATA_MODE=demo ou both) */}
       {isDemoOrBoth() && (

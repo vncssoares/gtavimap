@@ -4,6 +4,7 @@ import { ExternalLink, Calendar, Gamepad2, Globe, AlertCircle, ArrowRight, Shiel
 import { Language } from '@/types';
 import { getDictionary, formatReviewDate } from '@/i18n/translations';
 import { getNewsItems, LAST_REVIEWED_NEWS_ISO } from '@/data/news';
+import { FreshnessBadge } from '@/components/common/FreshnessBadge';
 
 interface NewsAndChangelogProps {
   lang: Language;
@@ -106,9 +107,12 @@ export const NewsAndChangelog: React.FC<NewsAndChangelogProps> = ({ lang }) => {
                       )}
                     </div>
 
-                    <div className="flex items-center gap-1 text-[11px] font-mono text-slate-400">
-                      <Calendar size={12} />
-                      <span>{formattedItemDate}</span>
+                    <div className="flex items-center gap-2 text-[11px] font-mono text-slate-400">
+                      <FreshnessBadge date={item.publishedAt} lang={lang} />
+                      <span className="flex items-center gap-1">
+                        <Calendar size={12} />
+                        <span>{formattedItemDate}</span>
+                      </span>
                     </div>
                   </div>
 

@@ -84,7 +84,12 @@ export const StorageService = {
 
   resetAll(): void {
     if (typeof window === 'undefined') return;
-    localStorage.removeItem(STORAGE_KEY);
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+      localStorage.removeItem('gtavimap_map_hint_dismissed');
+    } catch {
+      // Silencioso
+    }
     window.dispatchEvent(new CustomEvent('gtavimap_progress_updated', { detail: DEFAULT_PROGRESS }));
   },
 

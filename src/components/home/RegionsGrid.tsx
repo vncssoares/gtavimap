@@ -46,7 +46,7 @@ export const RegionsGrid: React.FC<RegionsGridProps> = ({ lang }) => {
   };
 
   return (
-    <section className="py-16 px-4 max-w-7xl mx-auto">
+    <section id="regions" className="py-16 px-4 max-w-7xl mx-auto scroll-mt-28">
       <div className="flex flex-col items-center text-center mb-12">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1e2230]/80 border border-[#38f8ff]/40 text-[#38f8ff] text-xs font-mono uppercase tracking-widest mb-3 shadow-[0_0_15px_rgba(0,229,255,0.15)]">
           <Compass className="w-3.5 h-3.5" />

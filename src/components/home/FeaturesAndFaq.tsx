@@ -442,7 +442,7 @@ export const FeaturesAndFaq: React.FC<FeaturesAndFaqProps> = ({ lang }) => {
       </section>
 
       {/* Visible FAQ */}
-      <section className="max-w-4xl mx-auto">
+      <section id="faq" className="max-w-4xl mx-auto scroll-mt-28">
         <div className="flex flex-col items-center text-center mb-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1e2230]/80 border border-[#ff2a85]/30 text-[#ff2a85] text-xs font-mono uppercase tracking-widest mb-3 shadow-[0_0_15px_rgba(255,42,133,0.15)]">
             <HelpCircle className="w-3.5 h-3.5" />

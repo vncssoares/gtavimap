@@ -12,6 +12,8 @@ import { FeatureZigzag } from '@/components/home/FeatureZigzag';
 import { YouTubeFacade } from '@/components/home/YouTubeFacade';
 import { NewsAndChangelog } from '@/components/home/NewsAndChangelog';
 import { FeaturesAndFaq } from '@/components/home/FeaturesAndFaq';
+import { HomeStickyNav } from '@/components/home/HomeStickyNav';
+import { QuickFacts } from '@/components/home/QuickFacts';
 
 export const instant = false;
 
@@ -117,6 +119,9 @@ export default async function HomePage({ params }: PageProps) {
 
       <Header lang={currentLang} />
 
+      {/* Menu Sticky de Navegação Rápida por Âncoras (#map, #regions, #faq, idioma) */}
+      <HomeStickyNav lang={currentLang} />
+
       <main className="flex-1">
         {/* Compact Hero Section */}
         <HomeHero lang={currentLang} />
@@ -129,7 +134,7 @@ export default async function HomePage({ params }: PageProps) {
         </div>
 
         {/* Centerpiece Interactive Map Preview */}
-        <section className="py-12 md:py-16 px-4 max-w-7xl mx-auto">
+        <section id="map" className="py-12 md:py-16 px-4 max-w-7xl mx-auto scroll-mt-28">
           <Suspense
             fallback={
               <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] min-h-[420px] max-h-[680px] rounded-2xl bg-[#0c0e15] border-2 border-[#24283b] flex items-center justify-center">
@@ -143,6 +148,9 @@ export default async function HomePage({ params }: PageProps) {
 
         {/* Featured Leonida Regions Grid */}
         <RegionsGrid lang={currentLang} />
+
+        {/* Quick Facts & Database Specifications */}
+        <QuickFacts lang={currentLang} />
 
         {/* Gameplay & Mechanics Alternating Feature Zigzag */}
         <FeatureZigzag lang={currentLang} />

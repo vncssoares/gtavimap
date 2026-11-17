@@ -10,6 +10,7 @@ import { getMarkers } from '@/data/markerRepository';
 import { MarkerService } from '@/services/markerService';
 import { getDictionary } from '@/i18n/translations';
 import { DynamicIcon } from '@/components/common/DynamicIcon';
+import { ConfidenceBadge } from '@/components/common/ConfidenceBadge';
 
 // Carrega o Leaflet dinamicamente sem SSR
 const CustomLeafletMap = dynamic(
@@ -183,12 +184,12 @@ export const EmbedMapClient: React.FC<EmbedMapClientProps> = ({ lang }) => {
               </button>
             </div>
 
-            {/* Nome & Região */}
-            <div className="space-y-1">
+            {/* Nome & Região & Status */}
+            <div className="space-y-1.5">
               <h3 className="text-sm font-black text-white leading-snug">
                 {selectedMarker.name}
               </h3>
-              <div className="flex items-center justify-between text-[10px] font-mono text-slate-400">
+              <div className="flex flex-wrap items-center justify-between gap-1 text-[10px] font-mono text-slate-400">
                 <span className="flex items-center gap-1 text-[#ff2a85]">
                   <MapPin size={11} />
                   {selectedMarker.region}
@@ -196,6 +197,9 @@ export const EmbedMapClient: React.FC<EmbedMapClientProps> = ({ lang }) => {
                 <span className="text-[#00e5ff] font-bold">
                   X:{selectedMarker.x} | Y:{selectedMarker.y}
                 </span>
+              </div>
+              <div>
+                <ConfidenceBadge status={selectedMarker.confirmationStatus} lang={lang} />
               </div>
             </div>
 
