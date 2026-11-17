@@ -8,7 +8,14 @@ export interface RegionData {
   bounds: [[number, number], [number, number]]; // [[minY, minX], [maxY, maxX]]
   color: string;
   tag: string;
+  realWorldInspiration: Record<Language, string>;
+  inspirationConfidence: 'official' | 'community';
+  officialSourceUrl?: string;
+  summary: Record<Language, string>;
+  placeholder?: boolean;
 }
+
+export type Region = RegionData;
 
 export const REGIONS: RegionData[] = [
   {
@@ -33,6 +40,19 @@ export const REGIONS: RegionData[] = [
     ],
     color: '#ff2a85',
     tag: 'METROPOLIS',
+    realWorldInspiration: {
+      'pt-BR': '',
+      en: '',
+      es: '',
+    },
+    inspirationConfidence: 'official',
+    officialSourceUrl: '',
+    summary: {
+      'pt-BR': '',
+      en: '',
+      es: '',
+    },
+    placeholder: true,
   },
   {
     id: 'leonida_keys',
@@ -56,6 +76,19 @@ export const REGIONS: RegionData[] = [
     ],
     color: '#00e5ff',
     tag: 'ARCHIPELAGO',
+    realWorldInspiration: {
+      'pt-BR': '',
+      en: '',
+      es: '',
+    },
+    inspirationConfidence: 'community',
+    officialSourceUrl: '',
+    summary: {
+      'pt-BR': '',
+      en: '',
+      es: '',
+    },
+    placeholder: true,
   },
   {
     id: 'grassrivers',
@@ -79,6 +112,19 @@ export const REGIONS: RegionData[] = [
     ],
     color: '#10b981',
     tag: 'WETLANDS',
+    realWorldInspiration: {
+      'pt-BR': '',
+      en: '',
+      es: '',
+    },
+    inspirationConfidence: 'community',
+    officialSourceUrl: '',
+    summary: {
+      'pt-BR': '',
+      en: '',
+      es: '',
+    },
+    placeholder: true,
   },
   {
     id: 'mount_kalaga',
@@ -102,6 +148,19 @@ export const REGIONS: RegionData[] = [
     ],
     color: '#a855f7',
     tag: 'HIGHLANDS',
+    realWorldInspiration: {
+      'pt-BR': '',
+      en: '',
+      es: '',
+    },
+    inspirationConfidence: 'community',
+    officialSourceUrl: '',
+    summary: {
+      'pt-BR': '',
+      en: '',
+      es: '',
+    },
+    placeholder: true,
   },
   {
     id: 'port_gellhorn',
@@ -125,6 +184,19 @@ export const REGIONS: RegionData[] = [
     ],
     color: '#fbbf24',
     tag: 'INDUSTRIAL',
+    realWorldInspiration: {
+      'pt-BR': '',
+      en: '',
+      es: '',
+    },
+    inspirationConfidence: 'community',
+    officialSourceUrl: '',
+    summary: {
+      'pt-BR': '',
+      en: '',
+      es: '',
+    },
+    placeholder: true,
   },
   {
     id: 'ambrosia',
@@ -148,6 +220,19 @@ export const REGIONS: RegionData[] = [
     ],
     color: '#f97316',
     tag: 'HEARTLAND',
+    realWorldInspiration: {
+      'pt-BR': '',
+      en: '',
+      es: '',
+    },
+    inspirationConfidence: 'community',
+    officialSourceUrl: '',
+    summary: {
+      'pt-BR': '',
+      en: '',
+      es: '',
+    },
+    placeholder: true,
   },
 ];
 

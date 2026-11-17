@@ -22,6 +22,7 @@ export const Header: React.FC<HeaderProps> = ({ lang }) => {
   const navLinks = [
     { href: `${langPrefix}`, label: dict.nav.home },
     { href: `${langPrefix}/map`, label: dict.nav.map },
+    { href: `${langPrefix}/region`, label: dict.nav.regions },
     { href: `${langPrefix}/categories`, label: dict.nav.categories },
     { href: `${langPrefix}/characters`, label: dict.nav.characters },
     { href: `${langPrefix}/news`, label: dict.nav.news },

@@ -98,6 +98,11 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
                 </Link>
               </li>
               <li>
+                <Link href={`${langPrefix}/region`} className="min-h-[44px] inline-flex items-center hover:text-[#00e5ff] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#38f8ff]">
+                  {dict.nav.regions}
+                </Link>
+              </li>
+              <li>
                 <Link href={`${langPrefix}/categories`} className="min-h-[44px] inline-flex items-center hover:text-[#00e5ff] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#38f8ff]">
                   {dict.nav.categories}
                 </Link>

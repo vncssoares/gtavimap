@@ -6,4 +6,5 @@ export const siteConfig = {
   siteUrl: 'https://gtavimap.com',
   freshnessDaysThreshold: 14,
   buildTimeIso: '2026-11-17T00:00:00.000Z',
+  regionMinVerified: 3, // REGION_MIN_VERIFIED: mínimo de marcadores verificados para indexação (padrão 3)
 };

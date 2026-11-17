@@ -2,6 +2,7 @@ import { MetadataRoute } from 'next';
 import {
   getIndexableCategories,
   getIndexableMarkers,
+  getIndexableRegions,
   categoryIdToSlug,
 } from '@/data/seoSelectors';
 import { siteConfig } from '@/config/siteConfig';
@@ -19,6 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     { path: '', priority: 0.9, changeFrequency: 'weekly' as const },
     { path: '/map', priority: 1.0, changeFrequency: 'daily' as const },
+    { path: '/region', priority: 0.8, changeFrequency: 'weekly' as const },
     { path: '/categories', priority: 0.8, changeFrequency: 'weekly' as const },
     { path: '/characters', priority: 0.8, changeFrequency: 'weekly' as const },
     { path: '/news', priority: 0.7, changeFrequency: 'daily' as const },
@@ -46,6 +48,29 @@ export default function sitemap(): MetadataRoute.Sitemap {
             'pt-br': `${baseUrl}/pt-br${route.path}`,
             es: `${baseUrl}/es${route.path}`,
             'x-default': `${baseUrl}/en${route.path}`,
+          },
+        },
+      });
+    }
+  }
+
+  // Rotas de regiões indexáveis (apenas com >= REGION_MIN_VERIFIED pontos verificados)
+  const indexableRegions = getIndexableRegions();
+
+  for (const reg of indexableRegions) {
+    for (const lang of languages) {
+      const url = `${baseUrl}/${lang}/region/${reg.id}`;
+      sitemapEntries.push({
+        url,
+        lastModified: buildDate,
+        changeFrequency: 'weekly',
+        priority: 0.7,
+        alternates: {
+          languages: {
+            en: `${baseUrl}/en/region/${reg.id}`,
+            'pt-br': `${baseUrl}/pt-br/region/${reg.id}`,
+            es: `${baseUrl}/es/region/${reg.id}`,
+            'x-default': `${baseUrl}/en/region/${reg.id}`,
           },
         },
       });
