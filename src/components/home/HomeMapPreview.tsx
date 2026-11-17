@@ -58,8 +58,8 @@ export const HomeMapPreview: React.FC<HomeMapPreviewProps> = ({ lang }) => {
         }
       },
       {
-        rootMargin: '200px',
-        threshold: 0.05,
+        rootMargin: '-60px 0px',
+        threshold: 0.5,
       }
     );
 
@@ -129,9 +129,9 @@ export const HomeMapPreview: React.FC<HomeMapPreviewProps> = ({ lang }) => {
               <span>Leonida Interactive Cartography</span>
             </div>
 
-            <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight uppercase">
+            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight uppercase">
               Mapa Interativo de Vice City & Leonida
-            </h3>
+            </h2>
 
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
               Explore distritos, colecionáveis, pontos de salto acrobático e arsenais

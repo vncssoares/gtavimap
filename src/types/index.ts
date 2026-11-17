@@ -74,3 +74,34 @@ export interface MapFilterState {
   filterStatus: FilterStatus;
   selectedRegion?: string;
 }
+
+export type ConfidenceLevel = 'official' | 'community_analysis';
+export type ContentKind = 'game' | 'site';
+
+export interface GameplayItem {
+  id: string;
+  slug: string;
+  categoryId: CategoryId;
+  title: Record<Language, string>;
+  summary: Record<Language, string>;
+  kind: 'game';
+  sourceUrl: string; // Exigido para fatos do jogo
+  publishedAt: string; // Data ISO 8601
+  confidence: ConfidenceLevel;
+  placeholder?: boolean;
+  updatedAt: string; // Data ISO 8601
+  illustration: 'heist' | 'tuning' | 'wildlife';
+}
+
+export interface NewsItem {
+  id: string;
+  slug: string;
+  title: Record<Language, string>;
+  summary: Record<Language, string>;
+  kind: ContentKind;
+  sourceUrl?: string; // Exigido se kind === 'game', opcional para kind === 'site'
+  publishedAt: string; // Data ISO 8601
+  confidence?: ConfidenceLevel; // Exigido para fatos do jogo
+  placeholder?: boolean;
+  updatedAt: string; // Data ISO 8601
+}

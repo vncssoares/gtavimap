@@ -8,7 +8,9 @@ import { HomeHero } from '@/components/home/HomeHero';
 import { LaunchCountdown, LaunchCountdownFallback } from '@/components/home/LaunchCountdown';
 import { HomeMapPreview } from '@/components/home/HomeMapPreview';
 import { RegionsGrid } from '@/components/home/RegionsGrid';
+import { FeatureZigzag } from '@/components/home/FeatureZigzag';
 import { YouTubeFacade } from '@/components/home/YouTubeFacade';
+import { NewsAndChangelog } from '@/components/home/NewsAndChangelog';
 import { FeaturesAndFaq } from '@/components/home/FeaturesAndFaq';
 
 export const instant = false;
@@ -142,8 +144,14 @@ export default async function HomePage({ params }: PageProps) {
         {/* Featured Leonida Regions Grid */}
         <RegionsGrid lang={currentLang} />
 
+        {/* Gameplay & Mechanics Alternating Feature Zigzag */}
+        <FeatureZigzag lang={currentLang} />
+
         {/* Official YouTube Trailer Facade */}
         <YouTubeFacade lang={currentLang} />
+
+        {/* Official Game News & Site Changelog */}
+        <NewsAndChangelog lang={currentLang} />
 
         {/* Features, Free vs PRO, Visible FAQs and Legal Disclaimer */}
         <FeaturesAndFaq lang={currentLang} />

@@ -11,6 +11,20 @@ export function getAnnualDiscountPercent(lang: Language): number {
   return Math.round((1 - cfg.annual / (cfg.monthly * 12)) * 100);
 }
 
+export function formatReviewDate(isoDate: string, lang: Language): string {
+  try {
+    const date = new Date(isoDate);
+    const locale = lang === 'pt-BR' ? 'pt-BR' : lang === 'es' ? 'es-ES' : 'en-US';
+    return date.toLocaleDateString(locale, {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+    });
+  } catch {
+    return isoDate;
+  }
+}
+
 export const DICTIONARIES = {
   en: {
     common: {
@@ -102,6 +116,7 @@ export const DICTIONARIES = {
       map: 'Interactive Map',
       categories: 'Categories',
       characters: 'Characters',
+      news: 'News',
       premium: 'Premium',
       about: 'About',
     },
@@ -114,6 +129,33 @@ export const DICTIONARIES = {
       supportingSectionTitle: 'SUPPORTING CAST',
       badgeProtagonist: 'Protagonist',
       footerNotice: 'Biographies and captures based on official GTA VI character reveals by Rockstar Games.',
+    },
+    gameplaySection: {
+      title: 'GAMEPLAY & MECHANICS',
+      subtitle: 'Verified systems, heist dynamics, and world mechanics observed in official releases.',
+      viewInMap: 'Explore in Map',
+      officialBadge: 'Official',
+      communityBadge: 'Community Analysis',
+      reviewedAt: 'Reviewed on {date}',
+      placeholderBadge: 'PLACEHOLDER',
+      emptyProductionNotice: 'Official gameplay systems and mechanics are currently being cataloged. Verified entries will be published following developer announcements.',
+    },
+    newsSection: {
+      title: 'NEWS & UPDATES',
+      subtitle: 'Official GTA VI updates and GTAVIMap platform release notes.',
+      pageTitle: 'News & Updates',
+      viewAll: 'View All Updates',
+      readSource: 'Official Source',
+      gameBadge: 'Game',
+      siteBadge: 'Site',
+      officialBadge: 'Official',
+      communityBadge: 'Community Analysis',
+      reviewedAt: 'Reviewed on {date}',
+      placeholderBadge: 'PLACEHOLDER',
+      emptyProductionNotice: 'No updates to display at the moment.',
+      allTab: 'All',
+      gameTab: 'Game News',
+      siteTab: 'Site Changelog',
     },
     hero: {
       title: 'The Interactive Map & Progress Tracker for GTA VI',
@@ -403,6 +445,7 @@ export const DICTIONARIES = {
       map: 'Mapa Interativo',
       categories: 'Categorias',
       characters: 'Personagens',
+      news: 'Notícias',
       premium: 'Premium',
       about: 'Sobre',
     },
@@ -415,6 +458,33 @@ export const DICTIONARIES = {
       supportingSectionTitle: 'ELENCO DE APOIO',
       badgeProtagonist: 'Protagonista',
       footerNotice: 'Biografias manifestadas das páginas oficiais dos personagens de GTA VI da Rockstar Games.',
+    },
+    gameplaySection: {
+      title: 'GAMEPLAY E MECÂNICAS',
+      subtitle: 'Sistemas verificados, dinâmicas de assalto e mecânicas de mundo observadas em divulgações oficiais.',
+      viewInMap: 'Explorar no Mapa',
+      officialBadge: 'Oficial',
+      communityBadge: 'Análise da comunidade',
+      reviewedAt: 'Revisado em {date}',
+      placeholderBadge: 'PLACEHOLDER',
+      emptyProductionNotice: 'Sistemas e mecânicas oficiais de gameplay estão em fase de catalogação técnica. Novas entradas verificadas serão publicadas conforme comunicados da desenvolvedora.',
+    },
+    newsSection: {
+      title: 'NOTÍCIAS E ATUALIZAÇÕES',
+      subtitle: 'Novidades oficiais de GTA VI e notas de versão da plataforma GTAVIMap.',
+      pageTitle: 'Notícias e Atualizações',
+      viewAll: 'Ver Todas as Atualizações',
+      readSource: 'Fonte Oficial',
+      gameBadge: 'Jogo',
+      siteBadge: 'Site',
+      officialBadge: 'Oficial',
+      communityBadge: 'Análise da comunidade',
+      reviewedAt: 'Revisado em {date}',
+      placeholderBadge: 'PLACEHOLDER',
+      emptyProductionNotice: 'Nenhuma atualização disponível no momento.',
+      allTab: 'Todos',
+      gameTab: 'Notícias do Jogo',
+      siteTab: 'Changelog do Site',
     },
     hero: {
       title: 'O Mapa Interativo e Rastreador de Progresso para GTA VI',
@@ -704,6 +774,7 @@ export const DICTIONARIES = {
       map: 'Mapa Interactivo',
       categories: 'Categorías',
       characters: 'Personajes',
+      news: 'Noticias',
       premium: 'Premium',
       about: 'Acerca de',
     },
@@ -716,6 +787,33 @@ export const DICTIONARIES = {
       supportingSectionTitle: 'ELENCO DE APOYO',
       badgeProtagonist: 'Protagonista',
       footerNotice: 'Biografías manifestadas de las páginas oficiales de los personajes de GTA VI de Rockstar Games.',
+    },
+    gameplaySection: {
+      title: 'GAMEPLAY Y MECÁNICAS',
+      subtitle: 'Sistemas verificados, dinámicas de atraco y mecánicas del mundo observadas en lanzamientos oficiales.',
+      viewInMap: 'Explorar en el Mapa',
+      officialBadge: 'Oficial',
+      communityBadge: 'Análisis de la comunidad',
+      reviewedAt: 'Revisado el {date}',
+      placeholderBadge: 'PLACEHOLDER',
+      emptyProductionNotice: 'Los sistemas y mecánicas oficiales del juego están en fase de catalogación técnica. Las entradas verificadas se publicarán tras los anuncios de la desarrolladora.',
+    },
+    newsSection: {
+      title: 'NOTICIAS Y ACTUALIZACIONES',
+      subtitle: 'Novedades oficiales de GTA VI y notas de versión de la plataforma GTAVIMap.',
+      pageTitle: 'Noticias y Actualizaciones',
+      viewAll: 'Ver Todas las Actualizaciones',
+      readSource: 'Fuente Oficial',
+      gameBadge: 'Juego',
+      siteBadge: 'Sitio',
+      officialBadge: 'Oficial',
+      communityBadge: 'Análisis de la comunidad',
+      reviewedAt: 'Revisado el {date}',
+      placeholderBadge: 'PLACEHOLDER',
+      emptyProductionNotice: 'No hay actualizaciones disponibles en este momento.',
+      allTab: 'Todos',
+      gameTab: 'Noticias del Juego',
+      siteTab: 'Changelog del Sitio',
     },
     hero: {
       title: 'El Mapa Interactivo y Rastreador de Progreso para GTA VI',

@@ -8,6 +8,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { execSync } from 'child_process';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -38,15 +39,13 @@ if (!Array.isArray(content)) {
 // Array vazio é perfeitamente válido (estado inicial do projeto)
 if (content.length === 0) {
   console.log('✓ Sucesso: Nenhum marcador verificado cadastrado ainda (array vazio é válido).');
-  process.exit(0);
-}
+} else {
+  const errors = [];
+  const seenIds = new Set();
+  const seenCategorySlugs = new Set();
 
-const errors = [];
-const seenIds = new Set();
-const seenCategorySlugs = new Set();
-
-const KEBAB_REGEX = /^[a-z0-9]+(-[a-z0-9]+)*$/;
-const ISO_DATE_REGEX = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[+-]\d{2}:\d{2})$/;
+  const KEBAB_REGEX = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+  const ISO_DATE_REGEX = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[+-]\d{2}:\d{2})$/;
 
 content.forEach((marker, index) => {
   const prefix = `[Marcador #${index} ID: "${marker?.id || 'SEM_ID'}"]`;
@@ -117,11 +116,20 @@ content.forEach((marker, index) => {
   }
 });
 
-if (errors.length > 0) {
-  console.error(`\n❌ Falha na validação dos dados verificados (${errors.length} erro(s) encontrado(s)):`);
-  errors.forEach((err) => console.error(` - ${err}`));
+  if (errors.length > 0) {
+    console.error(`\n❌ Falha na validação dos dados verificados (${errors.length} erro(s) encontrado(s)):`);
+    errors.forEach((err) => console.error(` - ${err}`));
+    process.exit(1);
+  }
+
+  console.log(`\n✓ Sucesso: Todos os ${content.length} marcadores verificados são válidos e estão conformes com as diretrizes.`);
+}
+
+// 2. Executa validação de conteúdo de gameplay e notícias
+try {
+  execSync('node scripts/validate-content.mjs', { stdio: 'inherit' });
+} catch {
   process.exit(1);
 }
 
-console.log(`\n✓ Sucesso: Todos os ${content.length} marcadores verificados são válidos e estão conformes com as diretrizes.`);
 process.exit(0);

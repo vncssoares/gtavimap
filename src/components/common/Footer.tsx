@@ -104,6 +104,11 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
                 </Link>
               </li>
               <li>
+                <Link href={`${langPrefix}/news`} className="min-h-[44px] inline-flex items-center hover:text-[#00e5ff] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#38f8ff]">
+                  {dict.nav.news}
+                </Link>
+              </li>
+              <li>
                 <Link href={`${langPrefix}/premium`} className="min-h-[44px] inline-flex items-center hover:text-[#ff2a85] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#38f8ff]">
                   {dict.nav.premium}
                 </Link>
