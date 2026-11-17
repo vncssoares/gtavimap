@@ -83,6 +83,9 @@ export default async function MapPage({ params }: PageProps) {
         href="/map/leonida-vibrant-map.v1.svg"
         fetchPriority="high"
       />
+      <h1 className="sr-only">
+        {dict.nav.map} — {dict.common.siteName}
+      </h1>
       <Header lang={currentLang} />
       <div className="flex-1 w-full relative overflow-hidden">
         <Suspense

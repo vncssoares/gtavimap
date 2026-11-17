@@ -92,6 +92,32 @@
   - `/[lang]/contact`: Canal para suporte e procedimento formal para **Pedidos de Remoção e Direitos Autorais (DMCA)** com botão mailto estruturado.
 - **Componente Reutilizável `FanSiteDisclaimer`:** Selo de projeto de fãs sem afiliação comercial à Rockstar Games ou Take-Two Interactive.
 
+### 9. Auditoria Automatizada de SEO & Indexabilidade (`check:seo`)
+- **Prevenção de Falhas de Publicação:** Script autônomo em Node.js (`scripts/check-seo.mjs`) executado via `npm run check:seo`.
+- **Verificações Globais:**
+  - Status 200 de `/robots.txt` e `/sitemap.xml`.
+  - Conformidade com `SITE_INDEXING`: quando `SITE_INDEXING=off`, exige bloqueio total (`Disallow: /`) no robots, sitemap vazio e `noindex` (meta e X-Robots-Tag) em todas as páginas; quando `SITE_INDEXING=on`, exige sitemap preenchido e nenhuma página com `noindex`.
+- **Auditoria Detalhada por URL:**
+  - Status HTTP 200.
+  - Exatamente uma tag `<title>` com tamanho entre 20 e 65 caracteres.
+  - Exatamente uma `<meta name="description">` com tamanho entre 70 e 170 caracteres.
+  - Tag `canonical` idêntica à URL canônica sem parâmetros.
+  - Tags `hreflang` recíprocas para `en`, `pt-br` (`pt-BR`), `es` e `x-default`.
+  - Tags Open Graph (`og:image`) e Twitter Card (`twitter:image`) respondendo 200 com Content-Type `image/*`.
+  - Validação sintática de todos os blocos `JSON-LD` (`FAQPage` validado contra o texto visível no HTML).
+  - Exatamente uma tag `<h1>` por página.
+- **Auditoria de Conteúdo & Integridade Ética:**
+  - Impede URLs no sitemap com marcadores em status `demo` ou `trailer_rumor`.
+  - Impede vazamento no HTML de descrições marcadas com `spoiler: true`.
+  - Bloqueia imagens com `src` externo fora da whitelist autorizada (`ALLOWED_IMAGE_HOSTS`).
+- **Comando de Verificação:**
+  > [!IMPORTANT]
+  > **Antes de virar `SITE_INDEXING=on` em produção, execute obrigatoriamente:**
+  > ```bash
+  > npm run check:seo
+  > ```
+  > Para auditar apenas rotas específicas: `npm run check:seo -- --only=/pt-br`
+
 ---
 
 ## 🚀 Como Executar o Projeto

@@ -28,6 +28,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const title = `${dict.newsSection.pageTitle} — GTAVIMap`;
   const description = dict.newsSection.subtitle;
   const canonicalPath = `/${currentLang.toLowerCase()}/news`;
+  const ogImageUrl = `/${currentLang.toLowerCase()}/opengraph-image`;
 
   return {
     title,
@@ -46,13 +47,22 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description,
       url: `https://gtavimap.com${canonicalPath}`,
       siteName: 'GTAVIMap',
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
       locale: currentLang === 'pt-BR' ? 'pt_BR' : currentLang === 'es' ? 'es_ES' : 'en_US',
       type: 'website',
     },
     twitter: {
-      card: 'summary',
+      card: 'summary_large_image',
       title,
       description,
+      images: [ogImageUrl],
     },
   };
 }

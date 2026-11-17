@@ -122,7 +122,7 @@ export const DICTIONARIES = {
     },
     charactersPage: {
       title: 'CHARACTERS',
-      subtitle: 'Two playable protagonists and the confirmed supporting cast',
+      subtitle: 'Two playable protagonists, Jason and Lucia, and the confirmed supporting cast of GTA VI in Vice City.',
       playableSectionTitle: 'PLAYABLE PROTAGONISTS',
       gallerySectionTitle: 'NEW OFFICIAL SCREENSHOTS',
       gallerySectionSubtitle: 'Jason and Lucia in the captures Rockstar published alongside the Extended Look.',
@@ -142,7 +142,7 @@ export const DICTIONARIES = {
     },
     newsSection: {
       title: 'NEWS & UPDATES',
-      subtitle: 'Official GTA VI updates and GTAVIMap platform release notes.',
+      subtitle: 'Official GTA VI game updates, community announcements, and GTAVIMap platform release notes.',
       pageTitle: 'News & Updates',
       viewAll: 'View All Updates',
       readSource: 'Official Source',
@@ -281,7 +281,7 @@ export const DICTIONARIES = {
     // ============================================================
     privacyPage: {
       title: 'Privacy Policy',
-      subtitle: 'Transparency on how your browser data is handled on GTAVIMap.',
+      subtitle: 'Transparency on how your browser data, local storage, and cookies are handled on GTAVIMap.',
       lastUpdated: 'Last updated: November 2026',
       sections: [
         {
@@ -451,7 +451,7 @@ export const DICTIONARIES = {
     },
     charactersPage: {
       title: 'PERSONAGENS',
-      subtitle: 'Dois protagonistas jogáveis e o elenco de apoio confirmado',
+      subtitle: 'Dois protagonistas jogáveis, Jason e Lucia, e o elenco de apoio confirmado de GTA VI em Vice City.',
       playableSectionTitle: 'PROTAGONISTAS JOGÁVEIS',
       gallerySectionTitle: 'NOVAS IMAGENS OFICIAIS',
       gallerySectionSubtitle: 'Jason e Lucia nas capturas que a Rockstar publicou junto com o Extended Look.',
@@ -487,7 +487,7 @@ export const DICTIONARIES = {
       siteTab: 'Changelog do Site',
     },
     hero: {
-      title: 'O Mapa Interativo e Rastreador de Progresso para GTA VI',
+      title: 'Mapa Interativo e Rastreador de Progresso para GTA VI',
       subtitle: 'Acompanhe seus colecionáveis, descubra veículos raros, filtre arsenais de armas e explore o estado de Leonida com fluidez e identidade própria.',
       ctaPrimary: 'Explorar Mapa Interativo',
       ctaSecondary: 'Conhecer Versão Premium',
@@ -610,7 +610,7 @@ export const DICTIONARIES = {
     // ============================================================
     privacyPage: {
       title: 'Política de Privacidade',
-      subtitle: 'Transparência sobre o tratamento de dados no GTAVIMap.',
+      subtitle: 'Transparência sobre o tratamento de dados, armazenamento local e cookies no GTAVIMap.',
       lastUpdated: 'Última atualização: Novembro de 2026',
       sections: [
         {
@@ -637,7 +637,7 @@ export const DICTIONARIES = {
     },
     termsPage: {
       title: 'Termos de Uso',
-      subtitle: 'Regras e diretrizes para navegação no utilitário comunitário GTAVIMap.',
+      subtitle: 'Regras, diretrizes e condições de navegação no utilitário comunitário GTAVIMap.',
       lastUpdated: 'Última atualização: Novembro de 2026',
       sections: [
         {
@@ -780,7 +780,7 @@ export const DICTIONARIES = {
     },
     charactersPage: {
       title: 'PERSONAJES',
-      subtitle: 'Dos protagonistas jugables y el elenco de apoyo confirmado',
+      subtitle: 'Dos protagonistas jugables, Jason y Lucia, y el elenco de apoyo confirmado de GTA VI en Vice City.',
       playableSectionTitle: 'PROTAGONISTAS JUGABLES',
       gallerySectionTitle: 'NUEVAS IMÁGENES OFICIALES',
       gallerySectionSubtitle: 'Jason y Lucia en las capturas que Rockstar publicó junto al Extended Look.',
@@ -816,7 +816,7 @@ export const DICTIONARIES = {
       siteTab: 'Changelog del Sitio',
     },
     hero: {
-      title: 'El Mapa Interactivo y Rastreador de Progreso para GTA VI',
+      title: 'Mapa Interactivo y Rastreador de Progreso para GTA VI',
       subtitle: 'Rastrea tus coleccionables, descubre vehículos secretos, filtra arsenales de armas y explora el estado de Leonida con fluidez.',
       ctaPrimary: 'Iniciar Mapa Interactivo',
       ctaSecondary: 'Ver Ventajas Premium',
@@ -939,7 +939,7 @@ export const DICTIONARIES = {
     // ============================================================
     privacyPage: {
       title: 'Política de Privacidad',
-      subtitle: 'Transparencia sobre el tratamiento de datos del navegador en GTAVIMap.',
+      subtitle: 'Transparencia sobre el tratamiento de datos, almacenamiento local y cookies en GTAVIMap.',
       lastUpdated: 'Última actualización: Noviembre de 2026',
       sections: [
         {
@@ -966,7 +966,7 @@ export const DICTIONARIES = {
     },
     termsPage: {
       title: 'Términos de Servicio',
-      subtitle: 'Condiciones de uso y pautas para el utilitario comunitario GTAVIMap.',
+      subtitle: 'Condiciones de uso, directrices y pautas para el utilitario comunitario GTAVIMap.',
       lastUpdated: 'Última actualización: Noviembre de 2026',
       sections: [
         {
